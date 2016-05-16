@@ -42,9 +42,10 @@ namespace Nagrady
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ucommand.CommandText = "Update Rewards SET reward_name = ? Where Rewards.id_type=?";
+            ucommand.CommandText = "Update Rewards SET reward_name = ?, rewards.id_type = ?";
             ucommand.Parameters.Add("reward_name", ОДБ.OleDbType.VarWChar, 50, "reward_name");
-            ucommand.Parameters.Add(new ОДБ.OleDbParameter("id_type", ОДБ.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, (byte)0, (byte)0, "id", System.Data.DataRowVersion.Original, null));
+            //  ucommand.Parameters.Add(new ОДБ.OleDbParameter("id_type", ОДБ.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, (byte)0, (byte)0, "id", System.Data.DataRowVersion.Original, null));
+            ucommand.Parameters.Add(new ОДБ.OleDbParameter("id_type", ОДБ.OleDbType.Integer, 10)).Value = comboBox1.SelectedIndex;
             Adapter.UpdateCommand = ucommand;
             ucommand.Connection = con;
             try
