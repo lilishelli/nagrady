@@ -31,20 +31,20 @@ namespace Nagrady
             {
                 command.CommandText = "INSERT INTO (lname,fname,patre,org,position,gender,birth,dbegin_org,dbegin_industry,dbegin_grneral) values(?,?,?,?,?,?,?,?,?,?)";
             }
-                command.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = textBox1.Text;
-                command.Parameters.Add("fname", ОДБ.OleDbType.VarWChar, 50).Value = textBox2.Text;
-                command.Parameters.Add("patre", ОДБ.OleDbType.VarWChar, 50).Value = textBox3.Text;
-                command.Parameters.Add("gender", ОДБ.OleDbType.VarWChar, 50).Value = comboBox2.Items[comboBox1.SelectedIndex].ToString();
-                command.Parameters.Add("birth", ОДБ.OleDbType.Date, 10).Value = dateTimePicker1.Value;
-                command.Parameters.Add("org", ОДБ.OleDbType.VarWChar, 50).Value = textBox4.Text;
-                command.Parameters.Add("position", ОДБ.OleDbType.VarWChar, 50).Value = textBox5.Text;
-                command.Parameters.Add("dbegin_org", ОДБ.OleDbType.VarWChar, 50).Value = DateTime.Now.Subtract(new TimeSpan(360, 0, 0));
-                command.Parameters.Add("dbegin_industry", ОДБ.OleDbType.VarWChar, 50);
-                command.Parameters.Add("dbegin_general", ОДБ.OleDbType.VarWChar, 50);
-                command.Parameters.Add(new ОДБ.OleDbParameter("Original_id", ОДБ.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, (byte)0, (byte)0, "id", System.Data.DataRowVersion.Original, null));
-                Adapter.UpdateCommand = command;
-                command.Connection = con;
-                con.Close();
+            command.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = textBox1.Text;
+            command.Parameters.Add("fname", ОДБ.OleDbType.VarWChar, 50).Value = textBox2.Text;
+            command.Parameters.Add("patre", ОДБ.OleDbType.VarWChar, 50).Value = textBox3.Text;
+            command.Parameters.Add("gender", ОДБ.OleDbType.VarWChar, 50).Value = comboBox2.Items[comboBox1.SelectedIndex].ToString();
+            command.Parameters.Add("birth", ОДБ.OleDbType.Date, 10).Value = dateTimePicker1.Value;
+            command.Parameters.Add("org", ОДБ.OleDbType.VarWChar, 50).Value = textBox4.Text;
+            command.Parameters.Add("position", ОДБ.OleDbType.VarWChar, 50).Value = textBox5.Text;
+            command.Parameters.Add("dbegin_org", ОДБ.OleDbType.VarWChar, 50).Value = DateTime.Now.Subtract(new TimeSpan(360, 0, 0));
+            command.Parameters.Add("dbegin_industry", ОДБ.OleDbType.VarWChar, 50);
+            command.Parameters.Add("dbegin_general", ОДБ.OleDbType.VarWChar, 50);
+            command.Parameters.Add(new ОДБ.OleDbParameter("Original_id", ОДБ.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, false, (byte)0, (byte)0, "id", System.Data.DataRowVersion.Original, null));
+            Adapter.UpdateCommand = command;
+            command.Connection = con;
+            con.Close();
         }
         public void loadData()
         {

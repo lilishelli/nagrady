@@ -59,7 +59,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(35, 281);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 37);
+            this.button1.Size = new System.Drawing.Size(134, 37);
             this.button1.TabIndex = 1;
             this.button1.Text = "Добавить сотрудника в список";
             this.button1.UseVisualStyleBackColor = true;
@@ -70,8 +70,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.открытьСписокToolStripMenuItem,
             this.составитьОтчётToolStripMenuItem,
-            this.авторыToolStripMenuItem,
-            this.проверитьПодключениеСбазойДанныхToolStripMenuItem});
+            this.проверитьПодключениеСбазойДанныхToolStripMenuItem,
+            this.авторыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(851, 24);
@@ -84,19 +84,19 @@
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem,
             this.списокНаградToolStripMenuItem});
             this.открытьСписокToolStripMenuItem.Name = "открытьСписокToolStripMenuItem";
-            this.открытьСписокToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.открытьСписокToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
             this.открытьСписокToolStripMenuItem.Text = "Открыть список";
             // 
             // списокЛюдейПредставленныхКНаградамToolStripMenuItem
             // 
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Name = "списокЛюдейПредставленныхКНаградамToolStripMenuItem";
-            this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Size = new System.Drawing.Size(311, 22);
+            this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Size = new System.Drawing.Size(303, 22);
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Text = "Список людей представленных к наградам";
             // 
             // списокНаградToolStripMenuItem
             // 
             this.списокНаградToolStripMenuItem.Name = "списокНаградToolStripMenuItem";
-            this.списокНаградToolStripMenuItem.Size = new System.Drawing.Size(311, 22);
+            this.списокНаградToolStripMenuItem.Size = new System.Drawing.Size(303, 22);
             this.списокНаградToolStripMenuItem.Text = "Список наград";
             this.списокНаградToolStripMenuItem.Click += new System.EventHandler(this.списокНаградToolStripMenuItem_Click);
             // 
@@ -106,32 +106,32 @@
             this.отчётОНагражденныхЛюдяхToolStripMenuItem,
             this.отчётОНаграднойДеятельностиToolStripMenuItem});
             this.составитьОтчётToolStripMenuItem.Name = "составитьОтчётToolStripMenuItem";
-            this.составитьОтчётToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.составитьОтчётToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
             this.составитьОтчётToolStripMenuItem.Text = "Составить отчёт";
             // 
             // отчётОНагражденныхЛюдяхToolStripMenuItem
             // 
             this.отчётОНагражденныхЛюдяхToolStripMenuItem.Name = "отчётОНагражденныхЛюдяхToolStripMenuItem";
-            this.отчётОНагражденныхЛюдяхToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+            this.отчётОНагражденныхЛюдяхToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.отчётОНагражденныхЛюдяхToolStripMenuItem.Text = "Отчёт о награжденных людях";
             // 
             // отчётОНаграднойДеятельностиToolStripMenuItem
             // 
             this.отчётОНаграднойДеятельностиToolStripMenuItem.Name = "отчётОНаграднойДеятельностиToolStripMenuItem";
-            this.отчётОНаграднойДеятельностиToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
+            this.отчётОНаграднойДеятельностиToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.отчётОНаграднойДеятельностиToolStripMenuItem.Text = "Отчёт о наградной деятельности";
             this.отчётОНаграднойДеятельностиToolStripMenuItem.Click += new System.EventHandler(this.отчётОНаграднойДеятельностиToolStripMenuItem_Click);
             // 
             // авторыToolStripMenuItem
             // 
             this.авторыToolStripMenuItem.Name = "авторыToolStripMenuItem";
-            this.авторыToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.авторыToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.авторыToolStripMenuItem.Text = "Авторы";
             // 
             // проверитьПодключениеСбазойДанныхToolStripMenuItem
             // 
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Name = "проверитьПодключениеСбазойДанныхToolStripMenuItem";
-            this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Size = new System.Drawing.Size(185, 20);
+            this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Size = new System.Drawing.Size(180, 20);
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Text = "Проверить подключение с БД";
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Click += new System.EventHandler(this.проверитьПодключениеСбазойДанныхToolStripMenuItem_Click);
             // 
@@ -139,7 +139,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(35, 44);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(157, 20);
+            this.textBox2.Size = new System.Drawing.Size(157, 22);
             this.textBox2.TabIndex = 4;
             // 
             // search
@@ -155,7 +155,7 @@
             // 
             this.addRewardToEmpbtn.Location = new System.Drawing.Point(217, 281);
             this.addRewardToEmpbtn.Name = "addRewardToEmpbtn";
-            this.addRewardToEmpbtn.Size = new System.Drawing.Size(145, 37);
+            this.addRewardToEmpbtn.Size = new System.Drawing.Size(154, 37);
             this.addRewardToEmpbtn.TabIndex = 6;
             this.addRewardToEmpbtn.Text = "Добавить награду выбранному сотруднику";
             this.addRewardToEmpbtn.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@
             this.editbtn.Name = "editbtn";
             this.editbtn.Size = new System.Drawing.Size(144, 37);
             this.editbtn.TabIndex = 7;
-            this.editbtn.Text = "Просмотреть личные данные";
+            this.editbtn.Text = "Редактировать личные данные";
             this.editbtn.UseVisualStyleBackColor = true;
             this.editbtn.Click += new System.EventHandler(this.editbtn_Click);
             // 
