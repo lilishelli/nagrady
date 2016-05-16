@@ -30,7 +30,6 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.открытьСписокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,9 +38,11 @@
             this.отчётОНагражденныхЛюдяхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчётОНаграднойДеятельностиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.авторыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.search = new System.Windows.Forms.Button();
+            this.addRewardToEmpbtn = new System.Windows.Forms.Button();
+            this.editbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,20 +57,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(82, 288);
+            this.button1.Location = new System.Drawing.Point(35, 281);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(123, 37);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "Добавить сотрудника в список";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(181, 290);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
             // 
             // menuStrip1
             // 
@@ -134,22 +128,6 @@
             this.авторыToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.авторыToolStripMenuItem.Text = "Авторы";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(53, 52);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 4;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(237, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // проверитьПодключениеСбазойДанныхToolStripMenuItem
             // 
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Name = "проверитьПодключениеСбазойДанныхToolStripMenuItem";
@@ -157,19 +135,56 @@
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Text = "Проверить подключение с БД";
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Click += new System.EventHandler(this.проверитьПодключениеСбазойДанныхToolStripMenuItem_Click);
             // 
-            // Form1
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(35, 44);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 4;
+            // 
+            // search
+            // 
+            this.search.Location = new System.Drawing.Point(237, 44);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(75, 23);
+            this.search.TabIndex = 5;
+            this.search.Text = "Поиск";
+            this.search.UseVisualStyleBackColor = true;
+            // 
+            // addRewardToEmpbtn
+            // 
+            this.addRewardToEmpbtn.Location = new System.Drawing.Point(217, 281);
+            this.addRewardToEmpbtn.Name = "addRewardToEmpbtn";
+            this.addRewardToEmpbtn.Size = new System.Drawing.Size(145, 37);
+            this.addRewardToEmpbtn.TabIndex = 6;
+            this.addRewardToEmpbtn.Text = "Добавить награду выбранному сотруднику";
+            this.addRewardToEmpbtn.UseVisualStyleBackColor = true;
+            this.addRewardToEmpbtn.Click += new System.EventHandler(this.addRewardToEmpbtn_Click);
+            // 
+            // editbtn
+            // 
+            this.editbtn.Location = new System.Drawing.Point(406, 281);
+            this.editbtn.Name = "editbtn";
+            this.editbtn.Size = new System.Drawing.Size(144, 37);
+            this.editbtn.TabIndex = 7;
+            this.editbtn.Text = "Просмотреть личные данные";
+            this.editbtn.UseVisualStyleBackColor = true;
+            this.editbtn.Click += new System.EventHandler(this.editbtn_Click);
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 337);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.editbtn);
+            this.Controls.Add(this.addRewardToEmpbtn);
+            this.Controls.Add(this.search);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -184,7 +199,6 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem открытьСписокToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокЛюдейПредставленныхКНаградамToolStripMenuItem;
@@ -194,8 +208,10 @@
         private System.Windows.Forms.ToolStripMenuItem отчётОНаграднойДеятельностиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem авторыToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button search;
         private System.Windows.Forms.ToolStripMenuItem проверитьПодключениеСбазойДанныхToolStripMenuItem;
+        private System.Windows.Forms.Button addRewardToEmpbtn;
+        private System.Windows.Forms.Button editbtn;
     }
 }
 
