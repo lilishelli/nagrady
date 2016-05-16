@@ -49,6 +49,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -74,14 +75,14 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(506, 245);
+            this.textBox4.Location = new System.Drawing.Point(98, 245);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(323, 20);
             this.textBox4.TabIndex = 3;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(98, 245);
+            this.textBox5.Location = new System.Drawing.Point(524, 248);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(323, 20);
             this.textBox5.TabIndex = 4;
@@ -222,11 +223,20 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(98, 212);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(69, 21);
+            this.comboBox2.TabIndex = 21;
+            // 
             // EditEmp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 523);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -279,5 +289,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

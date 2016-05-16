@@ -74,7 +74,7 @@
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(862, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(851, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -139,14 +139,14 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(35, 44);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(157, 20);
             this.textBox2.TabIndex = 4;
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(237, 44);
+            this.search.Location = new System.Drawing.Point(217, 44);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(75, 23);
+            this.search.Size = new System.Drawing.Size(102, 23);
             this.search.TabIndex = 5;
             this.search.Text = "Поиск";
             this.search.UseVisualStyleBackColor = true;
@@ -175,7 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 337);
+            this.ClientSize = new System.Drawing.Size(851, 346);
             this.Controls.Add(this.editbtn);
             this.Controls.Add(this.addRewardToEmpbtn);
             this.Controls.Add(this.search);
