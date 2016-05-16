@@ -20,10 +20,10 @@ namespace Nagrady
             InitializeComponent();
         }
 
-        DataSet rewards;
+       // DataSet rewards;
         ОДБ.OleDbConnection con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source= rewards.mdb");
         ОДБ.OleDbCommand ucommand = new ОДБ.OleDbCommand();
-        ОДБ.OleDbDataAdapter Adapter;
+       // ОДБ.OleDbDataAdapter Adapter;
         void loademp()
         {
             con.Open();
