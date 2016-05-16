@@ -94,6 +94,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\DataSources\Nagrady.rewardsDataSetTableAdapters.RewardsTableAdapter.datasource" />
+    <None Include="Properties\DataSources\Rewards.datasource" />
     <None Include="Properties\DataSources\rewardsDataSet.RewardsDataTable.datasource" />
     <None Include="Properties\DataSources\rewardsDataSet.Reward_typesRow.datasource" />
     <None Include="Properties\Settings.settings">
