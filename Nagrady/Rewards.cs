@@ -63,17 +63,18 @@ namespace Nagrady
             con.Close();
             dataGridView1.DataSource = mytable;
             dataGridView1.Columns[0].HeaderCell.Value = "Вид награды";
-            dataGridView1.Columns[0].Width = 500;
+            dataGridView1.Columns[0].Width = 620;
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int t = (int)dataGridView1.CurrentRow.Cells[0].Value;
+           
+            String t = (String)dataGridView1.CurrentRow.Cells[0].Value;
             con.Open();
 
-            var comanda = new ОДБ.OleDbCommand("Delete * From Студенты where Шифр = ?", con);
-            comanda.Parameters.Add("id", ОДБ.OleDbType.Integer, 50).Value = t;
+            var comanda = new ОДБ.OleDbCommand("Delete * From Rewards where Rewards.reward_name = ?", con);
+            comanda.Parameters.Add("reward_name", ОДБ.OleDbType.VarChar, 50).Value = t;
             try
             {
                 int kol = comanda.ExecuteNonQuery();
@@ -81,9 +82,32 @@ namespace Nagrady
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "недоразумение");
+                MessageBox.Show(ex.Message, "Ошибка");
             }
             con.Close();
+            
+           
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source = rewards.mdb");
+            con.Open();
+
+            var comanda = new ОДБ.OleDbCommand("Select * from Rewards where Rewards.id_type=?", con);
+            comanda.Parameters.Add("Reward_types", ОДБ.OleDbType.Integer, 30).Value = comboBox2.Items[comboBox1.SelectedIndex].ToString();
+
+            ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
+            DataTable mytable = new DataTable();
+            mytable.Columns.Add(выполнение.GetName(1));
+
+            while (выполнение.Read() == true)
+                mytable.Rows.Add(new object[] { выполнение.GetValue(1) });
+            выполнение.Close();
+            con.Close();
+            dataGridView1.DataSource = mytable;
+            dataGridView1.Columns[0].HeaderCell.Value = "Вид награды";
+            dataGridView1.Columns[0].Width = 620;
         }
     }
 }
