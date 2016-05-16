@@ -66,5 +66,24 @@ namespace Nagrady
             dataGridView1.Columns[0].Width = 500;
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int t = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            con.Open();
+
+            var comanda = new ОДБ.OleDbCommand("Delete * From Студенты where Шифр = ?", con);
+            comanda.Parameters.Add("id", ОДБ.OleDbType.Integer, 50).Value = t;
+            try
+            {
+                int kol = comanda.ExecuteNonQuery();
+                MessageBox.Show("Обновлено " + kol + " записей");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "недоразумение");
+            }
+            con.Close();
+        }
     }
 }
