@@ -130,11 +130,26 @@ namespace Nagrady
                 con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source = rewards.mdb");
                 con.Open();
                 DataTable mytable = new DataTable();
-                var comand1 = new ОДБ.OleDbCommand("SELECT  reward_types.type_name, count(*) " +
-                    "FROM awardemps, rewards, reward_types " +
-                    "WHERE rewards.id=awardemps.reward_id AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# " +
-                    "and reward_types.id = rewards.id_type " +
-                    "GROUP BY reward_types.type_name ", con);
+                var comand1 = new ОДБ.OleDbCommand("(SELECT s.n, s.c, s1.c1 from (select reward_types.type_name as n, Count(*) as c " +
+                  "FROM awardemps, rewards, reward_types  " +
+                  "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+                 " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  " +
+                  "GROUP BY  reward_types.type_name) as s  left join " +
+"(select  reward_types.type_name as n, Count(*) as  c1 " +
+               "   FROM awardemps, rewards, reward_types  " +
+                "  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+               "   AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  " +
+"GROUP BY reward_types.type_name)  as s1 on s1.n = s.n)  union " +
+"(SELECT s1.n, s.c, s1.c1 from (select  reward_types.type_name as n, Count(*) as c " +
+             "     FROM awardemps, rewards, reward_types  " +
+              "    WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+               "   AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  " +
+                "  GROUP BY reward_types.type_name) as s right join " +
+"(select  reward_types.type_name as n, Count(*) as  c1 " +
+           "       FROM awardemps, rewards, reward_types  " +
+             "     WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+              "    AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  " +
+"GROUP BY reward_types.type_name) as s1 on s1.n = s.n) ", con);
                 ОДБ.OleDbDataReader reader = comand1.ExecuteReader();
                 var Word1 = new Ворд.Word.Application();
                 Word1.Visible = true;
@@ -153,12 +168,23 @@ namespace Nagrady
                     Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Bold = 3;
                     Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Name = "Times New Roman";
                     Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.InsertAfter(reader.GetValue(1).ToString());
+                    Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Size = 14;
+                    Word1.ActiveDocument.Tables[1].Cell(j, 3).Range.Font.Bold = 3;
+                    Word1.ActiveDocument.Tables[1].Cell(j, 3).Range.Font.Name = "Times New Roman";
+                    Word1.ActiveDocument.Tables[1].Cell(j, 3).Range.InsertAfter(reader.GetValue(2).ToString());
 
-                    var comanda = new ОДБ.OleDbCommand("SELECT rewards.reward_name, Count(*)  " +
-                      " FROM awardemps, rewards, reward_types " +
-                       "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type " +
-                       "AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# and  reward_types.type_name = '" + reader.GetValue(0) +
-                       "' GROUP BY rewards.reward_name", con);
+                    var comanda = new ОДБ.OleDbCommand("(SELECT s.n, s.c, s1.c1 from (select rewards.reward_name as n, Count(*) as c " +
+                "  FROM awardemps, rewards, reward_types WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
+                  " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+                  "' GROUP BY rewards.reward_name) as s  left join  (select rewards.reward_name as n, Count(*) as  c1  FROM awardemps, rewards, reward_types  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
+                 "  AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+"' GROUP BY rewards.reward_name)  as s1 on s1.n = s.n)  union (SELECT s1.n, s.c, s1.c1 from (select rewards.reward_name as n, Count(*) as c  " +
+                "   FROM awardemps, rewards, reward_types WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
+                "    AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+                "'  GROUP BY rewards.reward_name) as s right join (select rewards.reward_name as n, Count(*) as  c1  FROM awardemps, rewards, reward_types   " +
+                "   WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
+               "    AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+              "'   GROUP BY rewards.reward_name)  as s1 on s1.n = s.n)", con);
                     j++; i++;
                     ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
 
@@ -171,7 +197,9 @@ namespace Nagrady
                         Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.Font.Size = 14;
                         Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.Font.Name = "Times New Roman";
                         Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.InsertAfter(выполнение.GetValue(1).ToString());
-
+                        Word1.ActiveDocument.Tables[1].Cell(i, 3).Range.Font.Size = 14;
+                        Word1.ActiveDocument.Tables[1].Cell(i, 3).Range.Font.Name = "Times New Roman";
+                        Word1.ActiveDocument.Tables[1].Cell(i, 3).Range.InsertAfter(выполнение.GetValue(2).ToString());
                         i++; j++;
                     }
                     выполнение.Close();

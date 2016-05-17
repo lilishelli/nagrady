@@ -21,7 +21,7 @@ namespace Nagrady
         ОДБ.OleDbDataAdapter Adapter;
         private void button1_Click(object sender, EventArgs e)
         {
-            {
+            //try {
                 con.Open();
                 if (!Data.isAddBtn)
                 {
@@ -47,11 +47,11 @@ namespace Nagrady
                 Adapter.UpdateCommand = command;
                 command.Connection = con;
                 con.Close();
-            }
+           /* }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "недоразумение");
-            }
+            }*/
 
         }
         public void loadData()
@@ -80,8 +80,9 @@ namespace Nagrady
                     textBox8.Text = reader.GetValue(10).ToString();                    
                 }
                 reader.Close();
-                con.Close();
+                
             }
+            con.Close();
         }
         private void EditEmp_Load(object sender, EventArgs e)
         {
