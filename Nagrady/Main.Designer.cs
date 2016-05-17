@@ -35,10 +35,8 @@
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокНаградToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составитьОтчётToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.отчётОНагражденныхЛюдяхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.отчётОНаграднойДеятельностиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.авторыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.авторыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.search = new System.Windows.Forms.Button();
             this.addRewardToEmpbtn = new System.Windows.Forms.Button();
@@ -84,62 +82,47 @@
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem,
             this.списокНаградToolStripMenuItem});
             this.открытьСписокToolStripMenuItem.Name = "открытьСписокToolStripMenuItem";
-            this.открытьСписокToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
+            this.открытьСписокToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
             this.открытьСписокToolStripMenuItem.Text = "Открыть список";
             // 
             // списокЛюдейПредставленныхКНаградамToolStripMenuItem
             // 
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Name = "списокЛюдейПредставленныхКНаградамToolStripMenuItem";
-            this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Size = new System.Drawing.Size(303, 22);
+            this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Size = new System.Drawing.Size(311, 22);
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Text = "Список людей представленных к наградам";
             // 
             // списокНаградToolStripMenuItem
             // 
             this.списокНаградToolStripMenuItem.Name = "списокНаградToolStripMenuItem";
-            this.списокНаградToolStripMenuItem.Size = new System.Drawing.Size(303, 22);
+            this.списокНаградToolStripMenuItem.Size = new System.Drawing.Size(311, 22);
             this.списокНаградToolStripMenuItem.Text = "Список наград";
             this.списокНаградToolStripMenuItem.Click += new System.EventHandler(this.списокНаградToolStripMenuItem_Click);
             // 
             // составитьОтчётToolStripMenuItem
             // 
-            this.составитьОтчётToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.отчётОНагражденныхЛюдяхToolStripMenuItem,
-            this.отчётОНаграднойДеятельностиToolStripMenuItem});
             this.составитьОтчётToolStripMenuItem.Name = "составитьОтчётToolStripMenuItem";
-            this.составитьОтчётToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
+            this.составитьОтчётToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
             this.составитьОтчётToolStripMenuItem.Text = "Составить отчёт";
-            // 
-            // отчётОНагражденныхЛюдяхToolStripMenuItem
-            // 
-            this.отчётОНагражденныхЛюдяхToolStripMenuItem.Name = "отчётОНагражденныхЛюдяхToolStripMenuItem";
-            this.отчётОНагражденныхЛюдяхToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
-            this.отчётОНагражденныхЛюдяхToolStripMenuItem.Text = "Отчёт о награжденных людях";
-            // 
-            // отчётОНаграднойДеятельностиToolStripMenuItem
-            // 
-            this.отчётОНаграднойДеятельностиToolStripMenuItem.Name = "отчётОНаграднойДеятельностиToolStripMenuItem";
-            this.отчётОНаграднойДеятельностиToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
-            this.отчётОНаграднойДеятельностиToolStripMenuItem.Text = "Отчёт о наградной деятельности";
-            this.отчётОНаграднойДеятельностиToolStripMenuItem.Click += new System.EventHandler(this.отчётОНаграднойДеятельностиToolStripMenuItem_Click);
-            // 
-            // авторыToolStripMenuItem
-            // 
-            this.авторыToolStripMenuItem.Name = "авторыToolStripMenuItem";
-            this.авторыToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.авторыToolStripMenuItem.Text = "Авторы";
+            this.составитьОтчётToolStripMenuItem.Click += new System.EventHandler(this.составитьОтчётToolStripMenuItem_Click);
             // 
             // проверитьПодключениеСбазойДанныхToolStripMenuItem
             // 
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Name = "проверитьПодключениеСбазойДанныхToolStripMenuItem";
-            this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Size = new System.Drawing.Size(180, 20);
+            this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Size = new System.Drawing.Size(185, 20);
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Text = "Проверить подключение с БД";
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Click += new System.EventHandler(this.проверитьПодключениеСбазойДанныхToolStripMenuItem_Click);
+            // 
+            // авторыToolStripMenuItem
+            // 
+            this.авторыToolStripMenuItem.Name = "авторыToolStripMenuItem";
+            this.авторыToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.авторыToolStripMenuItem.Text = "Авторы";
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(35, 44);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(157, 22);
+            this.textBox2.Size = new System.Drawing.Size(157, 20);
             this.textBox2.TabIndex = 4;
             // 
             // search
@@ -185,7 +168,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
-            this.Text = "Form1";
+            this.Text = "Наградная деятельность Министерства с/х";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -204,8 +187,6 @@
         private System.Windows.Forms.ToolStripMenuItem списокЛюдейПредставленныхКНаградамToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокНаградToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem составитьОтчётToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem отчётОНагражденныхЛюдяхToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem отчётОНаграднойДеятельностиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem авторыToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button search;
