@@ -180,6 +180,7 @@ namespace Nagrady
                 textBox1.Enabled = false;
             }
         }
-                
+
+       
     }
 }

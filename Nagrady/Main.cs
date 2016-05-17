@@ -73,32 +73,6 @@ namespace Nagrady
             }
         }
 
-        private void отчётОНаграднойДеятельностиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source = rewards.mdb");
-            con.Open();
-              //var comanda = new ОДБ.OleDbCommand("Select * From Employees", con);
-           var comanda = new ОДБ.OleDbCommand("SELECT Reward_types.type_name FROM Reward_types", con);
-            ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
-            var Word1 = new Ворд.Word.Application();
-            Word1.Visible = true;
-            Word1.Documents.Add();
-            Word1.Selection.TypeText("СВЕДЕНИЯ О НАГРАДНОЙ ДЕЯТЕЛЬНОСТИ\r\n");
-            Word1.Selection.TypeText("Министерство сельского хозяйства и рыбной промышленности Астраханской области\r\n");
-            int i = 1;
-            Word1.ActiveDocument.Tables.Add(Word1.Selection.Range, 20, 3, Ворд.Word.WdDefaultTableBehavior.wdWord9TableBehavior, Ворд.Word.WdAutoFitBehavior.wdAutoFitContent);
-            while (выполнение.Read() == true)
-            {
-                Word1.ActiveDocument.Tables[1].Cell(i, 1).Range.InsertAfter(выполнение.GetValue(0).ToString());
-                //Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.InsertAfter(выполнение.GetValue(1).ToString());
-               // Word1.ActiveDocument.Tables[1].Cell(i, 3).Range.InsertAfter(выполнение.GetValue(2).ToString());
-                i++;
-            }
-            Word1.Selection.MoveDown(Ворд.Word.WdUnits.wdLine, 15);
-            выполнение.Close();
-            con.Close();
-        }
-
         private void списокНаградToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Rewards f = new Rewards();
@@ -117,6 +91,13 @@ namespace Nagrady
         {
 
         }
+
+        private void составитьОтчётToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Otchet f = new Otchet();
+            f.Show();
+        }
+
     }
 
 }
