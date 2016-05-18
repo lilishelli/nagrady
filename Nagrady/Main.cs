@@ -50,6 +50,7 @@ namespace Nagrady
         private void Form1_Load(object sender, EventArgs e)
         {
             loademp();
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -89,7 +90,9 @@ namespace Nagrady
 
         private void addRewardToEmpbtn_Click(object sender, EventArgs e)
         {
-
+            Data.empId = Int16.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            AddAwardEmp f = new AddAwardEmp();
+            f.Show();
         }
 
         private void составитьОтчётToolStripMenuItem_Click(object sender, EventArgs e)

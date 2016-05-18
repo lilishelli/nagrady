@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nagrady</RootNamespace>
     <AssemblyName>Nagrady</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -37,6 +37,10 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word1">
+      <HintPath>C:\Program Files\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -51,12 +55,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAwardEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAwardEmp.Designer.cs">
+      <DependentUpon>AddAwardEmp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="EditEmp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditEmp.Designer.cs">
       <DependentUpon>EditEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocalActs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LocalActs.Designer.cs">
+      <DependentUpon>LocalActs.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -83,8 +99,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rewardsDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddAwardEmp.resx">
+      <DependentUpon>AddAwardEmp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditEmp.resx">
       <DependentUpon>EditEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalActs.resx">
+      <DependentUpon>LocalActs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
