@@ -42,14 +42,34 @@ namespace Nagrady
 
                 con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source = rewards.mdb");
                 con.Open();
-             var comand1 = new ОДБ.OleDbCommand("SELECT reward_types.type_name, count(*) " +
-                    "FROM awardemps, rewards, reward_types " +
-                    "WHERE rewards.id=awardemps.reward_id AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# " +
-                    "and reward_types.id = rewards.id_type " +
-                    "GROUP BY reward_types.type_name ", con);
+                //var comand1 = new ОДБ.OleDbCommand("SELECT reward_types.type_name, count(*) " +
+                //       "FROM awardemps, rewards, reward_types " +
+                //       "WHERE rewards.id=awardemps.reward_id AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# " +
+                //       "and reward_types.id = rewards.id_type " +
+                //       "GROUP BY reward_types.type_name ", con);
 
+                var comand1 = new ОДБ.OleDbCommand("(SELECT s.n, s.c, s1.c1 from (select reward_types.type_name as n, Count(*) as c " +
+                     "FROM awardemps, rewards, reward_types  " +
+                     "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+                    " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  " +
+                     "GROUP BY  reward_types.type_name) as s  left join " +
+   "(select  reward_types.type_name as n, Count(*) as  c1 " +
+                  "   FROM awardemps, rewards, reward_types  " +
+                   "  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+                  "   AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  " +
+   "GROUP BY reward_types.type_name)  as s1 on s1.n = s.n)  union " +
+   "(SELECT s1.n, s.c, s1.c1 from (select  reward_types.type_name as n, Count(*) as c " +
+                "     FROM awardemps, rewards, reward_types  " +
+                 "    WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+                  "   AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  " +
+                   "  GROUP BY reward_types.type_name) as s right join " +
+   "(select  reward_types.type_name as n, Count(*) as  c1 " +
+              "       FROM awardemps, rewards, reward_types  " +
+                "     WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+                 "    AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  " +
+   "GROUP BY reward_types.type_name) as s1 on s1.n = s.n) ", con);
 
-               // подсчёт количества строк таблицы в отчете --->
+                // подсчёт количества строк таблицы в отчете --->
                 ОДБ.OleDbDataReader выборка1 = comand1.ExecuteReader();
                 DataTable Rows1 = new DataTable();
                 Rows1.Columns.Add(выборка1.GetName(0));
@@ -68,8 +88,8 @@ namespace Nagrady
                 while (выборка2.Read() == true)
                     Rows2.Rows.Add(new object[] { выборка2.GetValue(0) });
                 выборка2.Close();
-                 int f = Rows1.Rows.Count + Rows2.Rows.Count;
-                //MessageBox.Show(f.ToString());
+                 int f = Rows1.Rows.Count + Rows2.Rows.Count + 1;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой названия столбцов
+                MessageBox.Show(f.ToString());
                 //   <---- подсчёт количества строк таблицы в отчете
 
 
@@ -81,46 +101,84 @@ namespace Nagrady
                 Word1.Selection.TypeText("                                    СВЕДЕНИЯ О НАГРАДНОЙ ДЕЯТЕЛЬНОСТИ\r\n");
                 Word1.Selection.TypeText("         Министерство сельского хозяйства и рыбной промышленности Астраханской области\r\n");
                 Word1.ActiveDocument.Tables.Add(Word1.Selection.Range, f, 3, Ворд.Word.WdDefaultTableBehavior.wdWord9TableBehavior, Ворд.Word.WdAutoFitBehavior.wdAutoFitContent);
-                int j = 1; int i = 1;
-                while (reader.Read() == true)
-                {
-                    Word1.ActiveDocument.Tables[1].Cell(j, 1).Range.Font.Size = 14;
-                    Word1.ActiveDocument.Tables[1].Cell(j, 1).Range.Font.Bold = 3;
-                    Word1.ActiveDocument.Tables[1].Cell(j, 1).Range.Font.Name = "Times New Roman";
-                    Word1.ActiveDocument.Tables[1].Cell(j, 1).Range.InsertAfter(reader.GetValue(0).ToString());
-                    Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Size = 14;
-                    Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Bold = 3;
-                    Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Name = "Times New Roman";
-                    Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.InsertAfter(reader.GetValue(1).ToString());
-                    var comanda = new ОДБ.OleDbCommand("SELECT rewards.reward_name, Count(*)  " +
-                    " FROM awardemps, rewards, reward_types " +
-                     "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type " +
-                     "AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# and  reward_types.type_name = '" + reader.GetValue(0) +
-                     "' GROUP BY rewards.reward_name", con);
-                    j++; i++;
-                    ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
+
+                // Вывод названия столбцов ---->
+                Word1.ActiveDocument.Tables[1].Cell(1, 1).Range.Font.Size = 14;
+                Word1.ActiveDocument.Tables[1].Cell(1, 1).Range.Font.Name = "Times New Roman";
+                Word1.ActiveDocument.Tables[1].Cell(1, 2).Range.Font.Size = 14;
+                Word1.ActiveDocument.Tables[1].Cell(1, 2).Range.Font.Name = "Times New Roman";
+                Word1.ActiveDocument.Tables[1].Cell(1, 3).Range.Font.Size = 14;
+                Word1.ActiveDocument.Tables[1].Cell(1, 3).Range.Font.Name = "Times New Roman";
+                Word1.ActiveDocument.Tables[1].Cell(1, 1).Range.InsertAfter("Вид награды");
+                Word1.ActiveDocument.Tables[1].Cell(1, 2).Range.InsertAfter("Количество представленных к награждению");
+                Word1.ActiveDocument.Tables[1].Cell(1, 3).Range.InsertAfter("Количество награжденных");
+                //  <------ Вывод названия столбцов
 
 
-                    while (выполнение.Read() == true)
+                int j = 2; int i = 2;
+             
+                    while (reader.Read() == true)
                     {
-                        Word1.ActiveDocument.Tables[1].Cell(i, 1).Range.Font.Size = 14;
-                        Word1.ActiveDocument.Tables[1].Cell(i, 1).Range.Font.Name = "Times New Roman";
-                        Word1.ActiveDocument.Tables[1].Cell(i, 1).Range.InsertAfter(выполнение.GetValue(0).ToString());
-                        Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.Font.Size = 14;
-                        Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.Font.Name = "Times New Roman";
-                        Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.InsertAfter(выполнение.GetValue(1).ToString());
+                        Word1.ActiveDocument.Tables[1].Cell(j, 1).Range.Font.Size = 14;
+                        Word1.ActiveDocument.Tables[1].Cell(j, 1).Range.Font.Bold = 3;
+                        Word1.ActiveDocument.Tables[1].Cell(j, 1).Range.Font.Name = "Times New Roman";
+                        Word1.ActiveDocument.Tables[1].Cell(j, 1).Range.InsertAfter(reader.GetValue(0).ToString());
+                        Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Size = 14;
+                        Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Bold = 3;
+                        Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.Font.Name = "Times New Roman";
+                        Word1.ActiveDocument.Tables[1].Cell(j, 2).Range.InsertAfter(reader.GetValue(1).ToString());
+                        Word1.ActiveDocument.Tables[1].Cell(j, 3).Range.Font.Size = 14;
+                        Word1.ActiveDocument.Tables[1].Cell(j, 3).Range.Font.Bold = 3;
+                        Word1.ActiveDocument.Tables[1].Cell(j, 3).Range.Font.Name = "Times New Roman";
+                        Word1.ActiveDocument.Tables[1].Cell(j, 3).Range.InsertAfter(reader.GetValue(2).ToString());
+                        //var comanda = new ОДБ.OleDbCommand("SELECT rewards.reward_name, Count(*)  " +
+                        //" FROM awardemps, rewards, reward_types " +
+                        // "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type " +
+                        // "AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# and  reward_types.type_name = '" + reader.GetValue(0) +
+                        // "' GROUP BY rewards.reward_name", con);
 
-                        i++; j++;
+
+                        var comanda = new ОДБ.OleDbCommand("(SELECT s.n, s.c, s1.c1 from (select rewards.reward_name as n, Count(*) as c " +
+                    "  FROM awardemps, rewards, reward_types WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
+                      " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+                      "' GROUP BY rewards.reward_name) as s  left join  (select rewards.reward_name as n, Count(*) as  c1  FROM awardemps, rewards, reward_types  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
+                     "  AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+    "' GROUP BY rewards.reward_name)  as s1 on s1.n = s.n)  union (SELECT s1.n, s.c, s1.c1 from (select rewards.reward_name as n, Count(*) as c  " +
+                    "   FROM awardemps, rewards, reward_types WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
+                    "    AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+                    "'  GROUP BY rewards.reward_name) as s right join (select rewards.reward_name as n, Count(*) as  c1  FROM awardemps, rewards, reward_types   " +
+                    "   WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
+                   "    AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+                  "'   GROUP BY rewards.reward_name)  as s1 on s1.n = s.n)", con);
+
+
+                        j++; i++;
+                        ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
+
+
+                        while (выполнение.Read() == true)
+                        {
+                            Word1.ActiveDocument.Tables[1].Cell(i, 1).Range.Font.Size = 14;
+                            Word1.ActiveDocument.Tables[1].Cell(i, 1).Range.Font.Name = "Times New Roman";
+                            Word1.ActiveDocument.Tables[1].Cell(i, 1).Range.InsertAfter(выполнение.GetValue(0).ToString());
+                            Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.Font.Size = 14;
+                            Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.Font.Name = "Times New Roman";
+                            Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.InsertAfter(выполнение.GetValue(1).ToString());
+                            Word1.ActiveDocument.Tables[1].Cell(i, 3).Range.Font.Size = 14;
+                            Word1.ActiveDocument.Tables[1].Cell(i, 3).Range.Font.Name = "Times New Roman";
+                            Word1.ActiveDocument.Tables[1].Cell(i, 3).Range.InsertAfter(выполнение.GetValue(2).ToString());
+                            i++; j++;
+                        }
+                        выполнение.Close();
                     }
-                    выполнение.Close();
+                    Word1.Selection.MoveDown(Ворд.Word.WdUnits.wdLine, 15);
+                    reader.Close();
+                    con.Close();
                 }
-                Word1.Selection.MoveDown(Ворд.Word.WdUnits.wdLine, 15);
-                reader.Close();
-                con.Close();
-            }
-            catch (Exception ex)
+                
+            catch (Exception exc)
             {
-                MessageBox.Show(ex.Message, "Ошибка");
+                MessageBox.Show(exc.Message, "Ошибка БД");
             }
         }
         
