@@ -41,6 +41,8 @@
             this.search = new System.Windows.Forms.Button();
             this.addRewardToEmpbtn = new System.Windows.Forms.Button();
             this.editbtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -48,23 +50,28 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 78);
+            this.dataGridView1.Location = new System.Drawing.Point(14, 121);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(812, 185);
+            this.dataGridView1.Size = new System.Drawing.Size(965, 213);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Visible = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(35, 281);
+            this.button1.Enabled = false;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(356, 352);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 37);
+            this.button1.Size = new System.Drawing.Size(283, 121);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Добавить сотрудника в список";
+            this.button1.Text = "Добавить человека представленного к награде в список";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.открытьСписокToolStripMenuItem,
             this.составитьОтчётToolStripMenuItem,
@@ -72,7 +79,8 @@
             this.авторыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(851, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(993, 36);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -82,83 +90,121 @@
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem,
             this.списокНаградToolStripMenuItem});
             this.открытьСписокToolStripMenuItem.Name = "открытьСписокToolStripMenuItem";
-            this.открытьСписокToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.открытьСписокToolStripMenuItem.Size = new System.Drawing.Size(170, 32);
             this.открытьСписокToolStripMenuItem.Text = "Открыть список";
             // 
             // списокЛюдейПредставленныхКНаградамToolStripMenuItem
             // 
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Name = "списокЛюдейПредставленныхКНаградамToolStripMenuItem";
-            this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Size = new System.Drawing.Size(311, 22);
+            this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Size = new System.Drawing.Size(479, 32);
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Text = "Список людей представленных к наградам";
+            this.списокЛюдейПредставленныхКНаградамToolStripMenuItem.Click += new System.EventHandler(this.списокЛюдейПредставленныхКНаградамToolStripMenuItem_Click);
             // 
             // списокНаградToolStripMenuItem
             // 
             this.списокНаградToolStripMenuItem.Name = "списокНаградToolStripMenuItem";
-            this.списокНаградToolStripMenuItem.Size = new System.Drawing.Size(311, 22);
+            this.списокНаградToolStripMenuItem.Size = new System.Drawing.Size(479, 32);
             this.списокНаградToolStripMenuItem.Text = "Список наград";
             this.списокНаградToolStripMenuItem.Click += new System.EventHandler(this.списокНаградToolStripMenuItem_Click);
             // 
             // составитьОтчётToolStripMenuItem
             // 
             this.составитьОтчётToolStripMenuItem.Name = "составитьОтчётToolStripMenuItem";
-            this.составитьОтчётToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.составитьОтчётToolStripMenuItem.Size = new System.Drawing.Size(170, 32);
             this.составитьОтчётToolStripMenuItem.Text = "Составить отчёт";
             this.составитьОтчётToolStripMenuItem.Click += new System.EventHandler(this.составитьОтчётToolStripMenuItem_Click);
             // 
             // проверитьПодключениеСбазойДанныхToolStripMenuItem
             // 
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Name = "проверитьПодключениеСбазойДанныхToolStripMenuItem";
-            this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Size = new System.Drawing.Size(185, 20);
+            this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Size = new System.Drawing.Size(301, 32);
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Text = "Проверить подключение с БД";
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem.Click += new System.EventHandler(this.проверитьПодключениеСбазойДанныхToolStripMenuItem_Click);
             // 
             // авторыToolStripMenuItem
             // 
             this.авторыToolStripMenuItem.Name = "авторыToolStripMenuItem";
-            this.авторыToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.авторыToolStripMenuItem.Size = new System.Drawing.Size(94, 32);
             this.авторыToolStripMenuItem.Text = "Авторы";
+            this.авторыToolStripMenuItem.Click += new System.EventHandler(this.авторыToolStripMenuItem_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(35, 44);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox2.Location = new System.Drawing.Point(519, 68);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(157, 20);
+            this.textBox2.Size = new System.Drawing.Size(182, 30);
             this.textBox2.TabIndex = 4;
+            this.textBox2.Visible = false;
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(217, 44);
+            this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.search.Location = new System.Drawing.Point(707, 61);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(102, 23);
+            this.search.Size = new System.Drawing.Size(176, 44);
             this.search.TabIndex = 5;
             this.search.Text = "Поиск";
             this.search.UseVisualStyleBackColor = true;
+            this.search.Visible = false;
             // 
             // addRewardToEmpbtn
             // 
-            this.addRewardToEmpbtn.Location = new System.Drawing.Point(217, 281);
+            this.addRewardToEmpbtn.Enabled = false;
+            this.addRewardToEmpbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addRewardToEmpbtn.Location = new System.Drawing.Point(656, 352);
             this.addRewardToEmpbtn.Name = "addRewardToEmpbtn";
-            this.addRewardToEmpbtn.Size = new System.Drawing.Size(154, 37);
+            this.addRewardToEmpbtn.Size = new System.Drawing.Size(283, 121);
             this.addRewardToEmpbtn.TabIndex = 6;
-            this.addRewardToEmpbtn.Text = "Добавить награду выбранному сотруднику";
+            this.addRewardToEmpbtn.Text = "Добавить награду выбранному человеку из списка ";
             this.addRewardToEmpbtn.UseVisualStyleBackColor = true;
+            this.addRewardToEmpbtn.Visible = false;
             this.addRewardToEmpbtn.Click += new System.EventHandler(this.addRewardToEmpbtn_Click);
             // 
             // editbtn
             // 
-            this.editbtn.Location = new System.Drawing.Point(406, 281);
+            this.editbtn.Enabled = false;
+            this.editbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.editbtn.Location = new System.Drawing.Point(57, 352);
             this.editbtn.Name = "editbtn";
-            this.editbtn.Size = new System.Drawing.Size(144, 37);
+            this.editbtn.Size = new System.Drawing.Size(283, 121);
             this.editbtn.TabIndex = 7;
-            this.editbtn.Text = "Редактировать личные данные";
+            this.editbtn.Text = "Редактировать личные данные выбранного человека из списка ";
             this.editbtn.UseVisualStyleBackColor = true;
+            this.editbtn.Visible = false;
             this.editbtn.Click += new System.EventHandler(this.editbtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(115, 71);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(398, 25);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Введите фамилию для поиска по списку:";
+            this.label1.Visible = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox1.Location = new System.Drawing.Point(57, 488);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(256, 29);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "Режим редактирования";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
+            this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 346);
+            this.ClientSize = new System.Drawing.Size(993, 529);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.editbtn);
             this.Controls.Add(this.addRewardToEmpbtn);
             this.Controls.Add(this.search);
@@ -166,9 +212,10 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
-            this.Text = "Наградная деятельность Министерства с/х";
+            this.Text = "Наградная деятельность Министерства сельского хозяйства Астраханской области";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -193,6 +240,8 @@
         private System.Windows.Forms.ToolStripMenuItem проверитьПодключениеСбазойДанныхToolStripMenuItem;
         private System.Windows.Forms.Button addRewardToEmpbtn;
         private System.Windows.Forms.Button editbtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

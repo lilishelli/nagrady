@@ -20,10 +20,10 @@ namespace Nagrady
             InitializeComponent();
         }
 
-       // DataSet rewards;
+        // DataSet rewards;
         ОДБ.OleDbConnection con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source= rewards.mdb");
         ОДБ.OleDbCommand ucommand = new ОДБ.OleDbCommand();
-       // ОДБ.OleDbDataAdapter Adapter;
+        // ОДБ.OleDbDataAdapter Adapter;
         void loademp()
         {
             con.Open();
@@ -50,7 +50,7 @@ namespace Nagrady
         private void Form1_Load(object sender, EventArgs e)
         {
             loademp();
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace Nagrady
         private void editbtn_Click(object sender, EventArgs e)
         {
             Data.isAddBtn = false;
-            Data.empId =  Int16.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            Data.empId = Int16.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
             EditEmp f = new EditEmp();
             f.Show();
         }
@@ -101,6 +101,40 @@ namespace Nagrady
             f.Show();
         }
 
+        private void авторыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Author f = new Author();
+            f.Show();
+        }
+       
+        private void списокЛюдейПредставленныхКНаградамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            textBox2.Visible = true;
+            search.Visible = true;
+            dataGridView1.Visible = true;
+            editbtn.Visible = true;
+            addRewardToEmpbtn.Visible = true;
+            button1.Visible = true;
+            checkBox1.Visible = true;
+        }
+
+        private void checkBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+
+                button1.Enabled = true;
+                editbtn.Enabled = true;
+                addRewardToEmpbtn.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+                editbtn.Enabled = false;
+                addRewardToEmpbtn.Enabled = false;
+            }
+        }
     }
 
 }

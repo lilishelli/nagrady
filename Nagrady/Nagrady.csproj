@@ -61,6 +61,12 @@
     <Compile Include="AddAwardEmp.Designer.cs">
       <DependentUpon>AddAwardEmp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Author.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Author.Designer.cs">
+      <DependentUpon>Author.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="EditEmp.cs">
       <SubType>Form</SubType>
@@ -101,6 +107,9 @@
     </Compile>
     <EmbeddedResource Include="AddAwardEmp.resx">
       <DependentUpon>AddAwardEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Author.resx">
+      <DependentUpon>Author.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditEmp.resx">
       <DependentUpon>EditEmp.cs</DependentUpon>

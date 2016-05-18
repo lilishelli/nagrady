@@ -96,9 +96,9 @@ namespace Nagrady
                 var Word1 = new Ворд.Word.Application();
                 Word1.Visible = true;
                 Word1.Documents.Add();
-                Word1.Selection.TypeText("                                    СВЕДЕНИЯ О НАГРАДНОЙ ДЕЯТЕЛЬНОСТИ\r\n");
-                Word1.Selection.TypeText("         Министерство сельского хозяйства и рыбной промышленности Астраханской области\r\n");
-                Word1.Selection.TypeText("                                                               "+data_otchet+"   \r\n");
+                Word1.Selection.TypeText("СВЕДЕНИЯ О НАГРАДНОЙ ДЕЯТЕЛЬНОСТИ\r\n");
+                Word1.Selection.TypeText("Министерство сельского хозяйства и рыбной промышленности Астраханской области\r\n");
+                Word1.Selection.TypeText(data_otchet+"\r\n");
                 Word1.ActiveDocument.Tables.Add(Word1.Selection.Range, f, 3, Ворд.Word.WdDefaultTableBehavior.wdWord9TableBehavior, Ворд.Word.WdAutoFitBehavior.wdAutoFitContent);
                 //    <--------  Создание документа, вывод текста
                
