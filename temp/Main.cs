@@ -50,27 +50,33 @@ namespace Nagrady
         private void Form1_Load(object sender, EventArgs e)
         {
             //loademp();
-            con.Open();
+             con.Open();
             DataTable mytable = new DataTable();
-            var comand1 = new ОДБ.OleDbCommand(" select reward_types.type_name, "", "" as n "+
+            ОДБ.OleDbDataReader выполнение;
+            var comand1 = new ОДБ.OleDbCommand(" select reward_types.type_name, ' ', ' ', ' ', ' ', ' ', ' '" +
                  " FROM awardemps, rewards, reward_types "+
                  " WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type "+
                  " AND awardemps.date_award>#01/01/2016# And awardemps.date_award<#06/06/2016# 	"+
 				 " GROUP BY   reward_types.type_name ", con);
             ОДБ.OleDbDataReader reader = comand1.ExecuteReader();
-            mytable.Columns.Add("тип");
-            mytable.Columns.Add("количество представленных");
-            mytable.Columns.Add("количество награжденных");
+            mytable.Columns.Add("Фамилия");
+            mytable.Columns.Add("Имя");
+            mytable.Columns.Add("Отчество");
+            mytable.Columns.Add("Должность");
+            mytable.Columns.Add("Дата рождения");
+            mytable.Columns.Add("Вид награды");
+            mytable.Columns.Add("Документ о награждении");
+            ОДБ.OleDbCommand comanda;
             while (reader.Read() == true)
             {
-                mytable.Rows.Add(new object[] { reader.GetValue(0), reader.GetValue(1), reader.GetValue(2) });
-            
-                var comanda = new ОДБ.OleDbCommand("select employees.lname, employees.fname, employees.patre, employees.position, employees.birth, "+
+                mytable.Rows.Add(new object[] { reader.GetValue(0), reader.GetValue(1), reader.GetValue(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5), reader.GetValue(6) });
+          
+                comanda = new ОДБ.OleDbCommand("select employees.lname, employees.fname, employees.patre, employees.position, employees.birth, "+
 				" rewards.reward_name, awardEmps.act_id from employees, awardemps, rewards, reward_types "+
 				" where awardemps.reward_id = rewards.id and reward_types.id = rewards.id_type and "+
-				" employees.id = awardemps.emp_id and reward_types.type_name= '"+reader.GetValue(0)+"'", con);
-                ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();               
-               
+                " employees.id = awardemps.emp_id and reward_types.type_name = '"+reader.GetValue(0)+"'", con);
+                выполнение = comanda.ExecuteReader();               
+                
                 while (выполнение.Read() == true)
                     mytable.Rows.Add(new object[] { выполнение.GetValue(0), выполнение.GetValue(1), выполнение.GetValue(2), 
 				выполнение.GetValue(3), выполнение.GetValue(4), выполнение.GetValue(5),  выполнение.GetValue(6) });
