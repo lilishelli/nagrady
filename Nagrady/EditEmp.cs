@@ -21,12 +21,11 @@ namespace Nagrady
         ОДБ.OleDbDataAdapter Adapter;
         private void button1_Click(object sender, EventArgs e)
         {
-            //try {
+          //try {
                 con.Open();
                 if (!Data.isAddBtn)
                 {
                     command.CommandText = "Update Employees SET lname = ?, fname = ?, patre = ?, gender = ?, birth = ?,org = ?, position = ?,  dbegin_org = ?, dbegin_industry = ?, dbegin_grneral = ? WHERE (id = ?)";
-
                 }
                 else
                 {
@@ -39,15 +38,20 @@ namespace Nagrady
                 command.Parameters.Add("birth", ОДБ.OleDbType.Date, 10).Value = dateTimePicker1.Value;
                 command.Parameters.Add("org", ОДБ.OleDbType.VarWChar, 50).Value = textBox4.Text;
                 command.Parameters.Add("position", ОДБ.OleDbType.VarWChar, 50).Value = textBox5.Text;
-                command.Parameters.Add("dbegin_org", ОДБ.OleDbType.VarWChar, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox6.Text));
-                command.Parameters.Add("dbegin_industry", ОДБ.OleDbType.VarWChar, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox7.Text));
-                command.Parameters.Add("dbegin_general", ОДБ.OleDbType.VarWChar, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox8.Text));
+                command.Parameters.Add("dbegin_org", ОДБ.OleDbType.Date, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox6.Text)).Date;
+                command.Parameters.Add("dbegin_industry", ОДБ.OleDbType.Date , 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox7.Text)).Date;
+                command.Parameters.Add("dbegin_general", ОДБ.OleDbType.Date, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox8.Text)).Date;
                 command.Parameters.Add("id", ОДБ.OleDbType.Integer, 30).Value = Data.empId;
                 Adapter = new ОДБ.OleDbDataAdapter(command);
                 Adapter.UpdateCommand = command;
                 command.Connection = con;
+                if (Data.isAddBtn)
+                {
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("В таблицу добавлена запись");
+                }
                 con.Close();
-           /* }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "недоразумение");

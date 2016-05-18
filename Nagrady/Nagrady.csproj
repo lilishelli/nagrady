@@ -55,12 +55,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAwardEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAwardEmp.Designer.cs">
+      <DependentUpon>AddAwardEmp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="EditEmp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditEmp.Designer.cs">
       <DependentUpon>EditEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocalActs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LocalActs.Designer.cs">
+      <DependentUpon>LocalActs.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -87,8 +99,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rewardsDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddAwardEmp.resx">
+      <DependentUpon>AddAwardEmp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditEmp.resx">
       <DependentUpon>EditEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalActs.resx">
+      <DependentUpon>LocalActs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
