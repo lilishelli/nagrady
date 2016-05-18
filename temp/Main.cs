@@ -52,50 +52,28 @@ namespace Nagrady
             //loademp();
             con.Open();
             DataTable mytable = new DataTable();
-            var comand1 = new ОДБ.OleDbCommand(" (SELECT s.n, s.c, s1.c1 from (select reward_types.type_name as n, Count(*) as c "+
-                  "FROM awardemps, rewards, reward_types  "+
-                  "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  "+
-                 " AND awardemps.date_get>#01/01/2016# And awardemps.date_get<#06/06/2016# and awardemps.date_award>#06/06/2016#  "+
-				  "GROUP BY  reward_types.type_name) as s  left join "+
-"(select  reward_types.type_name as n, Count(*) as  c1 "+
-               "   FROM awardemps, rewards, reward_types  "+
-                "  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  "+
-               "   AND awardemps.date_award>#01/01/2016# And awardemps.date_award<#06/06/2016#  "+
-"GROUP BY reward_types.type_name)  as s1 on s1.n = s.n)  union "+
-"(SELECT s1.n, s.c, s1.c1 from (select  reward_types.type_name as n, Count(*) as c "+
-             "     FROM awardemps, rewards, reward_types  "+
-              "    WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  "+
-               "   AND awardemps.date_get>#01/01/2016# And awardemps.date_get<#06/06/2016# and awardemps.date_award>#06/06/2016#  "+
-				"  GROUP BY reward_types.type_name) as s right join "+
-"(select  reward_types.type_name as n, Count(*) as  c1 "+
-           "       FROM awardemps, rewards, reward_types  "+
-             "     WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  "+
-              "    AND awardemps.date_award>#01/01/2016# And awardemps.date_award<#06/06/2016#  "+
-"GROUP BY reward_types.type_name) as s1 on s1.n = s.n) ", con);
+            var comand1 = new ОДБ.OleDbCommand(" select reward_types.type_name, "", "" as n "+
+                 " FROM awardemps, rewards, reward_types "+
+                 " WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type "+
+                 " AND awardemps.date_award>#01/01/2016# And awardemps.date_award<#06/06/2016# 	"+
+				 " GROUP BY   reward_types.type_name ", con);
             ОДБ.OleDbDataReader reader = comand1.ExecuteReader();
             mytable.Columns.Add("тип");
             mytable.Columns.Add("количество представленных");
-            mytable.Columns.Add("количество награжленных");
+            mytable.Columns.Add("количество награжденных");
             while (reader.Read() == true)
             {
                 mytable.Rows.Add(new object[] { reader.GetValue(0), reader.GetValue(1), reader.GetValue(2) });
             
-                var comanda = new ОДБ.OleDbCommand("(SELECT s.n, s.c, s1.c1 from (select rewards.reward_name as n, Count(*) as c "+
-                "  FROM awardemps, rewards, reward_types WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   "+
-                  " AND awardemps.date_get>#01/01/2016# And awardemps.date_get<#06/06/2016# and awardemps.date_award>#06/06/2016#  and  reward_types.type_name = '" + reader.GetValue(0) +
-				  "' GROUP BY rewards.reward_name) as s  left join  (select rewards.reward_name as n, Count(*) as  c1  FROM awardemps, rewards, reward_types  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   "+
-                 "  AND awardemps.date_award>#01/01/2016# And awardemps.date_award<#06/06/2016#  and  reward_types.type_name = '" + reader.GetValue(0) +
-"' GROUP BY rewards.reward_name)  as s1 on s1.n = s.n)  union (SELECT s1.n, s.c, s1.c1 from (select rewards.reward_name as n, Count(*) as c  "+
-                "   FROM awardemps, rewards, reward_types WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   "+
-                "    AND awardemps.date_get>#01/01/2016# And awardemps.date_get<#06/06/2016# and awardemps.date_award>#06/06/2016#  and  reward_types.type_name = '" + reader.GetValue(0) +
-				"'  GROUP BY rewards.reward_name) as s right join (select rewards.reward_name as n, Count(*) as  c1  FROM awardemps, rewards, reward_types   "+
-                "   WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   "+
-               "    AND awardemps.date_award>#01/01/2016# And awardemps.date_award<#06/06/2016#  and  reward_types.type_name = '"+ reader.GetValue(0)+
-              "'   GROUP BY rewards.reward_name)  as s1 on s1.n = s.n)", con);
+                var comanda = new ОДБ.OleDbCommand("select employees.lname, employees.fname, employees.patre, employees.position, employees.birth, "+
+				" rewards.reward_name, awardEmps.act_id from employees, awardemps, rewards, reward_types "+
+				" where awardemps.reward_id = rewards.id and reward_types.id = rewards.id_type and "+
+				" employees.id = awardemps.emp_id and reward_types.type_name= '"+reader.GetValue(0)+"'", con);
                 ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();               
                
                 while (выполнение.Read() == true)
-                    mytable.Rows.Add(new object[] { выполнение.GetValue(0), выполнение.GetValue(1), выполнение.GetValue(2) });
+                    mytable.Rows.Add(new object[] { выполнение.GetValue(0), выполнение.GetValue(1), выполнение.GetValue(2), 
+				выполнение.GetValue(3), выполнение.GetValue(4), выполнение.GetValue(5),  выполнение.GetValue(6) });
                 выполнение.Close();
            }
             reader.Close();
