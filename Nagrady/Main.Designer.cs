@@ -43,26 +43,30 @@
             this.editbtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowDrop = true;
+            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(14, 121);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(965, 213);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Visible = false;
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // button1
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(356, 352);
+            this.button1.Location = new System.Drawing.Point(14, 418);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(283, 121);
+            this.button1.Size = new System.Drawing.Size(471, 64);
             this.button1.TabIndex = 1;
             this.button1.Text = "Добавить человека представленного к награде в список";
             this.button1.UseVisualStyleBackColor = true;
@@ -147,14 +151,15 @@
             this.search.Text = "Поиск";
             this.search.UseVisualStyleBackColor = true;
             this.search.Visible = false;
+            this.search.Click += new System.EventHandler(this.search_Click);
             // 
             // addRewardToEmpbtn
             // 
             this.addRewardToEmpbtn.Enabled = false;
             this.addRewardToEmpbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addRewardToEmpbtn.Location = new System.Drawing.Point(656, 352);
+            this.addRewardToEmpbtn.Location = new System.Drawing.Point(508, 352);
             this.addRewardToEmpbtn.Name = "addRewardToEmpbtn";
-            this.addRewardToEmpbtn.Size = new System.Drawing.Size(283, 121);
+            this.addRewardToEmpbtn.Size = new System.Drawing.Size(471, 60);
             this.addRewardToEmpbtn.TabIndex = 6;
             this.addRewardToEmpbtn.Text = "Добавить награду выбранному человеку из списка ";
             this.addRewardToEmpbtn.UseVisualStyleBackColor = true;
@@ -165,9 +170,9 @@
             // 
             this.editbtn.Enabled = false;
             this.editbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.editbtn.Location = new System.Drawing.Point(57, 352);
+            this.editbtn.Location = new System.Drawing.Point(14, 352);
             this.editbtn.Name = "editbtn";
-            this.editbtn.Size = new System.Drawing.Size(283, 121);
+            this.editbtn.Size = new System.Drawing.Size(471, 60);
             this.editbtn.TabIndex = 7;
             this.editbtn.Text = "Редактировать личные данные выбранного человека из списка ";
             this.editbtn.UseVisualStyleBackColor = true;
@@ -198,11 +203,25 @@
             this.checkBox1.Visible = false;
             this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(508, 418);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(471, 64);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Удалить выбранного человека из списка";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(993, 529);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.editbtn);
@@ -242,6 +261,7 @@
         private System.Windows.Forms.Button editbtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

@@ -108,11 +108,17 @@ namespace Nagrady
             {
                 dateTimePicker2.Enabled = true;
                 comboBox5.Enabled = true;
+                button2.Enabled = true;
+                label5.Enabled = true;
+                label6.Enabled = true;
             }
             else
             {
                 dateTimePicker2.Enabled = false;
                 comboBox5.Enabled = false;
+                button2.Enabled = false;
+                label5.Enabled = false;
+                label6.Enabled = false;
             }
         }
     }
