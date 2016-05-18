@@ -29,21 +29,22 @@ namespace Nagrady
                     try
                     {
 
-                        var command = new ОДБ.OleDbCommand("Update Employees SET lname = ?, fname = ?, patre = ?, gender = ?, birth = ?, org = ?, pos = ?,  dbegin_org = ?, dbegin_industry = ?, dbegin_general = ? WHERE (id = ?)");
-                        command.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = textBox1.Text;
-                        command.Parameters.Add("fname", ОДБ.OleDbType.VarWChar, 50).Value = textBox2.Text;
-                        command.Parameters.Add("patre", ОДБ.OleDbType.VarWChar, 50).Value = textBox3.Text;
+                        var command = new ОДБ.OleDbCommand("Update Employees SET lname = ?, fname = ?, patre = ?, gender = ?, birth = ?, org = ?, dbegin_org = ?, dbegin_industry = ?, dbegin_general = ?, pos = ? WHERE (id = ?)");
+                        command.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = textBox1.Text.ToString();
+                        command.Parameters.Add("fname", ОДБ.OleDbType.VarWChar, 50).Value = textBox2.Text.ToString();
+                        command.Parameters.Add("patre", ОДБ.OleDbType.VarWChar, 50).Value = textBox3.Text.ToString();
+                        command.Parameters.Add("org", ОДБ.OleDbType.VarWChar, 50).Value = textBox4.Text.ToString();
                         command.Parameters.Add("gender", ОДБ.OleDbType.VarWChar, 50).Value = comboBox1.Items[comboBox1.SelectedIndex].ToString();
                         command.Parameters.Add("birth", ОДБ.OleDbType.Date, 10).Value = dateTimePicker1.Value;
-                        command.Parameters.Add("org", ОДБ.OleDbType.VarWChar, 50).Value = textBox4.Text;
-                        command.Parameters.Add("pos", ОДБ.OleDbType.VarWChar, 50).Value = textBox5.Text;
                         command.Parameters.Add("dbegin_org", ОДБ.OleDbType.Date, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox6.Text)).Date;
                         command.Parameters.Add("dbegin_industry", ОДБ.OleDbType.Date, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox7.Text)).Date;
                         command.Parameters.Add("dbegin_general", ОДБ.OleDbType.Date, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox8.Text)).Date;
+                        command.Parameters.Add("pos", ОДБ.OleDbType.VarWChar, 50).Value = textBox5.Text.ToString();
                         command.Parameters.Add("id", ОДБ.OleDbType.Integer, 30).Value = Data.empId;
                         Adapter = new ОДБ.OleDbDataAdapter(command);
                         Adapter.UpdateCommand = command;
                         command.Connection = con;
+                        command.ExecuteNonQuery();
                         MessageBox.Show("Запись обновлена");
                     }
                     catch (Exception ex)
@@ -61,7 +62,7 @@ namespace Nagrady
                         command.Parameters.Add("fname", ОДБ.OleDbType.VarWChar, 50).Value = textBox2.Text.ToString();
                         command.Parameters.Add("patre", ОДБ.OleDbType.VarWChar, 50).Value = textBox3.Text.ToString();
                         command.Parameters.Add("org", ОДБ.OleDbType.VarWChar, 50).Value = textBox4.Text.ToString();
-                        command.Parameters.Add("pos", ОДБ.OleDbType.VarWChar, 50).Value = textBox5.Text;
+                        command.Parameters.Add("pos", ОДБ.OleDbType.VarWChar, 50).Value = textBox5.Text.ToString();
                         command.Parameters.Add("gender", ОДБ.OleDbType.VarWChar, 50).Value = comboBox1.Items[comboBox1.SelectedIndex].ToString();
                         command.Parameters.Add("birth", ОДБ.OleDbType.Date, 10).Value = dateTimePicker1.Value;
                         command.Parameters.Add("dbegin_org", ОДБ.OleDbType.Date, 50).Value = DateTime.Now.AddYears((-1) * Int32.Parse(textBox6.Text)).Date;
