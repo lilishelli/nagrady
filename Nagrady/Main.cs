@@ -233,12 +233,12 @@ namespace Nagrady
         }
 
         private void button2_Click(object sender, EventArgs e)
-        { // удаление человека из списка
-            int t = (int)dataGridView1.CurrentRow.Cells[0].Value;
+        { // удаление человека из списка по фамилии
+            string t = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             con.Open();
 
-            var delete_command = new ОДБ.OleDbCommand("Delete * From Employees where Employees.id = ?", con);
-            delete_command.Parameters.Add("id", ОДБ.OleDbType.Integer, 50).Value = t;
+            var delete_command = new ОДБ.OleDbCommand("Delete * From Employees where Employees.lname = ?", con);
+            delete_command.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = t;
             try
             {
                 int kol = delete_command.ExecuteNonQuery();
