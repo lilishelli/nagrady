@@ -96,7 +96,7 @@ namespace Nagrady
 
             if (Data.isAddBtn == false)
             {
-                var comanda = new ОДБ.OleDbCommand("Select * From Employees where id = ?", con);
+                var comanda = new ОДБ.OleDbCommand("select [id], [lname], [fname], [patre], [org], [position], [gender], [birth],  fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees where id = ?", con);
                 comanda.Parameters.Add("id", ОДБ.OleDbType.Integer, 1000).Value = Data.empId;
                 ОДБ.OleDbDataReader reader = comanda.ExecuteReader();
                 while (reader.Read())

@@ -23,17 +23,19 @@ namespace Nagrady
             var comanda = new odb.OleDbCommand();
            if (comboBox5.SelectedIndex > 0)
             {
-                comanda.CommandText = "INSERT INTO Awardemps (reward_id, emp_id, date_get, date_award,act_id,comment) VALUES (?, ?, ?, ?, ?, ?)";
+                comanda.CommandText = "INSERT INTO Awardemps (reward_id, emp_id, date_get, date_award,act_id,act_num, act_date, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 comanda.Parameters.Add("reward_id", odb.OleDbType.Integer, 30).Value = comboBox4.Items[comboBox2.SelectedIndex].ToString();
                 comanda.Parameters.Add("emp_id", odb.OleDbType.Integer, 30).Value = Data.empId;
                 comanda.Parameters.Add("date_get", odb.OleDbType.Date).Value = dateTimePicker1.Value.Date;
                 comanda.Parameters.Add("date_award", odb.OleDbType.Date).Value = dateTimePicker2.Value.Date;
-                comanda.Parameters.Add("act_id", odb.OleDbType.Integer, 30).Value = Int32.Parse(comboBox5.Items[comboBox5.SelectedIndex].ToString());
+                comanda.Parameters.Add("act_id", odb.OleDbType.Integer, 30).Value = Int32.Parse(comboBox6.Items[comboBox5.SelectedIndex].ToString());
+                comanda.Parameters.Add("act_num", odb.OleDbType.VarWChar, 80).Value = textBox1.Text;
+                comanda.Parameters.Add("act_date", odb.OleDbType.Date).Value = dateTimePicker3.Value.Date;
             }
             else
             {
                 comanda.CommandText = "INSERT INTO Awardemps (reward_id, emp_id, date_get, comment) VALUES (?, ?, ?, ?)";
-                comanda = new odb.OleDbCommand("INSERT INTO Awardemps (reward_id, emp_id, date_get, comment) VALUES (?, ?, ?, ?)");
+                //comanda = new odb.OleDbCommand("INSERT INTO Awardemps (reward_id, emp_id, date_get, comment) VALUES (?, ?, ?, ?)");
                 comanda.Parameters.Add("reward_id", odb.OleDbType.Integer, 30).Value = comboBox4.Items[comboBox2.SelectedIndex].ToString();
                 comanda.Parameters.Add("emp_id", odb.OleDbType.Integer, 30).Value = Data.empId;
                 comanda.Parameters.Add("date_get", odb.OleDbType.Date).Value = dateTimePicker1.Value.Date;              
@@ -53,6 +55,8 @@ namespace Nagrady
         {
             dateTimePicker2.Enabled = false;
             comboBox5.Enabled = false;
+            dateTimePicker3.Enabled = false;
+            textBox1.Enabled = false;
             con.Open();
             var comanda = new odb.OleDbCommand("Select lname, fname, patre From employees where id = "+Data.empId+"", con);
             odb.OleDbDataReader выполнение = comanda.ExecuteReader();
@@ -75,7 +79,7 @@ namespace Nagrady
             выполнение = comanda.ExecuteReader();
             while (выполнение.Read() == true)
             {
-                comboBox5.Items.Add(выполнение.GetValue(0));
+                comboBox5.Items.Add(выполнение.GetValue(1));
             }
             выполнение.Close();
             con.Close();
@@ -111,6 +115,10 @@ namespace Nagrady
                 button2.Enabled = true;
                 label5.Enabled = true;
                 label6.Enabled = true;
+                label7.Enabled = true;
+                label8.Enabled = true;
+                dateTimePicker3.Enabled = true;
+                textBox1.Enabled = true;
             }
             else
             {
@@ -119,6 +127,11 @@ namespace Nagrady
                 button2.Enabled = false;
                 label5.Enabled = false;
                 label6.Enabled = false;
+                label7.Enabled = false;
+                label8.Enabled = false;
+                dateTimePicker3.Enabled = false;
+                textBox1.Enabled = false;
+
             }
         }
     }

@@ -46,6 +46,11 @@
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -108,7 +113,7 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(174, 297);
+            this.dateTimePicker2.Location = new System.Drawing.Point(233, 297);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(216, 30);
             this.dateTimePicker2.TabIndex = 6;
@@ -139,17 +144,17 @@
             this.label6.AutoSize = true;
             this.label6.Enabled = false;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(13, 355);
+            this.label6.Location = new System.Drawing.Point(12, 352);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(254, 25);
+            this.label6.Size = new System.Drawing.Size(171, 50);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Выберите локальный акт:";
+            this.label6.Text = "Выберите тип \r\nлокального акта:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(549, 158);
+            this.label9.Location = new System.Drawing.Point(548, 163);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(130, 25);
             this.label9.TabIndex = 16;
@@ -158,20 +163,20 @@
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(475, 186);
+            this.textBox3.Location = new System.Drawing.Point(475, 191);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(282, 194);
+            this.textBox3.Size = new System.Drawing.Size(282, 345);
             this.textBox3.TabIndex = 17;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(397, 398);
+            this.button1.Location = new System.Drawing.Point(397, 577);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(360, 69);
             this.button1.TabIndex = 18;
-            this.button1.Text = "Добавить награду";
+            this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -198,18 +203,18 @@
             // 
             this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(273, 352);
+            this.comboBox5.Location = new System.Drawing.Point(233, 369);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(176, 33);
+            this.comboBox5.Size = new System.Drawing.Size(216, 33);
             this.comboBox5.TabIndex = 21;
             // 
             // button2
             // 
             this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(17, 398);
+            this.button2.Location = new System.Drawing.Point(18, 577);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(364, 69);
+            this.button2.Size = new System.Drawing.Size(364, 71);
             this.button2.TabIndex = 22;
             this.button2.Text = "Добавить новый локальный акт";
             this.button2.UseVisualStyleBackColor = true;
@@ -227,11 +232,64 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Enabled = false;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(12, 423);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(171, 50);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Введите номер\r\nлокального акта:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Enabled = false;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(12, 486);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(165, 50);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Выберите дату\r\nлокального акта";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker3.Location = new System.Drawing.Point(233, 506);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(216, 30);
+            this.dateTimePicker3.TabIndex = 27;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(233, 440);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(216, 33);
+            this.textBox1.TabIndex = 28;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Location = new System.Drawing.Point(233, 379);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(121, 23);
+            this.comboBox6.TabIndex = 29;
+            this.comboBox6.Visible = false;
+            // 
             // AddAwardEmp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 479);
+            this.ClientSize = new System.Drawing.Size(781, 671);
+            this.Controls.Add(this.comboBox6);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dateTimePicker3);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox5);
@@ -279,5 +337,10 @@
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox6;
     }
 }

@@ -49,7 +49,7 @@ namespace Nagrady
                 var comand1 = new ОДБ.OleDbCommand("(SELECT s.n, s.c, s1.c1 from (select reward_types.type_name as n, Count(*) as c " +
                      "FROM awardemps, rewards, reward_types  " +
                      "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
-                    " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  " +
+                    " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# " +
                      "GROUP BY  reward_types.type_name) as s  left join " +
    "(select  reward_types.type_name as n, Count(*) as  c1 " +
                   "   FROM awardemps, rewards, reward_types  " +
@@ -59,7 +59,7 @@ namespace Nagrady
    "(SELECT s1.n, s.c, s1.c1 from (select  reward_types.type_name as n, Count(*) as c " +
                 "     FROM awardemps, rewards, reward_types  " +
                  "    WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
-                  "   AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  " +
+                  "   AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "#  " +
                    "  GROUP BY reward_types.type_name) as s right join " +
    "(select  reward_types.type_name as n, Count(*) as  c1 " +
               "       FROM awardemps, rewards, reward_types  " +
@@ -141,12 +141,12 @@ namespace Nagrady
 
                     var comanda = new ОДБ.OleDbCommand("(SELECT s.n, s.c, s1.c1 from (select rewards.reward_name as n, Count(*) as c " +
                 "  FROM awardemps, rewards, reward_types WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
-                  " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+                  " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
                   "' GROUP BY rewards.reward_name) as s  left join  (select rewards.reward_name as n, Count(*) as  c1  FROM awardemps, rewards, reward_types  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
                  "  AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
 "' GROUP BY rewards.reward_name)  as s1 on s1.n = s.n)  union (SELECT s1.n, s.c, s1.c1 from (select rewards.reward_name as n, Count(*) as c  " +
                 "   FROM awardemps, rewards, reward_types WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
-                "    AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# and awardemps.date_award>#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
+                "    AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
                 "'  GROUP BY rewards.reward_name) as s right join (select rewards.reward_name as n, Count(*) as  c1  FROM awardemps, rewards, reward_types   " +
                 "   WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type   " +
                "    AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  and  reward_types.type_name = '" + reader.GetValue(0) +
