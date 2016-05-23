@@ -22,11 +22,14 @@ namespace Nagrady
 
         ОДБ.OleDbConnection con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source= rewards.mdb");
         ОДБ.OleDbCommand ucommand = new ОДБ.OleDbCommand();
-
         int check = 0;// счетчик, указывает на дипазон времени выбранного пользователем
-
-        void func(int q, int w, int t, int s, int a, string data_otchet) //   String data_otchet - переменная в которой записывается выбранный диапазон дат, для вывода в отчете
+        void makeQuery()
         {
+
+        }
+        void func(int q, int w, int t, int s, int a, string data_otchet) //   String data_otchet - переменная в которой записывается выбранный диапазон дат, для вывода в отчете
+        { 
+            con.Open();
             try
             {
                 String qwt;//начало даты
@@ -37,35 +40,26 @@ namespace Nagrady
                 qwt = q.ToString() + "/" + w.ToString() + "/" + t.ToString();
                 ast = s.ToString() + "/" + a.ToString() + "/" + t.ToString();
 
-
-                con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source = rewards.mdb");
-                con.Open();
-                //var comand1 = new ОДБ.OleDbCommand("SELECT reward_types.type_name, count(*) " +
-                //       "FROM awardemps, rewards, reward_types " +
-                //       "WHERE rewards.id=awardemps.reward_id AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# " +
-                //       "and reward_types.id = rewards.id_type " +
-                //       "GROUP BY reward_types.type_name ", con);
-
                 var comand1 = new ОДБ.OleDbCommand("(SELECT s.n, s.c, s1.c1 from (select reward_types.type_name as n, Count(*) as c " +
                      "FROM awardemps, rewards, reward_types  " +
                      "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
                     " AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# " +
                      "GROUP BY  reward_types.type_name) as s  left join " +
-   "(select  reward_types.type_name as n, Count(*) as  c1 " +
-                  "   FROM awardemps, rewards, reward_types  " +
-                   "  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
-                  "   AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  " +
-   "GROUP BY reward_types.type_name)  as s1 on s1.n = s.n)  union " +
-   "(SELECT s1.n, s.c, s1.c1 from (select  reward_types.type_name as n, Count(*) as c " +
-                "     FROM awardemps, rewards, reward_types  " +
-                 "    WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
-                  "   AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "#  " +
-                   "  GROUP BY reward_types.type_name) as s right join " +
-   "(select  reward_types.type_name as n, Count(*) as  c1 " +
-              "       FROM awardemps, rewards, reward_types  " +
-                "     WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
-                 "    AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  " +
-   "GROUP BY reward_types.type_name) as s1 on s1.n = s.n) ", con);
+               "(select  reward_types.type_name as n, Count(*) as  c1 " +
+                              "   FROM awardemps, rewards, reward_types  " +
+                               "  WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+                              "   AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  " +
+               "GROUP BY reward_types.type_name)  as s1 on s1.n = s.n)  union " +
+               "(SELECT s1.n, s.c, s1.c1 from (select  reward_types.type_name as n, Count(*) as c " +
+                            "     FROM awardemps, rewards, reward_types  " +
+                             "    WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+                              "   AND awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "#  " +
+                               "  GROUP BY reward_types.type_name) as s right join " +
+               "(select  reward_types.type_name as n, Count(*) as  c1 " +
+                          "       FROM awardemps, rewards, reward_types  " +
+                            "     WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type  " +
+                             "    AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#  " +
+               "GROUP BY reward_types.type_name) as s1 on s1.n = s.n) ", con);
 
                 // подсчёт количества строк таблицы в отчете --->
                 ОДБ.OleDbDataReader выборка1 = comand1.ExecuteReader();
@@ -75,18 +69,19 @@ namespace Nagrady
                     Rows1.Rows.Add(new object[] { выборка1.GetValue(0) });
                 выборка1.Close();
 
-                var comand2 = new ОДБ.OleDbCommand("SELECT rewards.reward_name, Count(*)  " +
+                var comand2 = new ОДБ.OleDbCommand("SELECT COUNT(*) FROM (SELECT DISTINCT awardemps.reward_id" +
                     " FROM awardemps, rewards, reward_types " +
                      "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type " +
-                     "AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# " +
-                     " GROUP BY rewards.reward_name", con);
+                     "AND ((awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# )" +
+                     "or (awardemps.date_get>#" + qwt + "# And awardemps.date_get<#" + ast + "# )))", con);
                 ОДБ.OleDbDataReader выборка2 = comand2.ExecuteReader();
-                DataTable Rows2 = new DataTable();
-                Rows2.Columns.Add(выборка2.GetName(0));
+                int col2=0;
                 while (выборка2.Read() == true)
-                    Rows2.Rows.Add(new object[] { выборка2.GetValue(0) });
+                {
+                    col2 = Int16.Parse(выборка2.GetValue(0).ToString());
+                }
                 выборка2.Close();
-                int f = Rows1.Rows.Count + Rows2.Rows.Count + 1;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой содержатся названия столбцов
+                int f = Rows1.Rows.Count + col2 + 1;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой содержатся названия столбцов
                 MessageBox.Show(f.ToString());
                 //   <---- подсчёт количества строк таблицы в отчете
 
@@ -174,26 +169,26 @@ namespace Nagrady
                 }
                 Word1.Selection.MoveDown(Ворд.Word.WdUnits.wdLine, 15);
                 reader.Close();
-                con.Close();
+                
             }
 
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message, "Ошибка БД");
-            }
+                con.Close();
+            } con.Close();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void checkSelect(int orderType)
         {
             try
             {
                 //диапазон дат
                 int q;//месяц1
-                int w;//день1
+                int w = 1;//день1
                 int a;//месяц2
                 int s;//день2
                 int t; //год
-
+                string header;
 
                 //Проверка на ввод года, картала, месяца с формы
                 if (check == 1)//если выбираем год
@@ -202,101 +197,58 @@ namespace Nagrady
                     {
                         textBox1.Text = "";
                     }
-                    func(q = 1, w = 1, t = int.Parse(textBox1.Text), s = 31, a = 12, "За " + textBox1.Text.ToString() + " год");
+                    q = 1;
+                    t = int.Parse(textBox1.Text);
+                    s = 31;
+                    a = 12;
+                    header = "За " + textBox1.Text.ToString() + " год";
 
                 }
-                if (check == 2)//если выбираем квартал
+                else if (check == 2)//если выбираем квартал
                 {
                     if (int.Parse(textBox3.Text) > 2100 || int.Parse(textBox3.Text) < 1940)
                     {
                         textBox3.Text = "";
                     }
-                    if (comboBox1.Text.ToString() == "1")
-                    {
-                        func(q = 1, w = 1, t = int.Parse(textBox3.Text), s = 31, a = 3, "За 1 квартал " + textBox3.Text.ToString() + " года");
-                    }
-                    else if (comboBox1.Text.ToString() == "2")
-                    {
-                        func(q = 4, w = 1, t = int.Parse(textBox3.Text), s = 30, a = 6, "За 2 квартал " + textBox3.Text.ToString() + " года");
-                    }
-                    else if (comboBox1.Text.ToString() == "3")
-                    {
-                        func(q = 7, w = 1, t = int.Parse(textBox3.Text), s = 30, a = 9, "За 3 квартал " + textBox3.Text.ToString() + " года");
-                    }
-                    else if (comboBox1.Text.ToString() == "4")
-                    {
-                        func(q = 10, w = 1, t = int.Parse(textBox3.Text), s = 31, a = 12, "За 4 квартал " + textBox3.Text.ToString() + " года");
-                    }
+                    t = int.Parse(textBox3.Text);
+                    int quarter = comboBox1.SelectedIndex;
+                    a = (quarter + 1) * 3;
+                    q = 1 + quarter * 3;
+                    s = DateTime.DaysInMonth(t, q);
+                    header = "За " + (quarter + 1) + " квартал " + t + " года";
                 }
-                if (check == 3)//если выбираем месяц
+                else
                 {
                     if (int.Parse(textBox5.Text) > 2100 || int.Parse(textBox5.Text) < 1940)
                     {
                         textBox5.Text = "";
                     }
-                    switch (comboBox2.Text)
-                    {
-                        case "Январь":
-                            func(q = 1, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 1, "За Январь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Февраль":
-                            double proverka = Double.Parse(textBox5.Text) % 4; //проверка на високосный год
-                            if (proverka == 0)
-                            {
-                                func(q = 2, w = 1, t = int.Parse(textBox5.Text), s = 29, a = 2, "За Февраль " + textBox5.Text.ToString() + " года");
-                            }
-                            else
-                            {
-                                func(q = 2, w = 1, t = int.Parse(textBox5.Text), s = 28, a = 2, "За Февраль " + textBox5.Text.ToString() + " года");
-                            }
 
-                            break;
-                        case "Март":
-                            func(q = 3, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 3, "За Март " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Апрель":
-                            func(q = 4, w = 1, t = int.Parse(textBox5.Text), s = 30, a = 4, "За Апрель " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Май":
-                            func(q = 5, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 5, "За Май " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Июнь":
-                            func(q = 6, w = 1, t = int.Parse(textBox5.Text), s = 30, a = 6, "За Июнь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Июль":
-                            func(q = 7, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 7, "За Июль " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Август":
-                            func(q = 8, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 8, "За Август " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Сентябрь":
-                            func(q = 9, w = 1, t = int.Parse(textBox5.Text), s = 30, a = 9, "За Сентябрь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Октябрь":
-                            func(q = 10, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 10, "За Октябрь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Ноябрь":
-                            func(q = 11, w = 1, t = int.Parse(textBox5.Text), s = 30, a = 11, "За Ноябрь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Декабрь":
-                            func(q = 12, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 12, "За Декабрь " + textBox5.Text.ToString() + " года");
-                            break;
-                        default:
-                            MessageBox.Show("В году всего 12 месяцев!");
-                            break;
-                    }
+                    q = comboBox2.SelectedIndex + 1;
+                    a = q;
+                    t = int.Parse(textBox5.Text);
+                    s = DateTime.DaysInMonth(t, q);
+                    header = "За " + comboBox2.SelectedIndex + textBox5.Text + " года";
+
                 }
+                if(orderType==1)
+                    func(q, w, t, s, a, header);
+                else
+                    func2(q, w, t, s, a, header);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка ввода! Введите корректные значения!");
             }
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            checkSelect(1);
+        }
 
         void func2(int q, int w, int t, int s, int a, string data_otchet)
         {
-            try
-            {
+            //try            {
                 String qwt;//начало даты
                 String ast;//конец даты
                 // месяц день год
@@ -325,12 +277,14 @@ namespace Nagrady
 
                 while (reader.Read() == true)
                 {
-                    mytable.Rows.Add(new object[] { reader.GetValue(0).ToString(), reader.GetValue(1).ToString(), reader.GetValue(2).ToString(), reader.GetValue(3).ToString(), reader.GetValue(4).ToString(), reader.GetValue(5).ToString(), reader.GetValue(6).ToString() });
+                    mytable.Rows.Add(new object[] { reader.GetValue(0).ToString(), reader.GetValue(1).ToString(), reader.GetValue(2).ToString(),
+                        reader.GetValue(3).ToString(), reader.GetValue(4).ToString(), reader.GetValue(5).ToString(), reader.GetValue(6).ToString() });
 
-                    comanda = new ОДБ.OleDbCommand("select employees.lname, employees.fname, employees.patre, employees.position, employees.birth, " +
+                    comanda = new ОДБ.OleDbCommand("select employees.lname, employees.fname, employees.patre, employees.pos, employees.birth, " +
                     " rewards.reward_name, awardEmps.act_id from employees, awardemps, rewards, reward_types " +
-                    " where awardemps.reward_id = rewards.id and reward_types.id = rewards.id_type and " +
-                    " employees.id = awardemps.emp_id and reward_types.type_name = '" + reader.GetValue(0) + "'", con);
+                    " where awardemps.reward_id = rewards.id and reward_types.id = rewards.id_type " + 
+                     " AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#" +
+                    "AND employees.id = awardemps.emp_id and reward_types.type_name = '" + reader.GetValue(0) + "'", con);
                     выполнение = comanda.ExecuteReader();
 
                     while (выполнение.Read() == true)
@@ -349,17 +303,17 @@ namespace Nagrady
 
 
 
-            }
+/*            }
 
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message, "Ошибка БД");
-            }
+            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 //диапазон дат
                 int q;//месяц1
@@ -385,22 +339,10 @@ namespace Nagrady
                     {
                         textBox3.Text = "";
                     }
-                    if (comboBox1.Text.ToString() == "1")
-                    {
-                        func2(q = 1, w = 1, t = int.Parse(textBox3.Text), s = 31, a = 3, "За 1 квартал " + textBox3.Text.ToString() + " года");
-                    }
-                    else if (comboBox1.Text.ToString() == "2")
-                    {
-                        func2(q = 4, w = 1, t = int.Parse(textBox3.Text), s = 30, a = 6, "За 2 квартал " + textBox3.Text.ToString() + " года");
-                    }
-                    else if (comboBox1.Text.ToString() == "3")
-                    {
-                        func2(q = 7, w = 1, t = int.Parse(textBox3.Text), s = 30, a = 9, "За 3 квартал " + textBox3.Text.ToString() + " года");
-                    }
-                    else if (comboBox1.Text.ToString() == "4")
-                    {
-                        func2(q = 10, w = 1, t = int.Parse(textBox3.Text), s = 31, a = 12, "За 4 квартал " + textBox3.Text.ToString() + " года");
-                    }
+                 
+                    t = int.Parse(textBox3.Text);
+                    int quarter =comboBox1.SelectedIndex;
+                    func2(q = 1 + quarter * 3, w = 1, t, s = DateTime.DaysInMonth(t, q), a = (quarter + 1) * 3, "За 4 квартал " + t + " года");
                 }
                 if (check == 3)//если выбираем месяц
                 {
@@ -408,63 +350,17 @@ namespace Nagrady
                     {
                         textBox5.Text = "";
                     }
-                    switch (comboBox2.Text)
-                    {
-                        case "Январь":
-                            func2(q = 1, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 1, "За Январь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Февраль":
-                            double proverka = Double.Parse(textBox5.Text) % 4; //проверка на високосный год
-                            if (proverka == 0)
-                            {
-                                func2(q = 2, w = 1, t = int.Parse(textBox5.Text), s = 29, a = 2, "За Февраль " + textBox5.Text.ToString() + " года");
-                            }
-                            else
-                            {
-                                func2(q = 2, w = 1, t = int.Parse(textBox5.Text), s = 28, a = 2, "За Февраль " + textBox5.Text.ToString() + " года");
-                            }
-
-                            break;
-                        case "Март":
-                            func2(q = 3, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 3, "За Март " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Апрель":
-                            func2(q = 4, w = 1, t = int.Parse(textBox5.Text), s = 30, a = 4, "За Апрель " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Май":
-                            func2(q = 5, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 5, "За Май " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Июнь":
-                            func2(q = 6, w = 1, t = int.Parse(textBox5.Text), s = 30, a = 6, "За Июнь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Июль":
-                            func2(q = 7, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 7, "За Июль " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Август":
-                            func2(q = 8, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 8, "За Август " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Сентябрь":
-                            func2(q = 9, w = 1, t = int.Parse(textBox5.Text), s = 30, a = 9, "За Сентябрь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Октябрь":
-                            func2(q = 10, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 10, "За Октябрь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Ноябрь":
-                            func2(q = 11, w = 1, t = int.Parse(textBox5.Text), s = 30, a = 11, "За Ноябрь " + textBox5.Text.ToString() + " года");
-                            break;
-                        case "Декабрь":
-                            func2(q = 12, w = 1, t = int.Parse(textBox5.Text), s = 31, a = 12, "За Декабрь " + textBox5.Text.ToString() + " года");
-                            break;
-                        default:
-                            MessageBox.Show("В году всего 12 месяцев!");
-                            break;
-                    }
+                   
+                    q=comboBox2.SelectedIndex+1;
+                    t=int.Parse(textBox5.Text);
+                    func2(q, w = 1, t, s = DateTime.DaysInMonth(t, q), q, "За Декабрь " + textBox5.Text + " года");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка ввода! Введите корректные значения!");
-            }
+            }*/
+            checkSelect(2);
         }
 
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)

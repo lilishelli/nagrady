@@ -69,7 +69,6 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Добавить человека представленного к награде в список";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1
@@ -138,7 +137,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(182, 30);
             this.textBox2.TabIndex = 4;
-            this.textBox2.Visible = false;
             // 
             // search
             // 
@@ -149,7 +147,6 @@
             this.search.TabIndex = 5;
             this.search.Text = "Поиск";
             this.search.UseVisualStyleBackColor = true;
-            this.search.Visible = false;
             this.search.Click += new System.EventHandler(this.search_Click);
             // 
             // addRewardToEmpbtn
@@ -162,7 +159,6 @@
             this.addRewardToEmpbtn.TabIndex = 6;
             this.addRewardToEmpbtn.Text = "Добавить награду выбранному человеку из списка ";
             this.addRewardToEmpbtn.UseVisualStyleBackColor = true;
-            this.addRewardToEmpbtn.Visible = false;
             this.addRewardToEmpbtn.Click += new System.EventHandler(this.addRewardToEmpbtn_Click);
             // 
             // editbtn
@@ -175,7 +171,6 @@
             this.editbtn.TabIndex = 7;
             this.editbtn.Text = "Редактировать личные данные выбранного человека из списка ";
             this.editbtn.UseVisualStyleBackColor = true;
-            this.editbtn.Visible = false;
             this.editbtn.Click += new System.EventHandler(this.editbtn_Click);
             // 
             // label1
@@ -187,7 +182,6 @@
             this.label1.Size = new System.Drawing.Size(398, 25);
             this.label1.TabIndex = 8;
             this.label1.Text = "Введите фамилию для поиска по списку:";
-            this.label1.Visible = false;
             // 
             // checkBox1
             // 
@@ -199,7 +193,6 @@
             this.checkBox1.TabIndex = 9;
             this.checkBox1.Text = "Режим редактирования";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
             this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
             // 
             // button2
@@ -212,7 +205,6 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "Удалить выбранного человека из списка";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Main

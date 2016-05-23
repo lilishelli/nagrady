@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ОДБ = System.Data.OleDb;
 namespace Nagrady
 {
-    static class Data
+    public static class MyCon
     {
-        public static bool isAddBtn { get; set; }
-        public static int empId { get; set; }
+        public static string connect;
+        
     }
 }

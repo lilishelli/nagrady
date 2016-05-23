@@ -43,7 +43,7 @@ namespace Nagrady
             mytable.Columns.Add(выполнение.GetName(10));
             while (выполнение.Read() == true)
                 mytable.Rows.Add(new object[] { выполнение.GetValue(0), выполнение.GetValue(1), выполнение.GetValue(2), выполнение.GetValue(3), выполнение.GetValue(4), выполнение.GetValue(5),
-                    выполнение.GetValue(6), выполнение.GetValue(7), выполнение.GetValue(8), выполнение.GetValue(9), выполнение.GetValue(10) });
+                    выполнение.GetValue(6), DateTime.Parse(выполнение.GetValue(7).ToString()).Date.ToString("dd.mm.yyyy"), выполнение.GetValue(8), выполнение.GetValue(9), выполнение.GetValue(10) });
             выполнение.Close();
             con.Close();
             dataGridView1.DataSource = mytable;
@@ -79,6 +79,7 @@ namespace Nagrady
         private void button1_Click(object sender, EventArgs e)
         {
             Data.isAddBtn = true;
+            MyCon.connect = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source = rewards.mdb";
             EditEmp f = new EditEmp();
             f.Show();
             insert = 2;
@@ -112,7 +113,6 @@ namespace Nagrady
             EditEmp f = new EditEmp();
             f.Show();
             insert = 1;
-
         }
 
         private void addRewardToEmpbtn_Click(object sender, EventArgs e)
@@ -173,7 +173,6 @@ namespace Nagrady
             {
                 try
                 {
-
                     con.Open();
                     var search_comand = new ОДБ.OleDbCommand("Select * From Employees where Employees.lname = ?", con);
                     search_comand.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = textBox2.Text.ToString();
