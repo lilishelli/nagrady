@@ -23,7 +23,7 @@ namespace Nagrady
         void loadawardemp()
         {
             con.Open();
-            var comanda = new ОДБ.OleDbCommand("select [awardemps].[id], [reward_types].[type_name], [rewards].[reward_name],[employees].[lname],"+
+            var comanda = new ОДБ.OleDbCommand("select [awardemps].[id], [reward_types].[type_name], [rewards].[reward_name], [employees].[lname]&' '&[employees].[fname]&' '&[employees].[patre]," +
                 "[date_get], [date_award], [act_name], [act_num], [act_date], [comment] from [employees], [rewards], [awardemps], [localact], [reward_types]"+
                 "where [employees].[id] = [awardemps].[emp_id] and [rewards].[id]=[awardemps].[reward_id] and [reward_types].[id]=[rewards].[id_type] and [localact].[id] = [awardemps].[act_id]", con);
             ОДБ.OleDbDataReader v = comanda.ExecuteReader();
