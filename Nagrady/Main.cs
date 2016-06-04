@@ -117,6 +117,7 @@ namespace Nagrady
 
         private void addRewardToEmpbtn_Click(object sender, EventArgs e)
         {
+            Data.isAddAwardBtn = true;
             Data.empId = Int16.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
             AddAwardEmp f = new AddAwardEmp();
             f.Show();
@@ -136,7 +137,9 @@ namespace Nagrady
 
         private void списокЛюдейПредставленныхКНаградамToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            label1.Visible = true;
+            AwardEmp f = new AwardEmp();
+            f.Show();
+            /*label1.Visible = true;
             textBox2.Visible = true;
             search.Visible = true;
             dataGridView1.Visible = true;
@@ -144,7 +147,7 @@ namespace Nagrady
             addRewardToEmpbtn.Visible = true;
             button1.Visible = true;
             checkBox1.Visible = true;
-            button2.Visible = true;
+            button2.Visible = true;*/
         }
 
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
