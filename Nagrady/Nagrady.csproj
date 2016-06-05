@@ -74,6 +74,7 @@
       <DependentUpon>AwardEmp.cs</DependentUpon>
     </Compile>
     <Compile Include="Data.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="EditEmp.cs">
       <SubType>Form</SubType>
     </Compile>

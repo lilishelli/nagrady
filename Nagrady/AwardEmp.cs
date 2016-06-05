@@ -45,7 +45,7 @@ namespace Nagrady
                 string date_act;
                 try 
                 {
-                    date_get = DateTime.Parse(v.GetValue(4).ToString()).Date.ToString("dd.mm.yyyy");
+                    date_get = DateTime.Parse(v.GetValue(4).ToString()).Date.ToString("dd.MM.yyyy");
                 }
                 catch 
                 {
@@ -53,7 +53,7 @@ namespace Nagrady
                 }
                 try
                 {
-                    date_award = DateTime.Parse(v.GetValue(5).ToString()).Date.ToString("dd.mm.yyyy");
+                    date_award = DateTime.Parse(v.GetValue(5).ToString()).Date.ToString("dd.MM.yyyy");
                 }
                 catch
                 {
@@ -61,7 +61,7 @@ namespace Nagrady
                 }
                 try
                 {
-                    date_act = DateTime.Parse(v.GetValue(8).ToString()).Date.ToString("dd.mm.yyyy");
+                    date_act = DateTime.Parse(v.GetValue(8).ToString()).Date.ToString("dd.MM.yyyy");
                 }
                 catch
                 {
@@ -120,13 +120,10 @@ namespace Nagrady
 
             if (result == DialogResult.Yes)
             {
-                var delete_command = new ОДБ.OleDbCommand("Delete * From AwardEmps where id = ?", con);
-                delete_command.Parameters.Add("id", ОДБ.OleDbType.VarWChar, 50).Value = id;
-
                 try
                 {
-                    int kol = delete_command.ExecuteNonQuery();
-                    MessageBox.Show("Обновлено " + kol + " записей");
+                    Database.execute("Delete * From AwardEmps where id = "+id+"");                
+                    MessageBox.Show("Запись удалена");
                 }
                 catch (Exception ex)
                 {

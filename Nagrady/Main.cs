@@ -21,14 +21,10 @@ namespace Nagrady
         }
         int insert = 0;
         // DataSet rewards;
-        ОДБ.OleDbConnection con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source= rewards.mdb");
-        ОДБ.OleDbCommand ucommand = new ОДБ.OleDbCommand();
-        // ОДБ.OleDbDataAdapter Adapter;
+       // ОДБ.OleDbDataAdapter Adapter;
         void loademp()
         {
-            con.Open();
-            var comanda = new ОДБ.OleDbCommand("select [id], [lname], [fname], [patre], [org], [pos], [gender], [birth], fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees", con);
-            ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
+            ОДБ.OleDbDataReader выполнение = Database.getReader("select [id], [lname], [fname], [patre], [org], [pos], [gender], [birth], fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees");
             DataTable mytable = new DataTable();
             mytable.Columns.Add(выполнение.GetName(0));
             mytable.Columns.Add(выполнение.GetName(1));
@@ -43,9 +39,8 @@ namespace Nagrady
             mytable.Columns.Add(выполнение.GetName(10));
             while (выполнение.Read() == true)
                 mytable.Rows.Add(new object[] { выполнение.GetValue(0), выполнение.GetValue(1), выполнение.GetValue(2), выполнение.GetValue(3), выполнение.GetValue(4), выполнение.GetValue(5),
-                    выполнение.GetValue(6), DateTime.Parse(выполнение.GetValue(7).ToString()).Date.ToString("dd.mm.yyyy"), выполнение.GetValue(8), выполнение.GetValue(9), выполнение.GetValue(10) });
+                    выполнение.GetValue(6), DateTime.Parse(выполнение.GetValue(7).ToString()).Date.ToString("dd.MM.yyyy"), выполнение.GetValue(8), выполнение.GetValue(9), выполнение.GetValue(10) });
             выполнение.Close();
-            con.Close();
             dataGridView1.DataSource = mytable;
             dataGridView1.Columns[0].HeaderCell.Value = "ID";
             dataGridView1.Columns[0].Width = 25;
@@ -90,9 +85,9 @@ namespace Nagrady
         {
             try
             {
-                con.Open();
+                if(Database.connect())
                 MessageBox.Show("Подключение выполнено");
-                con.Close();
+                else MessageBox.Show("Ошибка подключения");
             }
             catch (Exception ex)
             {
@@ -176,11 +171,7 @@ namespace Nagrady
             {
                 try
                 {
-                    con.Open();
-                    var search_comand = new ОДБ.OleDbCommand("Select * From Employees where Employees.lname = ?", con);
-                    search_comand.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = textBox2.Text.ToString();
-
-                    ОДБ.OleDbDataReader выполнение = search_comand.ExecuteReader();
+                    ОДБ.OleDbDataReader выполнение = Database.getReader("Select * From Employees where Employees.lname = '"+textBox2.Text.ToString()+"'");
                     DataTable mytable = new DataTable();
                     mytable.Columns.Add(выполнение.GetName(0));
                     mytable.Columns.Add(выполнение.GetName(1));
@@ -198,7 +189,6 @@ namespace Nagrady
                         mytable.Rows.Add(new object[] { выполнение.GetValue(0), выполнение.GetValue(1), выполнение.GetValue(2), выполнение.GetValue(3), выполнение.GetValue(4), выполнение.GetValue(10), выполнение.GetValue(5), выполнение.GetValue(6), выполнение.GetValue(7), выполнение.GetValue(8), выполнение.GetValue(9) });
 
                     выполнение.Close();
-                    con.Close();
                     dataGridView1.DataSource = mytable;
                     dataGridView1.Columns[0].HeaderCell.Value = "ID";
                     dataGridView1.Columns[0].Width = 50;
@@ -239,7 +229,6 @@ namespace Nagrady
         { // удаление человека из списка по фамилии            
             string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
 
-            con.Open();
             const string message = "Удалить сотрудника из базы?";
             const string caption = "Удаление";
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -247,13 +236,10 @@ namespace Nagrady
             // If the no button was pressed ...
             if (result == DialogResult.Yes)
             {
-                var delete_command = new ОДБ.OleDbCommand("Delete * From Employees where Employees.id = ?", con);
-                delete_command.Parameters.Add("id", ОДБ.OleDbType.VarWChar, 50).Value = id;
-            
+                Database.execute("Delete * From Employees where Employees.id = "+id+"");
                 try
                 {
-                    int kol = delete_command.ExecuteNonQuery();
-                    MessageBox.Show("Обновлено " + kol + " записей");
+                    MessageBox.Show("Запись удалена");
                 }
                 catch (Exception ex)
                 {
@@ -261,7 +247,6 @@ namespace Nagrady
                 }
             }
             
-            con.Close();
             loademp();
         }
     }

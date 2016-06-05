@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ОДБ = System.Data.OleDb;
 namespace Nagrady
 {
     public partial class EditEmp : Form
@@ -17,27 +16,14 @@ namespace Nagrady
         {
             InitializeComponent();            
         }
-        public ОДБ.OleDbConnection con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source= rewards.mdb");
-        ОДБ.OleDbCommand command = new ОДБ.OleDbCommand();
-        ОДБ.OleDbDataAdapter Adapter;
-        public void addEmp(string lname, string fname, string patre, string org, string pos, string gender, DateTime birth, 
-            DateTime dbegin_org, DateTime dbegin_industry, DateTime dbegin_general)
+            public void addEmp(string lname, string fname, string patre, string org, string pos, string gender, string birth, 
+            string dbegin_org, string dbegin_industry, string dbegin_general)
         {
             try
             {
-                var command = new ОДБ.OleDbCommand("INSERT INTO Employees (lname, fname, patre, org, pos, gender, birth, dbegin_org, dbegin_industry, dbegin_general) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                command.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = lname;
-                command.Parameters.Add("fname", ОДБ.OleDbType.VarWChar, 50).Value = fname;
-                command.Parameters.Add("patre", ОДБ.OleDbType.VarWChar, 50).Value = patre;
-                command.Parameters.Add("org", ОДБ.OleDbType.VarWChar, 50).Value = org;
-                command.Parameters.Add("pos", ОДБ.OleDbType.VarWChar, 50).Value = pos;
-                command.Parameters.Add("gender", ОДБ.OleDbType.VarWChar, 50).Value = gender;
-                command.Parameters.Add("birth", ОДБ.OleDbType.Date, 10).Value = birth;
-                command.Parameters.Add("dbegin_org", ОДБ.OleDbType.Date, 50).Value = dbegin_org;
-                command.Parameters.Add("dbegin_industry", ОДБ.OleDbType.Date, 50).Value = dbegin_industry;
-                command.Parameters.Add("dbegin_general", ОДБ.OleDbType.Date, 50).Value = dbegin_general;
-                command.Connection = con;
-                command.ExecuteNonQuery();
+                Database.execute("INSERT INTO Employees (lname, fname, patre, org, pos, gender, birth, dbegin_org, dbegin_industry) VALUES ('" + lname + "', '" + fname + "', '" + patre
+                    + "', '" + org + "', '" + pos + "', '" + gender + "', '" + birth + "', '" + dbegin_org + "', '" + dbegin_industry + "')");
+                
                 MessageBox.Show("В таблицу добавлена запись");
             }
             catch (Exception ex)
@@ -45,27 +31,13 @@ namespace Nagrady
                 MessageBox.Show(ex.Message, "Ошибка ввода данных");
             }
         }
-        public void editEmp(string lname, string fname, string patre, string org, string pos, string gender, DateTime birth,
-            DateTime dbegin_org, DateTime dbegin_industry, DateTime dbegin_general, int id)
+        public void editEmp(string lname, string fname, string patre, string org, string pos, string gender, string birth,
+            string dbegin_org, string dbegin_industry, string dbegin_general, int id)
         {
             try
             {
-                var command = new ОДБ.OleDbCommand("Update Employees SET lname = ?, fname = ?, patre = ?,  org = ?,gender = ?, birth = ?, dbegin_org = ?, dbegin_industry = ?, dbegin_general = ?, pos = ? WHERE (id = ?)");
-                command.Parameters.Add("lname", ОДБ.OleDbType.VarWChar, 50).Value = lname;
-                command.Parameters.Add("fname", ОДБ.OleDbType.VarWChar, 50).Value = fname;
-                command.Parameters.Add("patre", ОДБ.OleDbType.VarWChar, 50).Value = patre;
-                command.Parameters.Add("org", ОДБ.OleDbType.VarWChar, 50).Value = org;
-                command.Parameters.Add("gender", ОДБ.OleDbType.VarWChar, 50).Value = gender;
-                command.Parameters.Add("birth", ОДБ.OleDbType.Date, 10).Value = birth;
-                command.Parameters.Add("dbegin_org", ОДБ.OleDbType.Date, 50).Value = dbegin_org;
-                command.Parameters.Add("dbegin_industry", ОДБ.OleDbType.Date, 50).Value = dbegin_industry;
-                command.Parameters.Add("dbegin_general", ОДБ.OleDbType.Date, 50).Value = dbegin_general;
-                command.Parameters.Add("pos", ОДБ.OleDbType.VarWChar, 50).Value = pos;
-                command.Parameters.Add("id", ОДБ.OleDbType.Integer, 30).Value = id;
-                Adapter = new ОДБ.OleDbDataAdapter(command);
-                Adapter.UpdateCommand = command;
-                command.Connection = con;
-                command.ExecuteNonQuery();
+                Database.execute("Update Employees SET lname = '" + lname + "', fname = '" + fname + "', patre = '" + patre + "',  org = '" + org + "',gender = '" + gender +
+                    "', birth = " + birth + ", dbegin_org = " + dbegin_org + ", dbegin_industry = " + dbegin_industry + ", dbegin_general = " + dbegin_general + ", pos = '" + pos + "' WHERE (id = " + id + ")");            
                 MessageBox.Show("Запись обновлена");
             }
             catch (Exception ex)
@@ -75,40 +47,79 @@ namespace Nagrady
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            string birth="null";
+            string dbegin_org="null";
+            string dbegin_industry="null";
+            string dbegin_general="null";
+            DialogResult result = DialogResult.Yes;
             try
             {
-                con.Open();
-                if (!Data.isAddBtn)
-                {
-                    editEmp(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, comboBox1.Items[comboBox1.SelectedIndex].ToString(), dateTimePicker1.Value,
-                        DateTime.Now.AddYears((-1) * Int32.Parse(textBox6.Text)).Date, DateTime.Now.AddYears((-1) * Int32.Parse(textBox7.Text)).Date,
-                        DateTime.Now.AddYears((-1) * Int32.Parse(textBox8.Text)).Date, Data.empId);
-                }
-                else
-                {
-                    addEmp(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, comboBox1.Items[comboBox1.SelectedIndex].ToString(), dateTimePicker1.Value,
-                        DateTime.Now.AddYears((-1) * Int32.Parse(textBox6.Text)).Date, DateTime.Now.AddYears((-1) * Int32.Parse(textBox7.Text)).Date,
-                        DateTime.Now.AddYears((-1) * Int32.Parse(textBox8.Text)).Date);
-                }
-                con.Close();                
+                birth = "'"+DateTime.Parse(dateTimePicker1.Value.Date.ToString()).ToString("dd.MM.yyyy")+"'";
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message, "Ошибка ввода данных");
-                con.Close();  
+                birth = "null";
+                result = MessageBox.Show("Не запонено поле Дата рождения! Продолжить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+            if (result == DialogResult.Yes)
+            try
+            {
+                dbegin_org = "'"+DateTime.Parse(DateTime.Now.AddYears((-1) * Int32.Parse(textBox6.Text)).Date.ToString()).ToString("dd.MM.yyyy")+"'";
+            }
+            catch
+            {
+                dbegin_org = "null";
+                result = MessageBox.Show("Не запонено поле Стаж работы в организации! Продолжить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+            if (result == DialogResult.Yes)
+            try
+            {
+                dbegin_industry = "'"+DateTime.Parse(DateTime.Now.AddYears((-1) * Int32.Parse(textBox7.Text)).Date.ToString()).ToString("dd.MM.yyyy")+"'";
+            }
+            catch
+            {
+                dbegin_industry = "null";
+                result = MessageBox.Show("Не запонено поле Стаж работы в отрасли! Продолжить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+            if (result == DialogResult.Yes)
+            try
+            {
+                dbegin_general = "'"+DateTime.Parse(DateTime.Now.AddYears((-1) * Int32.Parse(textBox8.Text)).Date.ToString()).ToString("dd.MM.yyyy")+"'";
+            }
+            catch
+            {
+                dbegin_general = "null";
+                result = MessageBox.Show("Не запонено поле Общий стаж! Продолжить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    if (!Data.isAddBtn)
+                    {
+                        editEmp(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, comboBox1.Items[comboBox1.SelectedIndex].ToString(), birth,
+                          dbegin_org, dbegin_industry, dbegin_general, Data.empId);
+                    }
+                    else
+                    {
+                        addEmp(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, comboBox1.Items[comboBox1.SelectedIndex].ToString(), birth,
+                            dbegin_org,dbegin_industry, dbegin_general);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка ввода данных");
+                }
             }
         }
         public void loadData()
         {
-            con.Open();
             comboBox1.Items.Add("Мужской");
             comboBox1.Items.Add("Женский");
 
             if (Data.isAddBtn == false)
             {
-                var comanda = new ОДБ.OleDbCommand("select [id], [lname], [fname], [patre], [org], [gender], [birth],  fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25),  [pos] from employees where id = ?", con);
-                comanda.Parameters.Add("id", ОДБ.OleDbType.Integer, 1000).Value = Data.empId;
-                ОДБ.OleDbDataReader reader = comanda.ExecuteReader();
+                var reader = Database.getReader("select [id], [lname], [fname], [patre], [org], [gender], [birth],  fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25),  [pos] from employees where id = "+Data.empId+"");
                 while (reader.Read())
                 {
                     textBox1.Text = reader.GetValue(1).ToString(); //фамилия
@@ -128,7 +139,6 @@ namespace Nagrady
                 reader.Close();
 
             }
-            con.Close();
         }
         private void EditEmp_Load(object sender, EventArgs e)
         {
