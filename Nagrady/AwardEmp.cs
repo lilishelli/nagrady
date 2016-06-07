@@ -149,5 +149,10 @@ namespace Nagrady
                 button3.Enabled = false;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            loadawardemp();
+        }
     }
 }

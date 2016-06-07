@@ -139,6 +139,9 @@ namespace Nagrady
         {
             comboBox2.Items.Clear();
             comboBox4.Items.Clear();
+            comboBox3.Items.Clear();
+            comboBox5.Items.Clear();
+            comboBox1.Items.Clear();
             comboBox1.Items.Add("Мужской");
             comboBox1.Items.Add("Женский");
             var v = Database.getReader("Select * From organisations");
