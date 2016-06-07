@@ -19,7 +19,7 @@ namespace Nagrady
 
         private void EditOrg_Load(object sender, EventArgs e)
         {
-            if (Data.isAddRewardBtn == false)
+            if (Data.isAddOrgBtn == false)
             {
                 var v = Database.getReader("Select * From Organisations where id = " + Data.orgId + "");
                 if (v.Read() == true)
@@ -34,14 +34,14 @@ namespace Nagrady
         {
             try
             {
-                if (Data.isAddRewardBtn == false)
+                if (Data.isAddOrgBtn == false)
                 {
-                    Database.execute("Update organisations set org_name = '" + textBox1.Text + "' where id = " + Data.orgId + "");
+                    Database.execute("Update Organisations set org_name = '" + textBox1.Text + "' where id = " + Data.orgId + "");
                     MessageBox.Show("Запись обновлена");
                 }
                 else
                 {
-                    Database.execute("insert into organisations (org_name) values ('" + textBox1.Text + "')");
+                    Database.execute("insert into organisations (org_name) values ('" + textBox1.Text.ToString() + "')");
                     MessageBox.Show("В таблицу добавлена запись");
                 }
             }

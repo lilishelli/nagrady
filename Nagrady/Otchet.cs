@@ -82,7 +82,7 @@ namespace Nagrady
                 }
                 выборка2.Close();
                 int f = Rows1.Rows.Count + col2 + 1;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой содержатся названия столбцов
-                MessageBox.Show(f.ToString());
+               // MessageBox.Show(f.ToString());
                 //   <---- подсчёт количества строк таблицы в отчете
 
 
@@ -204,7 +204,7 @@ namespace Nagrady
                     a = q;
                     t = int.Parse(textBox5.Text);
                     s = DateTime.DaysInMonth(t, q);
-                    header = "За " + comboBox2.SelectedIndex + textBox5.Text + " года";
+                    header = "За " + comboBox2.Text.ToString()+" "+ textBox5.Text + " года";
 
                 }
                 if(orderType==1)
@@ -224,8 +224,8 @@ namespace Nagrady
 
         void func2(int q, int w, int t, int s, int a, string data_otchet)
         {
-            /*try
-            {*/
+            try
+            {
                 String qwt;//начало даты
                 String ast;//конец даты
                 // месяц день год
@@ -263,7 +263,7 @@ namespace Nagrady
                 }
                 выборка2.Close();
                 int f = Rows1.Rows.Count + col2 + 1;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой содержатся названия столбцов
-                MessageBox.Show(f.ToString());
+              //  MessageBox.Show(f.ToString());
                 //   <---- подсчёт количества строк таблицы в отчете
 
 
@@ -305,9 +305,9 @@ namespace Nagrady
                     }
                     Word1.ActiveDocument.Range(Word1.ActiveDocument.Tables[1].Rows[j].Cells[1].Range.Start, Word1.ActiveDocument.Tables[1].Rows[j].Cells[6].Range.End).Cells.Merge();
                     j++; i++;
-                    comanda = new ОДБ.OleDbCommand("select employees.lname&' '&employees.fname&' '&employees.patre, employees.pos, employees.birth, " +
-                    " rewards.reward_name, localact.act_name&' №'&awardemps.act_num&' от '&awardemps.act_date from employees, awardemps, rewards, reward_types, localact " +
-                    " where awardemps.reward_id = rewards.id and reward_types.id = rewards.id_type  AND awardEmps.act_id = localact.id" + 
+                    comanda = new ОДБ.OleDbCommand("select employees.lname&' '&employees.fname&' '&employees.patre, positions.pos_name, employees.birth, " +
+                    " rewards.reward_name, localact.act_name&' №'&awardemps.act_num&' от '&awardemps.act_date from employees, awardemps, rewards, reward_types, localact, positions " +
+                    " where awardemps.reward_id = rewards.id and reward_types.id = rewards.id_type  AND awardEmps.act_id = localact.id and positions.id = employees.pos " + 
                      " AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "#" +
                     "AND employees.id = awardemps.emp_id and reward_types.type_name = '" + reader.GetValue(0) + "'", con);
                     выполнение = comanda.ExecuteReader();
@@ -331,12 +331,12 @@ namespace Nagrady
                 reader.Close();
                 con.Close();
                 dataGridView1.DataSource = mytable;
-            /*}
+            }
 
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message, "Ошибка БД");
-            }*/
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -21,10 +21,10 @@ namespace Nagrady
         }
         int insert = 0;
         // DataSet rewards;
-       // ОДБ.OleDbDataAdapter Adapter;
+        // ОДБ.OleDbDataAdapter Adapter;
         void loademp()
         {
-            ОДБ.OleDbDataReader выполнение = Database.getReader("select [employees].[id], [lname], [fname], [patre], [organisations].[org_name], [positions].[pos_name], [gender], [birth], "+
+            ОДБ.OleDbDataReader выполнение = Database.getReader("select [employees].[id], [lname], [fname], [patre], [organisations].[org_name], [positions].[pos_name], [gender], [birth], " +
                 " fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees, organisations, positions where positions.id=employees.pos and organisations.id=employees.org");
             DataTable mytable = new DataTable();
             mytable.Columns.Add(выполнение.GetName(0));
@@ -85,8 +85,8 @@ namespace Nagrady
         {
             try
             {
-                if(Database.connect())
-                MessageBox.Show("Подключение выполнено");
+                if (Database.connect())
+                    MessageBox.Show("Подключение выполнено");
                 else MessageBox.Show("Ошибка подключения");
             }
             catch (Exception ex)
@@ -134,15 +134,6 @@ namespace Nagrady
         {
             AwardEmp f = new AwardEmp();
             f.Show();
-            /*label1.Visible = true;
-            textBox2.Visible = true;
-            search.Visible = true;
-            dataGridView1.Visible = true;
-            editbtn.Visible = true;
-            addRewardToEmpbtn.Visible = true;
-            button1.Visible = true;
-            checkBox1.Visible = true;
-            button2.Visible = true;*/
         }
 
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
@@ -171,6 +162,7 @@ namespace Nagrady
             {
                 try
                 {
+
                     ОДБ.OleDbDataReader выполнение = Database.getReader("select [employees].[id], [lname], [fname], [patre], [organisations].[org_name], [positions].[pos_name], [gender], [birth], " +
                 " fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees, organisations, positions where positions.id=employees.pos and organisations.id=employees.org and employees.lname = '"+textBox2.Text+"'");
                     DataTable mytable = new DataTable();
@@ -222,21 +214,21 @@ namespace Nagrady
 
         private void dataGridView1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
-        { 
+        {
             string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
 
             const string message = "Удалить сотрудника из базы?";
             const string caption = "Удаление";
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            
+
             // If the no button was pressed ...
             if (result == DialogResult.Yes)
             {
-                Database.execute("Delete * From Employees where Employees.id = "+id+"");
+                Database.execute("Delete * From Employees where Employees.id = " + id + "");
                 try
                 {
                     MessageBox.Show("Запись удалена");
@@ -246,7 +238,7 @@ namespace Nagrady
                     MessageBox.Show(ex.Message, "Ошибка выбора данных");
                 }
             }
-            
+
             loademp();
         }
 
