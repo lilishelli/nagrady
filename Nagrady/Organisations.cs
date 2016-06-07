@@ -32,7 +32,7 @@ namespace Nagrady
                 dataGridView1.Columns[0].HeaderCell.Value = "ID";
                 dataGridView1.Columns[0].Width = 50;
                 dataGridView1.Columns[1].HeaderCell.Value = "Организация";
-                dataGridView1.Columns[1].Width = 500;
+                dataGridView1.Columns[1].Width = 700;
             }
             catch (Exception ex)
             {
@@ -82,6 +82,24 @@ namespace Nagrady
         private void button4_Click(object sender, EventArgs e)
         {
             update();
+        }
+
+        private void checkBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button3.Enabled = true;
+                button4.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button3.Enabled = false;
+                button4.Enabled = false;
+            }
         }
     }
 }

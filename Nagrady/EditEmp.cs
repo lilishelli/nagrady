@@ -16,6 +16,29 @@ namespace Nagrady
         {
             InitializeComponent();            
         }
+
+        void regular()
+        {
+            //String[] test;
+            //test = textBox1.Lines;
+            //String pattern = @"\b[А-Я]{1}[а-я]+\b";
+            //Regex regex = new Regex(pattern);
+            //String pattern1 = @"\W";
+            //Regex regex1 = new Regex(pattern1);
+
+            //foreach (String str in test)
+            //{
+            //    if (regex.IsMatch(str) && regex1.IsMatch(str) == false)
+            //        richTextBox5.Text += String.Format("\r\nФамилия: \"{0}\" введена правильно", str);
+            //    else
+            //        richTextBox5.Text += String.Format("\r\nФамилия: \"{0}\" введена не правильно", str);
+
+            //}
+        }
+
+
+
+
             public void addEmp(string lname, string fname, string patre, string org, string pos, string gender, string birth, 
             string dbegin_org, string dbegin_industry, string dbegin_general)
         {
