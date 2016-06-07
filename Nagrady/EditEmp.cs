@@ -21,8 +21,8 @@ namespace Nagrady
         {
             try
             {
-                Database.execute("INSERT INTO Employees (lname, fname, patre, org, pos, gender, birth, dbegin_org, dbegin_industry) VALUES ('" + lname + "', '" + fname + "', '" + patre
-                    + "', '" + org + "', '" + pos + "', '" + gender + "', '" + birth + "', '" + dbegin_org + "', '" + dbegin_industry + "')");
+                Database.execute("INSERT INTO Employees (lname, fname, patre, org, pos, gender, birth, dbegin_org, dbegin_industry, dbegin_general) VALUES ('" + lname + "', '" + fname + "', '" + patre
+                    + "', " + org + ", " + pos + ", '" + gender + "', " + birth + ", " + dbegin_org + ", " + dbegin_industry + ", " + dbegin_general + ")");
                 
                 MessageBox.Show("В таблицу добавлена запись");
             }
@@ -36,8 +36,8 @@ namespace Nagrady
         {
             try
             {
-                Database.execute("Update Employees SET lname = '" + lname + "', fname = '" + fname + "', patre = '" + patre + "',  org = '" + org + "',gender = '" + gender +
-                    "', birth = " + birth + ", dbegin_org = " + dbegin_org + ", dbegin_industry = " + dbegin_industry + ", dbegin_general = " + dbegin_general + ", pos = '" + pos + "' WHERE (id = " + id + ")");            
+                Database.execute("Update Employees SET lname = '" + lname + "', fname = '" + fname + "', patre = '" + patre + "',  org = " + org + ",gender = '" + gender +
+                    "', birth = " + birth + ", dbegin_org = " + dbegin_org + ", dbegin_industry = " + dbegin_industry + ", dbegin_general = " + dbegin_general + ", pos = " + pos + " WHERE (id = " + id + ")");            
                 MessageBox.Show("Запись обновлена");
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace Nagrady
                 {
                     if (!Data.isAddBtn)
                     {
-                        editEmp(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, comboBox1.Items[comboBox1.SelectedIndex].ToString(), birth,
+                        editEmp(textBox1.Text, textBox2.Text, textBox3.Text, comboBox3.Items[comboBox2.SelectedIndex].ToString(), comboBox5.Items[comboBox4.SelectedIndex].ToString(), comboBox1.Items[comboBox1.SelectedIndex].ToString(), birth,
                           dbegin_org, dbegin_industry, dbegin_general, Data.empId);
                     }
                     else
                     {
-                        addEmp(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, comboBox1.Items[comboBox1.SelectedIndex].ToString(), birth,
+                        addEmp(textBox1.Text, textBox2.Text, textBox3.Text, comboBox3.Items[comboBox2.SelectedIndex].ToString(), comboBox5.Items[comboBox4.SelectedIndex].ToString(), comboBox1.Items[comboBox1.SelectedIndex].ToString(), birth,
                             dbegin_org,dbegin_industry, dbegin_general);
                     }
                 }
@@ -116,7 +116,22 @@ namespace Nagrady
         {
             comboBox1.Items.Add("Мужской");
             comboBox1.Items.Add("Женский");
-
+            var v = Database.getReader("Select * From organisations");
+            //загружаем организации
+            while (v.Read() == true)
+            {
+                comboBox3.Items.Add(v.GetValue(0));
+                comboBox2.Items.Add(v.GetValue(1));
+            }
+            v.Close();
+            //загружаем должности
+            v = Database.getReader("Select * From positions");
+            while (v.Read() == true)
+            {
+                comboBox5.Items.Add(v.GetValue(0));
+                comboBox4.Items.Add(v.GetValue(1));
+            }
+            v.Close();
             if (Data.isAddBtn == false)
             {
                 var reader = Database.getReader("select [id], [lname], [fname], [patre], [org], [gender], [birth],  fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25),  [pos] from employees where id = "+Data.empId+"");
@@ -125,10 +140,10 @@ namespace Nagrady
                     textBox1.Text = reader.GetValue(1).ToString(); //фамилия
                     textBox2.Text = reader.GetValue(2).ToString();// имя
                     textBox3.Text = reader.GetValue(3).ToString();//отчество
-                    textBox4.Text = reader.GetValue(4).ToString();  //место работы
+                    comboBox2.SelectedIndex = comboBox3.Items.IndexOf(reader.GetValue(4));
                     comboBox1.SelectedIndex = comboBox1.Items.IndexOf(reader.GetValue(5).ToString());
-                    dateTimePicker1.Value = DateTime.Parse(reader.GetValue(6).ToString());
-                    textBox5.Text = reader.GetValue(10).ToString();    // должность
+                    dateTimePicker1.Value = DateTime.Parse(reader.GetValue(6).ToString()); 
+                    comboBox4.SelectedIndex = comboBox5.Items.IndexOf(reader.GetValue(10));
                     textBox6.Text = reader.GetValue(7).ToString();
                     
                     textBox7.Text = reader.GetValue(8).ToString();
@@ -143,6 +158,20 @@ namespace Nagrady
         private void EditEmp_Load(object sender, EventArgs e)
         {
             loadData();
+        }
+
+        private void addorg_Click(object sender, EventArgs e)
+        {
+            Data.isAddOrgBtn = true;
+            EditOrg f = new EditOrg();
+            f.Show();
+        }
+
+        private void addpos_Click(object sender, EventArgs e)
+        {
+            Data.isAddPosBtn = true;
+            EditPos f = new EditPos();
+            f.Show();
         }
     }
 }

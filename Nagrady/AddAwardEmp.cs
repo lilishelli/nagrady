@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using odb = System.Data.OleDb;
 namespace Nagrady
 {
     public partial class AddAwardEmp : Form
@@ -17,37 +16,22 @@ namespace Nagrady
         {
             InitializeComponent();
         }
-        odb.OleDbConnection con = new odb.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source= rewards.mdb");
-        odb.OleDbDataAdapter Adapter;
         void update()
         {
             try
             {
-                var command = new odb.OleDbCommand();
                 if (comboBox5.SelectedIndex > 0)
                 {
-                    command = new odb.OleDbCommand("Update Awardemps SET reward_id = ?, emp_id = ?, date_get = ?,  date_award = ?,act_id = ?, act_num = ?, act_date = ?, comment = ? WHERE (id = ?)");
-                    command.Parameters.Add("reward_id", odb.OleDbType.Integer, 30).Value = comboBox4.Items[comboBox2.SelectedIndex].ToString();
-                    command.Parameters.Add("emp_id", odb.OleDbType.Integer, 30).Value = Data.empId;
-                    command.Parameters.Add("date_get", odb.OleDbType.Date).Value = dateTimePicker1.Value.Date;
-                    command.Parameters.Add("date_award", odb.OleDbType.Date).Value = dateTimePicker2.Value.Date;
-                    command.Parameters.Add("act_id", odb.OleDbType.Integer, 30).Value = Int32.Parse(comboBox6.Items[comboBox5.SelectedIndex].ToString());
-                    command.Parameters.Add("act_num", odb.OleDbType.VarWChar, 80).Value = textBox1.Text;
-                    command.Parameters.Add("act_date", odb.OleDbType.Date).Value = dateTimePicker3.Value.Date;
+                    Database.execute("Update Awardemps SET reward_id = " + comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", emp_id = " + Data.empId + ", date_get = '" + dateTimePicker1.Value.Date
+                        + "',  date_award = '" + dateTimePicker2.Value.Date + "',act_id = " + Int32.Parse(comboBox6.Items[comboBox5.SelectedIndex].ToString())
+                        + ", act_num = '" + textBox1.Text + "', act_date = '" + dateTimePicker3.Value.Date + "', comment = '" + textBox3.Text + "' WHERE (id = " + Data.awardEmpId + ")");
+                    
                 }
                 else
                 {
-                    command = new odb.OleDbCommand("Update Awardemps SET reward_id = ?, emp_id = ?, date_get = ?,  comment = ? WHERE (id = ?)");
-                    command.Parameters.Add("reward_id", odb.OleDbType.Integer, 30).Value = comboBox4.Items[comboBox2.SelectedIndex].ToString();
-                    command.Parameters.Add("emp_id", odb.OleDbType.Integer, 30).Value = Data.empId;
-                    command.Parameters.Add("date_get", odb.OleDbType.Date).Value = dateTimePicker1.Value.Date;
+                    Database.execute("Update Awardemps SET reward_id = " + comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", emp_id = " + Data.empId + ", date_get = '" + dateTimePicker1.Value.Date
+                        + "',  comment = '" + textBox3.Text + "' WHERE (id = " + Data.awardEmpId + ")");
                 }
-                command.Parameters.Add("comment", odb.OleDbType.VarWChar, 255).Value = textBox3.Text;
-                command.Parameters.Add("id", odb.OleDbType.Integer, 30).Value = Data.awardEmpId;
-                Adapter = new odb.OleDbDataAdapter(command);
-                Adapter.UpdateCommand = command;
-                command.Connection = con;
-                command.ExecuteNonQuery();
                 MessageBox.Show("Запись обновлена");
             }
             catch (Exception ex)
@@ -57,39 +41,25 @@ namespace Nagrady
         }
         void add()
         {
-           // con.Open();
-           var comanda = new odb.OleDbCommand();
            if (comboBox5.SelectedIndex > 0)
             {
-                comanda.CommandText = "INSERT INTO Awardemps (reward_id, emp_id, date_get, date_award,act_id,act_num, act_date, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                comanda.Parameters.Add("reward_id", odb.OleDbType.Integer, 30).Value = comboBox4.Items[comboBox2.SelectedIndex].ToString();
-                comanda.Parameters.Add("emp_id", odb.OleDbType.Integer, 30).Value = Data.empId;
-                comanda.Parameters.Add("date_get", odb.OleDbType.Date).Value = dateTimePicker1.Value.Date;
-                comanda.Parameters.Add("date_award", odb.OleDbType.Date).Value = dateTimePicker2.Value.Date;
-                comanda.Parameters.Add("act_id", odb.OleDbType.Integer, 30).Value = Int32.Parse(comboBox6.Items[comboBox5.SelectedIndex].ToString());
-                comanda.Parameters.Add("act_num", odb.OleDbType.VarWChar, 80).Value = textBox1.Text;
-                comanda.Parameters.Add("act_date", odb.OleDbType.Date).Value = dateTimePicker3.Value.Date;
+                Database.execute("INSERT INTO Awardemps (reward_id, emp_id, date_get, date_award,act_id,act_num, act_date, comment) VALUES (" + comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", " + Data.empId
+                    + ", '" + dateTimePicker1.Value.Date.ToString("dd.MM.yyyy") + "', '" + dateTimePicker2.Value.Date.ToString("dd.MM.yyyy") + "', " + Int32.Parse(comboBox6.Items[comboBox5.SelectedIndex].ToString()) + ", '" + textBox1.Text + "', '" + dateTimePicker3.Value.Date.ToString("dd.MM.yyyy") + "', '" + textBox3.Text + "')");
+               
             }
             else
             {
-                comanda.CommandText = "INSERT INTO Awardemps (reward_id, emp_id, date_get, comment) VALUES (?, ?, ?, ?)";
-                //comanda = new odb.OleDbCommand("INSERT INTO Awardemps (reward_id, emp_id, date_get, comment) VALUES (?, ?, ?, ?)");
-                comanda.Parameters.Add("reward_id", odb.OleDbType.Integer, 30).Value = comboBox4.Items[comboBox2.SelectedIndex].ToString();
-                comanda.Parameters.Add("emp_id", odb.OleDbType.Integer, 30).Value = Data.empId;
-                comanda.Parameters.Add("date_get", odb.OleDbType.Date).Value = dateTimePicker1.Value.Date;              
+                Database.execute("INSERT INTO Awardemps (reward_id, emp_id, date_get, comment) VALUES (" + comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", " + Data.empId + ", '" + dateTimePicker1.Value.Date.ToString("dd.MM.yyyy") + "', '" + textBox3.Text + "')");
+                    
             }
-            comanda.Parameters.Add("comment", odb.OleDbType.VarWChar, 255).Value = textBox3.Text;
-            comanda.Connection = con;
-            comanda.ExecuteNonQuery();
-            MessageBox.Show("В таблицу добавлена запись");
-           // con.Close();            
+           MessageBox.Show("В таблицу добавлена запись");
+                      
         }
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                con.Open();
-                if (!Data.isAddBtn)
+               if (Data.isAddAwardBtn==false)
                 {
                     update();
                 }
@@ -97,49 +67,47 @@ namespace Nagrady
                 {
                     add();
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка ввода данных");
-                con.Close();
+               
             }
         }
 
         private void AddAwardEmp_Load(object sender, EventArgs e)
         {            
-            con.Open();
-            OleDbCommand comanda;
+            OleDbDataReader v;
             if (Data.isAddAwardBtn == false)
             {
-                comanda = new odb.OleDbCommand("Select lname, fname, patre From employees, awardemps where awardemps.emp_id = employees.id and awardemps.id = " + Data.awardEmpId + "", con);
+                v = Database.getReader("Select employees.id, lname, fname, patre From employees, awardemps where awardemps.emp_id = employees.id and awardemps.id = " + Data.awardEmpId + "");
             }
             else
             {
-                comanda = new odb.OleDbCommand("Select lname, fname, patre From employees where id = " + Data.empId + "", con);
+                v = Database.getReader("Select employees.id, lname, fname, patre From employees where id = " + Data.empId + "");
             }
-            odb.OleDbDataReader выполнение = comanda.ExecuteReader();
-            if (выполнение.Read() == true)
+            if (v.Read() == true)
             {
-                label3.Text += " "+выполнение.GetValue(0)+" "+выполнение.GetValue(1)+ " "+выполнение.GetValue(2);
+                Data.empId = Int32.Parse(v.GetValue(0).ToString());
+                label3.Text += " "+v.GetValue(1)+" "+v.GetValue(2)+ " "+v.GetValue(3);
             }
             label3.Text += " ";
-            comanda = new odb.OleDbCommand("Select * From reward_types", con);
-            выполнение = comanda.ExecuteReader();
-            while (выполнение.Read() == true)
+            v.Close();
+            v=Database.getReader("Select * From reward_types");
+            while (v.Read() == true)
             {
-                comboBox3.Items.Add(выполнение.GetValue(0));
-                comboBox1.Items.Add(выполнение.GetValue(1));
+                comboBox3.Items.Add(v.GetValue(0));
+                comboBox1.Items.Add(v.GetValue(1));
             }
-            выполнение.Close();
+            v.Close();
 
-            comanda = new odb.OleDbCommand("Select * From LocalAct", con);
-            выполнение = comanda.ExecuteReader();
-            while (выполнение.Read() == true)
+            v=Database.getReader("Select * From LocalAct");
+            while (v.Read() == true)
             {
-                comboBox5.Items.Add(выполнение.GetValue(1));
+                comboBox6.Items.Add(v.GetValue(0));
+                comboBox5.Items.Add(v.GetValue(1));
             }
-            выполнение.Close();
+            v.Close();
             if (Data.isAddAwardBtn == true)
             {
                 checkBox1.Checked = false;
@@ -155,11 +123,10 @@ namespace Nagrady
             }
             else 
             {
-                var comanda2 = new odb.OleDbCommand("select [reward_types].[type_name], [rewards].[reward_name]," +
+                var reader= Database.getReader("select [reward_types].[type_name], [rewards].[reward_name]," +
                 "[date_get], [date_award], [act_name], [act_num], [act_date], [comment] from [employees], [rewards], [awardemps], [localact], [reward_types]" +
-                "where [employees].[id] = [awardemps].[emp_id] and [rewards].[id]=[awardemps].[reward_id] and [reward_types].[id]=[rewards].[id_type] and [localact].[id] = [awardemps].[act_id] and [awardemps].[id] = " + Data.awardEmpId+"", con);
-                odb.OleDbDataReader reader = comanda2.ExecuteReader();
-                while (reader.Read())
+                "where [employees].[id] = [awardemps].[emp_id] and [rewards].[id]=[awardemps].[reward_id] and [reward_types].[id]=[rewards].[id_type] and [localact].[id] = [awardemps].[act_id] and [awardemps].[id] = " + Data.awardEmpId+"");
+                 while (reader.Read())
                 { 
                     comboBox1.SelectedIndex = comboBox1.Items.IndexOf(reader.GetValue(0).ToString());
                     comboBox2.SelectedIndex = comboBox2.Items.IndexOf(reader.GetValue(1).ToString());
@@ -199,7 +166,7 @@ namespace Nagrady
                 reader.Close();
                
             }
-            //con.Close();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -209,17 +176,14 @@ namespace Nagrady
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //con.Open();
             comboBox4.Items.Clear();
             comboBox2.Items.Clear();
-            var comanda = new odb.OleDbCommand("Select id, reward_name From Rewards where id_type = " + comboBox3.Items[comboBox1.SelectedIndex].ToString() + "", con);
-            odb.OleDbDataReader выполнение = comanda.ExecuteReader();
-            while (выполнение.Read() == true)
+            var v=Database.getReader("Select id, reward_name From Rewards where id_type = " + comboBox3.Items[comboBox1.SelectedIndex].ToString() + "");
+            while (v.Read() == true)
             {
-                comboBox4.Items.Add(выполнение.GetValue(0));
-                comboBox2.Items.Add(выполнение.GetValue(1));
+                comboBox4.Items.Add(v.GetValue(0));
+                comboBox2.Items.Add(v.GetValue(1));
             }
-            //con.Close();
                 
         }
 

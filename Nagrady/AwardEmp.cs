@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ОДБ = System.Data.OleDb;
 using Ворд = Microsoft.Office.Interop;
 
 namespace Nagrady
@@ -18,15 +17,14 @@ namespace Nagrady
         {
             InitializeComponent();
         }
-        ОДБ.OleDbConnection con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source= rewards.mdb");
         
         void loadawardemp()
         {
-            con.Open();
-            var comanda = new ОДБ.OleDbCommand("select [awardemps].[id], [reward_types].[type_name], [rewards].[reward_name], [employees].[lname]&' '&[employees].[fname]&' '&[employees].[patre]," +
-                "[date_get], [date_award], [act_name], [act_num], [act_date], [comment] from [employees], [rewards], [awardemps], [localact], [reward_types]"+
-                "where [employees].[id] = [awardemps].[emp_id] and [rewards].[id]=[awardemps].[reward_id] and [reward_types].[id]=[rewards].[id_type] and [localact].[id] = [awardemps].[act_id]", con);
-            ОДБ.OleDbDataReader v = comanda.ExecuteReader();
+            var v = Database.getReader("SELECT [awardemps].[id], [reward_types].[type_name], [Rewards].[reward_name], [employees].[lname] & ' ' & [employees].[fname] & ' ' & [employees].[patre],"+
+            " [awardemps].[date_get] , [awardemps].[date_award], [localact].[act_name], [awardemps].[act_num], "+
+            " [awardemps].[act_date], [awardemps].[comment]"+
+            " FROM Reward_types INNER JOIN (Rewards INNER JOIN (Employees INNER JOIN (awardemps LEFT JOIN localact ON [awardemps].[act_id] = [localact].[id]) ON [Employees].[id] = [awardemps].[emp_id])"+
+            " ON [Rewards].[id] = [awardemps].[reward_id]) ON [Reward_types].[id] = [Rewards].[id_type]");
             DataTable mytable = new DataTable();
             mytable.Columns.Add(v.GetName(0));
             mytable.Columns.Add(v.GetName(1));
@@ -74,23 +72,23 @@ namespace Nagrady
            // con.Close();
             dataGridView1.DataSource = mytable;
             dataGridView1.Columns[0].HeaderCell.Value = "ID";
-            dataGridView1.Columns[0].Width = 25;
+            dataGridView1.Columns[0].Width = 20;
             dataGridView1.Columns[1].HeaderCell.Value = "Тип награды";
-            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[1].Width = 200;
             dataGridView1.Columns[2].HeaderCell.Value = "Вид награды";
-            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[2].Width = 200;
             dataGridView1.Columns[3].HeaderCell.Value = "Сотрудник";
-            dataGridView1.Columns[3].Width = 100;
+            dataGridView1.Columns[3].Width = 200;
             dataGridView1.Columns[4].HeaderCell.Value = "Дата представления";
-            dataGridView1.Columns[4].Width = 200;
+            dataGridView1.Columns[4].Width = 70;
             dataGridView1.Columns[5].HeaderCell.Value = "Дата получения награды";
-            dataGridView1.Columns[5].Width = 200;
+            dataGridView1.Columns[5].Width = 70;
             dataGridView1.Columns[6].HeaderCell.Value = "Вид локального акта";
             dataGridView1.Columns[6].Width = 100;
             dataGridView1.Columns[7].HeaderCell.Value = "Номер локального акта";
-            dataGridView1.Columns[7].Width = 100;
+            dataGridView1.Columns[7].Width = 70;
             dataGridView1.Columns[8].HeaderCell.Value = "Дата локального акта";
-            dataGridView1.Columns[8].Width = 100;
+            dataGridView1.Columns[8].Width = 70;
             dataGridView1.Columns[9].HeaderCell.Value = "Примечания";
             dataGridView1.Columns[9].Width = 100;
       

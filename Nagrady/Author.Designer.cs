@@ -83,7 +83,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(64, 125);
+            this.label5.Location = new System.Drawing.Point(64, 150);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(194, 25);
             this.label5.TabIndex = 4;
@@ -93,7 +93,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(64, 150);
+            this.label6.Location = new System.Drawing.Point(64, 125);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(185, 25);
             this.label6.TabIndex = 5;
@@ -123,11 +123,12 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(12, 249);
+            this.label9.Location = new System.Drawing.Point(12, 242);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(378, 25);
+            this.label9.Size = new System.Drawing.Size(360, 50);
             this.label9.TabIndex = 8;
-            this.label9.Text = "Контактный телефон: 8-961-816-13-10";
+            this.label9.Text = "Контакты: 8-961-816-13-10 (Виктор), \r\n                    8-927-660-57-72 (Лейла)" +
+    "";
             // 
             // Author
             // 

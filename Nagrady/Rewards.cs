@@ -17,38 +17,51 @@ namespace Nagrady
         {
             InitializeComponent();
         }
-       ОДБ.OleDbConnection con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source= rewards.mdb");
-        ОДБ.OleDbCommand ucommand = new ОДБ.OleDbCommand();
-     private void Form2_Load(object sender, EventArgs e)
-        {
-            con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source = rewards.mdb");
-            con.Open();
-            var comanda = new ОДБ.OleDbCommand("Select * From Reward_types", con);
-            ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
-            while (выполнение.Read() == true)
-            {
-                comboBox1.Items.Add(выполнение.GetValue(1));
-                comboBox2.Items.Add(выполнение.GetValue(0));
-            }
-            
-            выполнение.Close();
-            con.Close();
 
+        public void update()
+        {
+            try
+            {
+                var v = Database.getReader("Select * from Rewards where Rewards.id_type = " + comboBox2.Items[comboBox1.SelectedIndex].ToString() + "");
+                DataTable mytable = new DataTable();
+                mytable.Columns.Add(v.GetName(0));
+                mytable.Columns.Add(v.GetName(1));
+
+                while (v.Read() == true)
+                    mytable.Rows.Add(new object[] { v.GetValue(0), v.GetValue(1) });
+                v.Close();
+                dataGridView1.DataSource = mytable;
+                dataGridView1.Columns[0].HeaderCell.Value = "Шифр";
+                dataGridView1.Columns[0].Width = 100;
+                dataGridView1.Columns[1].HeaderCell.Value = "Вид награды";
+                dataGridView1.Columns[1].Width = 700;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка ввода данных");
+            }
         }
 
-      
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            var v = Database.getReader("Select * From Reward_types");
+            while (v.Read() == true)
+            {
+                comboBox1.Items.Add(v.GetValue(1));
+                comboBox2.Items.Add(v.GetValue(0));
+            }            
+            v.Close();
+        }   
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Data.isAddRewardBtn = true;
+            EditReward f = new EditReward();
+            f.Show();
             //добавление
-            try
+            /*try
             {
-                con.Open();
-            var comanda = new ОДБ.OleDbCommand("INSERT INTO Rewards (reward_name, id_type) VALUES (?, ?)");
-            comanda.Parameters.Add("reward_name", ОДБ.OleDbType.VarWChar, 300).Value = textBox1.Text.ToString();
-            comanda.Parameters.Add("id_type", ОДБ.OleDbType.Integer, 30).Value = comboBox2.Items[comboBox1.SelectedIndex].ToString();
-            comanda.Connection = con;
-            comanda.ExecuteNonQuery();
+                Database.execute("INSERT INTO Rewards (reward_name, id_type) VALUES ('" + textBox1.Text.ToString() + "', " + comboBox2.Items[comboBox1.SelectedIndex].ToString() + ")");
             MessageBox.Show("В таблицу добавлена запись");
             }
             catch (Exception ex)
@@ -57,128 +70,67 @@ namespace Nagrady
             }
 
             //обновление
-            var comand = new ОДБ.OleDbCommand("Select * from Rewards where Rewards.id_type=?", con);
-            comand.Parameters.Add("Reward_types", ОДБ.OleDbType.Integer, 30).Value = comboBox2.Items[comboBox1.SelectedIndex].ToString();
-
-            ОДБ.OleDbDataReader выполнение = comand.ExecuteReader();
-            DataTable mytable = new DataTable();
-            mytable.Columns.Add(выполнение.GetName(1));
-
-            while (выполнение.Read() == true)
-                mytable.Rows.Add(new object[] { выполнение.GetValue(1) });
-            выполнение.Close();
-            con.Close();
-            dataGridView1.DataSource = mytable;
-            dataGridView1.Columns[0].HeaderCell.Value = "Вид награды";
-            dataGridView1.Columns[0].Width = 700;
-
+            update();*/
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source = rewards.mdb");
-            con.Open();
-           
-            var comanda = new ОДБ.OleDbCommand("Select * from Rewards where Rewards.id_type=?", con);
-            comanda.Parameters.Add("Reward_types", ОДБ.OleDbType.Integer, 30).Value = comboBox2.Items[comboBox1.SelectedIndex].ToString();
-
-            ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
-            DataTable mytable = new DataTable();
-         
-            mytable.Columns.Add(выполнение.GetName(1));
-           
-            while (выполнение.Read() == true)
-                mytable.Rows.Add(new object[] { выполнение.GetValue(1)});
-            выполнение.Close();
-            con.Close();
-            dataGridView1.DataSource = mytable;
-            dataGridView1.Columns[0].HeaderCell.Value = "Вид награды";
-            dataGridView1.Columns[0].Width = 700;
+            update();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-               
+            {               
                 dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           //удаление
-            String t = (String)dataGridView1.CurrentRow.Cells[0].Value;
-            con.Open();
+            string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            var result = MessageBox.Show("Удалить награду из базы?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            var comanda = new ОДБ.OleDbCommand("Delete * From Rewards where Rewards.reward_name = ?", con);
-            comanda.Parameters.Add("reward_name", ОДБ.OleDbType.VarChar, 50).Value = t;
-            try
+            if (result == DialogResult.Yes)
             {
-                int kol = comanda.ExecuteNonQuery();
-               
-          
-            
-            //обновление
-            var comand = new ОДБ.OleDbCommand("Select * from Rewards where Rewards.id_type=?", con);
-            comand.Parameters.Add("Reward_types", ОДБ.OleDbType.Integer, 30).Value = comboBox2.Items[comboBox1.SelectedIndex].ToString();
-
-            ОДБ.OleDbDataReader выполнение = comand.ExecuteReader();
-            DataTable mytable = new DataTable();
-            mytable.Columns.Add(выполнение.GetName(1));
-
-            while (выполнение.Read() == true)
-                mytable.Rows.Add(new object[] { выполнение.GetValue(1) });
-            выполнение.Close();
-            con.Close();
-            dataGridView1.DataSource = mytable;
-            dataGridView1.Columns[0].HeaderCell.Value = "Вид награды";
-            dataGridView1.Columns[0].Width = 700;
-            MessageBox.Show("Обновлено " + kol + " записей");
-        }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка");
-            }
+                try
+                {
+                    Database.execute("Delete * From Rewards where Rewards.id = " + id + "");                
+                    MessageBox.Show("Запись удалена");
+                    update();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка выбора данных");
+                }
+            }           
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            con = new ОДБ.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0; Data Source = rewards.mdb");
-            con.Open();
-
-            var comanda = new ОДБ.OleDbCommand("Select * from Rewards where Rewards.id_type=?", con);
-            comanda.Parameters.Add("Reward_types", ОДБ.OleDbType.Integer, 30).Value = comboBox2.Items[comboBox1.SelectedIndex].ToString();
-
-            ОДБ.OleDbDataReader выполнение = comanda.ExecuteReader();
-            DataTable mytable = new DataTable();
-            mytable.Columns.Add(выполнение.GetName(1));
-
-            while (выполнение.Read() == true)
-                mytable.Rows.Add(new object[] { выполнение.GetValue(1) });
-            выполнение.Close();
-            con.Close();
-            dataGridView1.DataSource = mytable;
-            dataGridView1.Columns[0].HeaderCell.Value = "Вид награды";
-            dataGridView1.Columns[0].Width = 700;
+            update();
         }
 
-        
-
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
-        {
-           
-
+        {          
             if (checkBox1.Checked == true && comboBox1.SelectedIndex != -1)
-            {
-                
+            {                
                 button1.Enabled = true;
                 button2.Enabled = true;
+                button3.Enabled = true;
                 textBox1.Enabled = true;
             }
             else
             {
                 button1.Enabled = false;
                 button2.Enabled = false;
+                button3.Enabled = false;
                 textBox1.Enabled = false;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Data.isAddRewardBtn = false;
+            Data.rewardId = Int16.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            EditReward f = new EditReward();
+            f.Show();
         }
 
        

@@ -44,6 +44,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.списокОрганизацийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокДолжностейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +92,9 @@
             // 
             this.открытьСписокToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem,
-            this.списокНаградToolStripMenuItem});
+            this.списокНаградToolStripMenuItem,
+            this.списокОрганизацийToolStripMenuItem,
+            this.списокДолжностейToolStripMenuItem});
             this.открытьСписокToolStripMenuItem.Name = "открытьСписокToolStripMenuItem";
             this.открытьСписокToolStripMenuItem.Size = new System.Drawing.Size(170, 32);
             this.открытьСписокToolStripMenuItem.Text = "Открыть список";
@@ -207,6 +211,20 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // списокОрганизацийToolStripMenuItem
+            // 
+            this.списокОрганизацийToolStripMenuItem.Name = "списокОрганизацийToolStripMenuItem";
+            this.списокОрганизацийToolStripMenuItem.Size = new System.Drawing.Size(479, 32);
+            this.списокОрганизацийToolStripMenuItem.Text = "Список организаций";
+            this.списокОрганизацийToolStripMenuItem.Click += new System.EventHandler(this.списокОрганизацийToolStripMenuItem_Click);
+            // 
+            // списокДолжностейToolStripMenuItem
+            // 
+            this.списокДолжностейToolStripMenuItem.Name = "списокДолжностейToolStripMenuItem";
+            this.списокДолжностейToolStripMenuItem.Size = new System.Drawing.Size(479, 32);
+            this.списокДолжностейToolStripMenuItem.Text = "Список должностей";
+            this.списокДолжностейToolStripMenuItem.Click += new System.EventHandler(this.списокДолжностейToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -253,6 +271,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem списокОрганизацийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокДолжностейToolStripMenuItem;
     }
 }
 

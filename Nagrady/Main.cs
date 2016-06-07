@@ -24,7 +24,8 @@ namespace Nagrady
        // ОДБ.OleDbDataAdapter Adapter;
         void loademp()
         {
-            ОДБ.OleDbDataReader выполнение = Database.getReader("select [id], [lname], [fname], [patre], [org], [pos], [gender], [birth], fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees");
+            ОДБ.OleDbDataReader выполнение = Database.getReader("select [employees].[id], [lname], [fname], [patre], [organisations].[org_name], [positions].[pos_name], [gender], [birth], "+
+                " fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees, organisations, positions where positions.id=employees.pos and organisations.id=employees.org");
             DataTable mytable = new DataTable();
             mytable.Columns.Add(выполнение.GetName(0));
             mytable.Columns.Add(выполнение.GetName(1));
@@ -74,7 +75,6 @@ namespace Nagrady
         private void button1_Click(object sender, EventArgs e)
         {
             Data.isAddBtn = true;
-            MyCon.connect = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source = rewards.mdb";
             EditEmp f = new EditEmp();
             f.Show();
             insert = 2;
@@ -226,7 +226,7 @@ namespace Nagrady
         }
 
         private void button2_Click(object sender, EventArgs e)
-        { // удаление человека из списка по фамилии            
+        { 
             string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
 
             const string message = "Удалить сотрудника из базы?";
@@ -248,6 +248,18 @@ namespace Nagrady
             }
             
             loademp();
+        }
+
+        private void списокОрганизацийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Organisations f = new Organisations();
+            f.Show();
+        }
+
+        private void списокДолжностейToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Positions f = new Positions();
+            f.Show();
         }
     }
 

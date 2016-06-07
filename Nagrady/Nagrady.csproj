@@ -81,6 +81,24 @@
     <Compile Include="EditEmp.Designer.cs">
       <DependentUpon>EditEmp.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditOrg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditOrg.Designer.cs">
+      <DependentUpon>EditOrg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditPos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPos.Designer.cs">
+      <DependentUpon>EditPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditReward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditReward.Designer.cs">
+      <DependentUpon>EditReward.cs</DependentUpon>
+    </Compile>
     <Compile Include="LocalActs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,11 +112,23 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="MyCon.cs" />
+    <Compile Include="Organisations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Organisations.Designer.cs">
+      <DependentUpon>Organisations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Otchet.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Otchet.Designer.cs">
       <DependentUpon>Otchet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Positions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Positions.Designer.cs">
+      <DependentUpon>Positions.cs</DependentUpon>
     </Compile>
     <Compile Include="Rewards.cs">
       <SubType>Form</SubType>
@@ -125,14 +155,26 @@
     <EmbeddedResource Include="EditEmp.resx">
       <DependentUpon>EditEmp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditOrg.resx">
+      <DependentUpon>EditOrg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditReward.resx">
+      <DependentUpon>EditReward.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LocalActs.resx">
       <DependentUpon>LocalActs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Organisations.resx">
+      <DependentUpon>Organisations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Otchet.resx">
       <DependentUpon>Otchet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Positions.resx">
+      <DependentUpon>Positions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rewards.resx">
       <DependentUpon>Rewards.cs</DependentUpon>
