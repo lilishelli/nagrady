@@ -139,6 +139,8 @@ namespace Nagrady
         {
             comboBox2.Items.Clear();
             comboBox4.Items.Clear();
+            comboBox3.Items.Clear();
+            comboBox5.Items.Clear();
             comboBox1.Items.Add("Мужской");
             comboBox1.Items.Add("Женский");
             var v = Database.getReader("Select * From organisations");
@@ -205,13 +207,11 @@ namespace Nagrady
 
         private void comboBox2_MouseClick(object sender, MouseEventArgs e)
         {
-            comboBox2.Items.Clear();
-            loadData();
+           loadData();
         }
 
         private void comboBox4_MouseClick(object sender, MouseEventArgs e)
         {
-            comboBox4.Items.Clear();
             loadData();
         }
     }
