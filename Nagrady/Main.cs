@@ -171,7 +171,8 @@ namespace Nagrady
             {
                 try
                 {
-                    ОДБ.OleDbDataReader выполнение = Database.getReader("Select * From Employees where Employees.lname = '"+textBox2.Text.ToString()+"'");
+                    ОДБ.OleDbDataReader выполнение = Database.getReader("select [employees].[id], [lname], [fname], [patre], [organisations].[org_name], [positions].[pos_name], [gender], [birth], " +
+                " fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees, organisations, positions where positions.id=employees.pos and organisations.id=employees.org and employees.lname = '"+textBox2.Text+"'");
                     DataTable mytable = new DataTable();
                     mytable.Columns.Add(выполнение.GetName(0));
                     mytable.Columns.Add(выполнение.GetName(1));
@@ -184,24 +185,23 @@ namespace Nagrady
                     mytable.Columns.Add(выполнение.GetName(8));
                     mytable.Columns.Add(выполнение.GetName(9));
                     mytable.Columns.Add(выполнение.GetName(10));
-
                     while (выполнение.Read() == true)
-                        mytable.Rows.Add(new object[] { выполнение.GetValue(0), выполнение.GetValue(1), выполнение.GetValue(2), выполнение.GetValue(3), выполнение.GetValue(4), выполнение.GetValue(10), выполнение.GetValue(5), выполнение.GetValue(6), выполнение.GetValue(7), выполнение.GetValue(8), выполнение.GetValue(9) });
-
+                        mytable.Rows.Add(new object[] { выполнение.GetValue(0), выполнение.GetValue(1), выполнение.GetValue(2), выполнение.GetValue(3), выполнение.GetValue(4), выполнение.GetValue(5),
+                    выполнение.GetValue(6), DateTime.Parse(выполнение.GetValue(7).ToString()).Date.ToString("dd.MM.yyyy"), выполнение.GetValue(8), выполнение.GetValue(9), выполнение.GetValue(10) });
                     выполнение.Close();
                     dataGridView1.DataSource = mytable;
                     dataGridView1.Columns[0].HeaderCell.Value = "ID";
-                    dataGridView1.Columns[0].Width = 50;
+                    dataGridView1.Columns[0].Width = 25;
                     dataGridView1.Columns[1].HeaderCell.Value = "Фамилия";
-                    dataGridView1.Columns[1].Width = 200;
+                    dataGridView1.Columns[1].Width = 100;
                     dataGridView1.Columns[2].HeaderCell.Value = "Имя";
-                    dataGridView1.Columns[2].Width = 200;
+                    dataGridView1.Columns[2].Width = 100;
                     dataGridView1.Columns[3].HeaderCell.Value = "Отчество";
-                    dataGridView1.Columns[3].Width = 200;
+                    dataGridView1.Columns[3].Width = 100;
                     dataGridView1.Columns[4].HeaderCell.Value = "Место работы";
-                    dataGridView1.Columns[4].Width = 300;
+                    dataGridView1.Columns[4].Width = 200;
                     dataGridView1.Columns[5].HeaderCell.Value = "Должность";
-                    dataGridView1.Columns[5].Width = 300;
+                    dataGridView1.Columns[5].Width = 200;
                     dataGridView1.Columns[6].HeaderCell.Value = "Пол";
                     dataGridView1.Columns[6].Width = 100;
                     dataGridView1.Columns[7].HeaderCell.Value = "Дата рождения";

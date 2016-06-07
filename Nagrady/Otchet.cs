@@ -317,7 +317,7 @@ namespace Nagrady
                         Word1.ActiveDocument.Tables[1].Cell(i, 1).Range.InsertAfter(N + ".");
                         Word1.ActiveDocument.Tables[1].Cell(i, 2).Range.InsertAfter(выполнение.GetValue(0).ToString());
                         Word1.ActiveDocument.Tables[1].Cell(i, 3).Range.InsertAfter(выполнение.GetValue(1).ToString());
-                        Word1.ActiveDocument.Tables[1].Cell(i, 4).Range.InsertAfter(DateTime.Parse(выполнение.GetValue(2).ToString()).Date.ToString("dd.mm.yyyy"));
+                        Word1.ActiveDocument.Tables[1].Cell(i, 4).Range.InsertAfter(DateTime.Parse(выполнение.GetValue(2).ToString()).Date.ToString("dd.MM.yyyy"));
                         Word1.ActiveDocument.Tables[1].Cell(i, 5).Range.InsertAfter(выполнение.GetValue(3).ToString());
                         Word1.ActiveDocument.Tables[1].Cell(i, 6).Range.InsertAfter(выполнение.GetValue(4).ToString());
                         i++; j++;

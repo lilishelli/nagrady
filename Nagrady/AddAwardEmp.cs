@@ -23,7 +23,7 @@ namespace Nagrady
                 if (comboBox5.SelectedIndex > 0)
                 {
                     Database.execute("Update Awardemps SET reward_id = " + comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", emp_id = " + Data.empId + ", date_get = '" + dateTimePicker1.Value.Date
-                        + "',  date_award = '" + dateTimePicker2.Value.Date + "',act_id = " + Int32.Parse(comboBox6.Items[comboBox5.SelectedIndex].ToString())
+                        + "',  date_award = '" + dateTimePicker2.Value.Date + "',act_id = " + comboBox6.Items[comboBox5.SelectedIndex].ToString()
                         + ", act_num = '" + textBox1.Text + "', act_date = '" + dateTimePicker3.Value.Date + "', comment = '" + textBox3.Text + "' WHERE (id = " + Data.awardEmpId + ")");
                     
                 }
