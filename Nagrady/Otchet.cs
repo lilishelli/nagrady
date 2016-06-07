@@ -82,7 +82,7 @@ namespace Nagrady
                 }
                 выборка2.Close();
                 int f = Rows1.Rows.Count + col2 + 1;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой содержатся названия столбцов
-                MessageBox.Show(f.ToString());
+               // MessageBox.Show(f.ToString());
                 //   <---- подсчёт количества строк таблицы в отчете
 
 
@@ -204,7 +204,7 @@ namespace Nagrady
                     a = q;
                     t = int.Parse(textBox5.Text);
                     s = DateTime.DaysInMonth(t, q);
-                    header = "За " + comboBox2.SelectedIndex + textBox5.Text + " года";
+                    header = "За " + comboBox2.Text.ToString()+" "+ textBox5.Text + " года";
 
                 }
                 if(orderType==1)
@@ -224,8 +224,8 @@ namespace Nagrady
 
         void func2(int q, int w, int t, int s, int a, string data_otchet)
         {
-            /*try
-            {*/
+            try
+            {
                 String qwt;//начало даты
                 String ast;//конец даты
                 // месяц день год
@@ -263,7 +263,7 @@ namespace Nagrady
                 }
                 выборка2.Close();
                 int f = Rows1.Rows.Count + col2 + 1;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой содержатся названия столбцов
-                MessageBox.Show(f.ToString());
+              //  MessageBox.Show(f.ToString());
                 //   <---- подсчёт количества строк таблицы в отчете
 
 
@@ -331,12 +331,12 @@ namespace Nagrady
                 reader.Close();
                 con.Close();
                 dataGridView1.DataSource = mytable;
-            /*}
+            }
 
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message, "Ошибка БД");
-            }*/
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

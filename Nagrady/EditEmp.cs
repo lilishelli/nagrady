@@ -114,6 +114,8 @@ namespace Nagrady
         }
         public void loadData()
         {
+            comboBox2.Items.Clear();
+            comboBox4.Items.Clear();
             comboBox1.Items.Add("Мужской");
             comboBox1.Items.Add("Женский");
             var v = Database.getReader("Select * From organisations");
@@ -172,6 +174,22 @@ namespace Nagrady
             Data.isAddPosBtn = true;
             EditPos f = new EditPos();
             f.Show();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                   }
+
+        private void comboBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            comboBox2.Items.Clear();
+            loadData();
+        }
+
+        private void comboBox4_MouseClick(object sender, MouseEventArgs e)
+        {
+            comboBox4.Items.Clear();
+            loadData();
         }
     }
 }

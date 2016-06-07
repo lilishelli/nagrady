@@ -158,6 +158,9 @@
     <EmbeddedResource Include="EditOrg.resx">
       <DependentUpon>EditOrg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditPos.resx">
+      <DependentUpon>EditPos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditReward.resx">
       <DependentUpon>EditReward.cs</DependentUpon>
     </EmbeddedResource>

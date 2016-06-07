@@ -72,7 +72,7 @@ namespace Nagrady
            // con.Close();
             dataGridView1.DataSource = mytable;
             dataGridView1.Columns[0].HeaderCell.Value = "ID";
-            dataGridView1.Columns[0].Width = 20;
+            dataGridView1.Columns[0].Width = 35;
             dataGridView1.Columns[1].HeaderCell.Value = "Тип награды";
             dataGridView1.Columns[1].Width = 200;
             dataGridView1.Columns[2].HeaderCell.Value = "Вид награды";
@@ -131,6 +131,23 @@ namespace Nagrady
 
            // con.Close();
             loadawardemp();
+        }
+
+        private void checkBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button3.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button3.Enabled = false;
+            }
         }
     }
 }

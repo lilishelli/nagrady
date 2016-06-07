@@ -29,8 +29,8 @@ namespace Nagrady
                     mytable.Rows.Add(new object[] { v.GetValue(0), v.GetValue(1) });
                 v.Close();
                 dataGridView1.DataSource = mytable;
-                dataGridView1.Columns[0].HeaderCell.Value = "Шифр";
-                dataGridView1.Columns[0].Width = 100;
+                dataGridView1.Columns[0].HeaderCell.Value = "ID";
+                dataGridView1.Columns[0].Width = 50;
                 dataGridView1.Columns[1].HeaderCell.Value = "Должность";
                 dataGridView1.Columns[1].Width = 700;
             }
@@ -77,6 +77,11 @@ namespace Nagrady
             Data.posId = Int16.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
             EditPos f = new EditPos();
             f.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            update();
         }
     }
 }

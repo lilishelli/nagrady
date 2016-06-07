@@ -36,7 +36,7 @@ namespace Nagrady
                 dataGridView1.Columns[1].HeaderCell.Value = "Вид награды";
                 dataGridView1.Columns[1].Width = 700;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка ввода данных");
             }
@@ -49,9 +49,9 @@ namespace Nagrady
             {
                 comboBox1.Items.Add(v.GetValue(1));
                 comboBox2.Items.Add(v.GetValue(0));
-            }            
+            }
             v.Close();
-        }   
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -77,7 +77,7 @@ namespace Nagrady
         {
             update();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {               
+            {
                 dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
             }
         }
@@ -91,7 +91,7 @@ namespace Nagrady
             {
                 try
                 {
-                    Database.execute("Delete * From Rewards where Rewards.id = " + id + "");                
+                    Database.execute("Delete * From Rewards where Rewards.id = " + id + "");
                     MessageBox.Show("Запись удалена");
                     update();
                 }
@@ -99,7 +99,7 @@ namespace Nagrady
                 {
                     MessageBox.Show(ex.Message, "Ошибка выбора данных");
                 }
-            }           
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -108,20 +108,18 @@ namespace Nagrady
         }
 
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
-        {          
+        {
             if (checkBox1.Checked == true && comboBox1.SelectedIndex != -1)
-            {                
+            {
                 button1.Enabled = true;
                 button2.Enabled = true;
                 button3.Enabled = true;
-                textBox1.Enabled = true;
             }
             else
             {
                 button1.Enabled = false;
                 button2.Enabled = false;
                 button3.Enabled = false;
-                textBox1.Enabled = false;
             }
         }
 
@@ -133,6 +131,9 @@ namespace Nagrady
             f.Show();
         }
 
-       
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            update();
+        }
     }
 }

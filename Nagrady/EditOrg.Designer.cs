@@ -71,7 +71,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "EditOrg";
-            this.Text = "EditOrg";
+            this.Text = "Организация";
             this.Load += new System.EventHandler(this.EditOrg_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
