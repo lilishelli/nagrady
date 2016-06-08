@@ -180,18 +180,28 @@ namespace Nagrady
 
                 }
                 reader.Close();
-
             }
         }
+
         private void EditEmp_Load(object sender, EventArgs e)
         {
             loadData();
         }
 
+        private void NotifyAboutClosedChildForm(object sender, FormClosedEventArgs args)
+        {            
+            loadData();
+            comboBox1.SelectedIndex = comboBox1.Items.IndexOf(comboBox1.Text);
+            comboBox4.SelectedIndex = comboBox4.Items.IndexOf(comboBox4.Text);
+            comboBox2.SelectedIndex = comboBox2.Items.IndexOf(comboBox2.Text);
+        }
+
         private void addorg_Click(object sender, EventArgs e)
         {
             Data.isAddOrgBtn = true;
-            EditOrg f = new EditOrg();
+            EditOrg f = new EditOrg();            
+            f.Owner = this;
+            f.FormClosed += new FormClosedEventHandler(NotifyAboutClosedChildForm);
             f.Show();
         }
 
@@ -199,23 +209,14 @@ namespace Nagrady
         {
             Data.isAddPosBtn = true;
             EditPos f = new EditPos();
+            f.Owner = this;
+            f.FormClosed += new FormClosedEventHandler(NotifyAboutClosedChildForm);
             f.Show();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-                   }
 
-        private void comboBox2_MouseClick(object sender, MouseEventArgs e)
-        {
-            comboBox2.Items.Clear();
-            loadData();
-        }
-
-        private void comboBox4_MouseClick(object sender, MouseEventArgs e)
-        {
-            comboBox4.Items.Clear();
-            loadData();
         }
     }
 }
