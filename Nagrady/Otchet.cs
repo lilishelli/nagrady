@@ -237,21 +237,21 @@ namespace Nagrady
 
                 DataTable mytable = new DataTable();
                 ОДБ.OleDbDataReader выполнение;
-                var comand1 = new ОДБ.OleDbCommand(" select reward_types.type_name, '', '', '', '', ''" +
+                var comand1 = new ОДБ.OleDbCommand("select reward_types.type_name, '', '', '', '', ''" +
                      " FROM awardemps, rewards, reward_types " +
                      " WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type " +
                      " AND awardemps.date_award>#"+qwt+"# And awardemps.date_award<#"+ast+"#" +
                      " GROUP BY reward_types.type_name ", con);
-
+                
                 // подсчёт количества строк таблицы в отчете --->
                 ОДБ.OleDbDataReader выборка1 = comand1.ExecuteReader();
                 DataTable Rows1 = new DataTable();
                 Rows1.Columns.Add(выборка1.GetName(0));
-                while (выборка1.Read() == true)
-                    Rows1.Rows.Add(new object[] { выборка1.GetValue(0) });
+                      while (выборка1.Read() == true)
+                          Rows1.Rows.Add(new object[] { выборка1.GetValue(0) });
                 выборка1.Close();
 
-                var comand2 = new ОДБ.OleDbCommand("SELECT COUNT(*) FROM (SELECT DISTINCT awardemps.reward_id" +
+                var comand2 = new ОДБ.OleDbCommand("SELECT COUNT(*) FROM (SELECT awardemps.reward_id" +
                     " FROM awardemps, rewards, reward_types " +
                      "WHERE rewards.id=awardemps.reward_id and reward_types.id = rewards.id_type " +
                      "AND awardemps.date_award>#" + qwt + "# And awardemps.date_award<#" + ast + "# )", con);
@@ -262,7 +262,8 @@ namespace Nagrady
                     col2 = Int16.Parse(выборка2.GetValue(0).ToString());
                 }
                 выборка2.Close();
-                int f = Rows1.Rows.Count + col2 + 1;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой содержатся названия столбцов
+                
+                int f = Rows1.Rows.Count + 1 + col2;//количество строк таблицы в отчете , + 1 - это верхняя строка в которой содержатся названия столбцов, col2  - количество записей(видов наград), Rows.Row.Count - количество типов наград
               //  MessageBox.Show(f.ToString());
                 //   <---- подсчёт количества строк таблицы в отчете
 
@@ -330,8 +331,7 @@ namespace Nagrady
                     Word1.ActiveDocument.PageSetup.Orientation = Ворд.Word.WdOrientation.wdOrientLandscape;
                 reader.Close();
                 con.Close();
-                dataGridView1.DataSource = mytable;
-            }
+               }
 
             catch (Exception exc)
             {

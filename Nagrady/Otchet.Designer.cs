@@ -44,8 +44,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -75,7 +73,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.Location = new System.Drawing.Point(85, 52);
+            this.checkBox1.Location = new System.Drawing.Point(49, 53);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(90, 29);
@@ -88,7 +86,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox2.Location = new System.Drawing.Point(85, 114);
+            this.checkBox2.Location = new System.Drawing.Point(49, 115);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(134, 29);
@@ -101,7 +99,7 @@
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox3.Location = new System.Drawing.Point(85, 176);
+            this.checkBox3.Location = new System.Drawing.Point(49, 177);
             this.checkBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(120, 29);
@@ -126,7 +124,7 @@
             // 
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(228, 82);
+            this.textBox1.Location = new System.Drawing.Point(192, 83);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(65, 30);
             this.textBox1.TabIndex = 6;
@@ -135,7 +133,7 @@
             // 
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(491, 144);
+            this.textBox3.Location = new System.Drawing.Point(455, 145);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(65, 30);
             this.textBox3.TabIndex = 8;
@@ -144,7 +142,7 @@
             // 
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox5.Location = new System.Drawing.Point(532, 206);
+            this.textBox5.Location = new System.Drawing.Point(496, 207);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(60, 30);
             this.textBox5.TabIndex = 10;
@@ -154,7 +152,7 @@
             this.label2.AutoSize = true;
             this.label2.Enabled = false;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(80, 85);
+            this.label2.Location = new System.Drawing.Point(44, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 25);
             this.label2.TabIndex = 11;
@@ -165,7 +163,7 @@
             this.label3.AutoSize = true;
             this.label3.Enabled = false;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(352, 147);
+            this.label3.Location = new System.Drawing.Point(316, 148);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 25);
             this.label3.TabIndex = 12;
@@ -176,7 +174,7 @@
             this.label4.AutoSize = true;
             this.label4.Enabled = false;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(393, 209);
+            this.label4.Location = new System.Drawing.Point(357, 210);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 25);
             this.label4.TabIndex = 13;
@@ -187,7 +185,7 @@
             this.label5.AutoSize = true;
             this.label5.Enabled = false;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(80, 147);
+            this.label5.Location = new System.Drawing.Point(44, 148);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(191, 25);
             this.label5.TabIndex = 14;
@@ -198,7 +196,7 @@
             this.label6.AutoSize = true;
             this.label6.Enabled = false;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(80, 209);
+            this.label6.Location = new System.Drawing.Point(44, 210);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(177, 25);
             this.label6.TabIndex = 15;
@@ -209,7 +207,7 @@
             this.comboBox1.Enabled = false;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(277, 144);
+            this.comboBox1.Location = new System.Drawing.Point(241, 145);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(69, 33);
             this.comboBox1.TabIndex = 16;
@@ -219,25 +217,16 @@
             this.comboBox2.Enabled = false;
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(263, 206);
+            this.comboBox2.Location = new System.Drawing.Point(227, 207);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(124, 33);
             this.comboBox2.TabIndex = 17;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(598, 21);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 324);
-            this.dataGridView1.TabIndex = 18;
             // 
             // Otchet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 446);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(600, 446);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label6);
@@ -260,7 +249,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Составить отчёт";
             this.Load += new System.EventHandler(this.Otchet_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,6 +272,5 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

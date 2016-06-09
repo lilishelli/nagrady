@@ -50,7 +50,7 @@
             // 
             this.button3.Enabled = false;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(460, 334);
+            this.button3.Location = new System.Drawing.Point(473, 334);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(293, 81);
             this.button3.TabIndex = 15;
@@ -62,7 +62,7 @@
             // 
             this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(255, 334);
+            this.button2.Location = new System.Drawing.Point(268, 334);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(198, 81);
@@ -75,7 +75,7 @@
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(0, 334);
+            this.button1.Location = new System.Drawing.Point(13, 334);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(247, 81);
@@ -88,9 +88,9 @@
             // 
             this.button4.Enabled = false;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button4.Location = new System.Drawing.Point(377, 425);
+            this.button4.Location = new System.Drawing.Point(394, 425);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(315, 56);
+            this.button4.Size = new System.Drawing.Size(270, 56);
             this.button4.TabIndex = 16;
             this.button4.Text = "Обновить список";
             this.button4.UseVisualStyleBackColor = true;

@@ -41,9 +41,9 @@
             // 
             this.button3.Enabled = false;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(493, 338);
+            this.button3.Location = new System.Drawing.Point(506, 338);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(269, 72);
+            this.button3.Size = new System.Drawing.Size(241, 72);
             this.button3.TabIndex = 19;
             this.button3.Text = "Редактировать должность";
             this.button3.UseVisualStyleBackColor = true;
@@ -53,10 +53,10 @@
             // 
             this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(278, 338);
+            this.button2.Location = new System.Drawing.Point(293, 338);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(208, 72);
+            this.button2.Size = new System.Drawing.Size(193, 72);
             this.button2.TabIndex = 18;
             this.button2.Text = "Удалить должность";
             this.button2.UseVisualStyleBackColor = true;
@@ -66,10 +66,10 @@
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(9, 338);
+            this.button1.Location = new System.Drawing.Point(28, 338);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(261, 72);
+            this.button1.Size = new System.Drawing.Size(242, 72);
             this.button1.TabIndex = 17;
             this.button1.Text = "Добавить должность";
             this.button1.UseVisualStyleBackColor = true;
@@ -88,9 +88,9 @@
             // 
             this.button4.Enabled = false;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button4.Location = new System.Drawing.Point(385, 416);
+            this.button4.Location = new System.Drawing.Point(383, 417);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(332, 45);
+            this.button4.Size = new System.Drawing.Size(270, 45);
             this.button4.TabIndex = 20;
             this.button4.Text = "Обновить список";
             this.button4.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.Location = new System.Drawing.Point(48, 425);
+            this.checkBox1.Location = new System.Drawing.Point(95, 426);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(256, 29);
             this.checkBox1.TabIndex = 21;
@@ -112,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 464);
+            this.ClientSize = new System.Drawing.Size(770, 474);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
