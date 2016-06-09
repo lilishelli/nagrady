@@ -24,8 +24,8 @@ namespace Nagrady
         // ОДБ.OleDbDataAdapter Adapter;
         void loademp()
         {
-            ОДБ.OleDbDataReader выполнение = Database.getReader("select [employees].[id], [lname], [fname], [patre], [organisations].[org_name], [positions].[pos_name], [gender], [birth], " +
-                " fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees, organisations, positions where positions.id=employees.pos and organisations.id=employees.org");
+            ОДБ.OleDbDataReader выполнение = Database.getReader("SELECT employees.id, employees.lname, employees.fname, employees.patre, organisations.org_name, positions.pos_name, employees.gender, employees.birth, Fix((Date()-[dbegin_org])/365.25) AS Выражение1, Fix((Date()-[dbegin_industry])/365.25) AS Выражение2, Fix((Date()-[dbegin_general])/365.25) "+
+" FROM positions RIGHT JOIN (organisations RIGHT JOIN employees ON organisations.id = employees.org) ON positions.id = employees.pos");
             DataTable mytable = new DataTable();
             mytable.Columns.Add(выполнение.GetName(0));
             mytable.Columns.Add(выполнение.GetName(1));
@@ -176,8 +176,8 @@ namespace Nagrady
                 try
                 {
 
-                    ОДБ.OleDbDataReader выполнение = Database.getReader("select [employees].[id], [lname], [fname], [patre], [organisations].[org_name], [positions].[pos_name], [gender], [birth], " +
-                " fix((date()-[dbegin_org])/365.25), fix((date()-[dbegin_industry])/365.25), fix((date()-[dbegin_general])/365.25) from employees, organisations, positions where positions.id=employees.pos and organisations.id=employees.org and employees.lname = '"+textBox2.Text+"'");
+                    ОДБ.OleDbDataReader выполнение = Database.getReader("SELECT employees.id, employees.lname, employees.fname, employees.patre, organisations.org_name, positions.pos_name, employees.gender, employees.birth, Fix((Date()-[dbegin_org])/365.25) AS Выражение1, Fix((Date()-[dbegin_industry])/365.25) AS Выражение2, Fix((Date()-[dbegin_general])/365.25) "+
+" FROM positions RIGHT JOIN (organisations RIGHT JOIN employees ON organisations.id = employees.org) ON positions.id = employees.pos where employees.lname = '"+textBox2.Text+"'");
                     DataTable mytable = new DataTable();
                     mytable.Columns.Add(выполнение.GetName(0));
                     mytable.Columns.Add(выполнение.GetName(1));
@@ -253,6 +253,7 @@ namespace Nagrady
             // If the no button was pressed ...
             if (result == DialogResult.Yes)
             {
+                
                 Database.execute("Delete * From Employees where Employees.id = " + id + "");
                 try
                 {

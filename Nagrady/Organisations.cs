@@ -65,6 +65,7 @@ namespace Nagrady
             {
                 try
                 {
+                    Database.execute("update employees set org = null where org = "+id+"");
                     Database.execute("Delete * From organisations where organisations.id = " + id + "");
                     MessageBox.Show("Запись удалена");
                     update();

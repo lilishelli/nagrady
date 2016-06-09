@@ -29,7 +29,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestAddEmp()
         {            
-            editEmp.addEmp("q","q","q","q","q","Мужской",DateTime.Now, DateTime.Now, DateTime.Now,DateTime.Now);
+            //editEmp.addEmp("q","q","q","q","q","Мужской",DateTime.Now, DateTime.Now, DateTime.Now,DateTime.Now);
 
         }
         [TestMethod]

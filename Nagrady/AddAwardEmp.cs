@@ -55,7 +55,8 @@ namespace Nagrady
             }
             else
             {
-                Database.execute("INSERT INTO Awardemps (reward_id, emp_id, date_get, comment, doc) VALUES (" + comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", " + Data.empId + ", '" + dateTimePicker1.Value.Date.ToString("dd.MM.yyyy") + "', '" + textBox3.Text + "', '"+newdoc+"')");
+                Database.execute("INSERT INTO Awardemps (reward_id, emp_id, date_get, act_id, comment, doc) VALUES (" + 
+                    comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", " + Data.empId + ", '" + dateTimePicker1.Value.Date.ToString("dd.MM.yyyy") + "', null, '" + textBox3.Text + "', '"+newdoc+"')");
                     
             }
            MessageBox.Show("В таблицу добавлена запись");
@@ -91,6 +92,13 @@ namespace Nagrady
             sourcedoc = "";
             olddoc = "";
             formatdoc = "";
+            label3.Text = "";
+            comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
+            comboBox3.Items.Clear();
+            comboBox4.Items.Clear();
+            comboBox5.Items.Clear();
+            comboBox6.Items.Clear();
             OleDbDataReader v;
             if (Data.isAddAwardBtn == false)
             {
