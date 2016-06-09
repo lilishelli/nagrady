@@ -241,7 +241,11 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(361, 33);
             this.comboBox2.TabIndex = 21;
+<<<<<<< HEAD
             this.comboBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox2_MouseClick);
+=======
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+>>>>>>> a117c7ba06610151cac9f44608a1df26673344f5
             // 
             // comboBox3
             // 
@@ -259,7 +263,6 @@
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(358, 33);
             this.comboBox4.TabIndex = 23;
-            this.comboBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox4_MouseClick);
             // 
             // comboBox5
             // 
