@@ -166,102 +166,102 @@ namespace Nagrady
             loadawardemp();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+       private void button4_Click_1(object sender, EventArgs e)
         {
-            if (textBox1.Text == "") { loadawardemp(); }
-            else
+        if (textBox1.Text == "") { loadawardemp(); }
+        else
+        {
+            try
             {
-                try
+                var v = Database.getReader("SELECT [awardemps].[id], [reward_types].[type_name], [Rewards].[reward_name], [employees].[lname] & ' ' & [employees].[fname] & ' ' & [employees].[patre]," +
+       " [awardemps].[date_get] , [awardemps].[date_award], [localact].[act_name], [awardemps].[act_num], " +
+       " [awardemps].[act_date], [awardemps].[comment]" +
+       " FROM Reward_types INNER JOIN (Rewards INNER JOIN (Employees INNER JOIN (awardemps LEFT JOIN localact ON [awardemps].[act_id] = [localact].[id]) ON [Employees].[id] = [awardemps].[emp_id])" +
+       " ON [Rewards].[id] = [awardemps].[reward_id]) ON [Reward_types].[id] = [Rewards].[id_type] where [Employees].[lname] = '" + textBox1.Text + "'");
+                DataTable mytable = new DataTable();
+                mytable.Columns.Add(v.GetName(0));
+                mytable.Columns.Add(v.GetName(1));
+                mytable.Columns.Add(v.GetName(2));
+                mytable.Columns.Add(v.GetName(3));
+                mytable.Columns.Add(v.GetName(4));
+                mytable.Columns.Add(v.GetName(5));
+                mytable.Columns.Add(v.GetName(6));
+                mytable.Columns.Add(v.GetName(7));
+                mytable.Columns.Add(v.GetName(8));
+                mytable.Columns.Add(v.GetName(9));
+                while (v.Read() == true)
                 {
-                    var v = Database.getReader("SELECT [awardemps].[id], [reward_types].[type_name], [Rewards].[reward_name], [employees].[lname] & ' ' & [employees].[fname] & ' ' & [employees].[patre]," +
-           " [awardemps].[date_get] , [awardemps].[date_award], [localact].[act_name], [awardemps].[act_num], " +
-           " [awardemps].[act_date], [awardemps].[comment]" +
-           " FROM Reward_types INNER JOIN (Rewards INNER JOIN (Employees INNER JOIN (awardemps LEFT JOIN localact ON [awardemps].[act_id] = [localact].[id]) ON [Employees].[id] = [awardemps].[emp_id])" +
-           " ON [Rewards].[id] = [awardemps].[reward_id]) ON [Reward_types].[id] = [Rewards].[id_type] where [Employees].[lname] = '"+textBox1.Text+"'");
-                    DataTable mytable = new DataTable();
-                    mytable.Columns.Add(v.GetName(0));
-                    mytable.Columns.Add(v.GetName(1));
-                    mytable.Columns.Add(v.GetName(2));
-                    mytable.Columns.Add(v.GetName(3));
-                    mytable.Columns.Add(v.GetName(4));
-                    mytable.Columns.Add(v.GetName(5));
-                    mytable.Columns.Add(v.GetName(6));
-                    mytable.Columns.Add(v.GetName(7));
-                    mytable.Columns.Add(v.GetName(8));
-                    mytable.Columns.Add(v.GetName(9));
-                    while (v.Read() == true)
+                    string date_get;
+                    string date_award;
+                    string date_act;
+                    try
                     {
-                        string date_get;
-                        string date_award;
-                        string date_act;
-                        try
-                        {
-                            date_get = DateTime.Parse(v.GetValue(4).ToString()).Date.ToString("dd.MM.yyyy");
-                        }
-                        catch
-                        {
-                            date_get = "";
-                        }
-                        try
-                        {
-                            date_award = DateTime.Parse(v.GetValue(5).ToString()).Date.ToString("dd.MM.yyyy");
-                        }
-                        catch
-                        {
-                            date_award = "";
-                        }
-                        try
-                        {
-                            date_act = DateTime.Parse(v.GetValue(8).ToString()).Date.ToString("dd.MM.yyyy");
-                        }
-                        catch
-                        {
-                            date_act = "";
-                        }
-                        mytable.Rows.Add(new object[] { v.GetValue(0), v.GetValue(1), v.GetValue(2), v.GetValue(3), date_get,
-                   date_award, v.GetValue(6), v.GetValue(7).ToString(), date_act, v.GetValue(9) });
+                        date_get = DateTime.Parse(v.GetValue(4).ToString()).Date.ToString("dd.MM.yyyy");
                     }
-                    v.Close();
-                    // con.Close();
-                    dataGridView1.DataSource = mytable;
-                    dataGridView1.Columns[0].HeaderCell.Value = "ID";
-                    dataGridView1.Columns[0].Width = 50;
-                    dataGridView1.Columns[1].HeaderCell.Value = "Тип награды";
-                    dataGridView1.Columns[1].Width = 300;
-                    dataGridView1.Columns[2].HeaderCell.Value = "Вид награды";
-                    dataGridView1.Columns[2].Width = 300;
-                    dataGridView1.Columns[3].HeaderCell.Value = "Сотрудник";
-                    dataGridView1.Columns[3].Width = 250;
-                    dataGridView1.Columns[4].HeaderCell.Value = "Дата представления";
-                    dataGridView1.Columns[4].Width = 150;
-                    dataGridView1.Columns[5].HeaderCell.Value = "Дата получения награды";
-                    dataGridView1.Columns[5].Width = 120;
-                    dataGridView1.Columns[6].HeaderCell.Value = "Вид локального акта";
-                    dataGridView1.Columns[6].Width = 150;
-                    dataGridView1.Columns[7].HeaderCell.Value = "Номер локального акта";
-                    dataGridView1.Columns[7].Width = 120;
-                    dataGridView1.Columns[8].HeaderCell.Value = "Дата локального акта";
-                    dataGridView1.Columns[8].Width = 150;
-                    dataGridView1.Columns[9].HeaderCell.Value = "Примечания";
-                    dataGridView1.Columns[9].Width = 200;
-                    //----------->Внешний вид DataGridView
-                    DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-                    DataGridViewCellStyle columnHeaderStyle1 = new DataGridViewCellStyle();
-                    columnHeaderStyle.Font = new Font("Verdana", 12);
-                    columnHeaderStyle1.Font = new Font("Verdana", 12, FontStyle.Bold);
-                    dataGridView1.ColumnHeadersDefaultCellStyle = columnHeaderStyle1;//изменения для головы
-                    dataGridView1.RowsDefaultCellStyle = columnHeaderStyle;//изменения для остальных строк
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)//увеличить высоту ячеек
-                        dataGridView1.Rows[i].Height += 60;
-                    this.dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;//перенос слов
-                    dataGridView1.Refresh();//обновить
-                                            //----------------<
+                    catch
+                    {
+                        date_get = "";
+                    }
+                    try
+                    {
+                        date_award = DateTime.Parse(v.GetValue(5).ToString()).Date.ToString("dd.MM.yyyy");
+                    }
+                    catch
+                    {
+                        date_award = "";
+                    }
+                    try
+                    {
+                        date_act = DateTime.Parse(v.GetValue(8).ToString()).Date.ToString("dd.MM.yyyy");
+                    }
+                    catch
+                    {
+                        date_act = "";
+                    }
+                    mytable.Rows.Add(new object[] { v.GetValue(0), v.GetValue(1), v.GetValue(2), v.GetValue(3), date_get,
+                   date_award, v.GetValue(6), v.GetValue(7).ToString(), date_act, v.GetValue(9) });
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка ввода данных");
-                }
+                v.Close();
+                // con.Close();
+                dataGridView1.DataSource = mytable;
+                dataGridView1.Columns[0].HeaderCell.Value = "ID";
+                dataGridView1.Columns[0].Width = 50;
+                dataGridView1.Columns[1].HeaderCell.Value = "Тип награды";
+                dataGridView1.Columns[1].Width = 300;
+                dataGridView1.Columns[2].HeaderCell.Value = "Вид награды";
+                dataGridView1.Columns[2].Width = 300;
+                dataGridView1.Columns[3].HeaderCell.Value = "Сотрудник";
+                dataGridView1.Columns[3].Width = 250;
+                dataGridView1.Columns[4].HeaderCell.Value = "Дата представления";
+                dataGridView1.Columns[4].Width = 150;
+                dataGridView1.Columns[5].HeaderCell.Value = "Дата получения награды";
+                dataGridView1.Columns[5].Width = 120;
+                dataGridView1.Columns[6].HeaderCell.Value = "Вид локального акта";
+                dataGridView1.Columns[6].Width = 150;
+                dataGridView1.Columns[7].HeaderCell.Value = "Номер локального акта";
+                dataGridView1.Columns[7].Width = 120;
+                dataGridView1.Columns[8].HeaderCell.Value = "Дата локального акта";
+                dataGridView1.Columns[8].Width = 150;
+                dataGridView1.Columns[9].HeaderCell.Value = "Примечания";
+                dataGridView1.Columns[9].Width = 200;
+                //----------->Внешний вид DataGridView
+                DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+                DataGridViewCellStyle columnHeaderStyle1 = new DataGridViewCellStyle();
+                columnHeaderStyle.Font = new Font("Verdana", 12);
+                columnHeaderStyle1.Font = new Font("Verdana", 12, FontStyle.Bold);
+                dataGridView1.ColumnHeadersDefaultCellStyle = columnHeaderStyle1;//изменения для головы
+                dataGridView1.RowsDefaultCellStyle = columnHeaderStyle;//изменения для остальных строк
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)//увеличить высоту ячеек
+                    dataGridView1.Rows[i].Height += 60;
+                this.dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;//перенос слов
+                dataGridView1.Refresh();//обновить
+                                        //----------------<
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка ввода данных");
+            }
+        }
         }
     }
 }

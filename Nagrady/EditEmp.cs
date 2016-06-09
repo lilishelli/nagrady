@@ -164,6 +164,10 @@ namespace Nagrady
         public void loadData()
         {
             comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
+            comboBox3.Items.Clear();
+            comboBox4.Items.Clear();
+            comboBox5.Items.Clear();
             comboBox1.Items.Add("Мужской");
             comboBox1.Items.Add("Женский");
             var v = Database.getReader("Select * From organisations");
@@ -236,47 +240,6 @@ namespace Nagrady
             f.Owner = this;
             f.FormClosed += new FormClosedEventHandler(NotifyAboutClosedChildForm);
             f.Show();
-        }
-
-
-        private void comboBox2_MouseClick(object sender, MouseEventArgs e)
-        {
-            comboBox2.Items.Clear();
-            comboBox3.Items.Clear();
-            var v = Database.getReader("Select * From organisations");
-            while (v.Read() == true)
-            {
-
-                comboBox3.Items.Add(v.GetValue(0));
-                comboBox2.Items.Add(v.GetValue(1));
-            }
-            v.Close();
-        }
-
-        private void comboBox4_MouseClick(object sender, MouseEventArgs e)
-        {
-            comboBox4.Items.Clear();
-            comboBox5.Items.Clear();
-            var v = Database.getReader("Select * From positions");
-            while (v.Read() == true)
-            {
-
-                comboBox5.Items.Add(v.GetValue(0));
-                comboBox4.Items.Add(v.GetValue(1));
-            }
-            v.Close();
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            loadData();
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
         }
     }
 }

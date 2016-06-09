@@ -43,7 +43,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, -1);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(753, 329);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 329);
             this.dataGridView1.TabIndex = 0;
             // 
             // button3
@@ -112,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 493);
+            this.ClientSize = new System.Drawing.Size(778, 493);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
