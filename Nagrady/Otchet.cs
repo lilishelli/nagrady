@@ -284,7 +284,7 @@ namespace Nagrady
                 Word1.ActiveDocument.Tables[1].Cell(1, 1).Range.InsertAfter("№ п/п");
                 Word1.ActiveDocument.Tables[1].Cell(1, 2).Range.InsertAfter("Фамилия, имя, отчество");
                 Word1.ActiveDocument.Tables[1].Cell(1, 3).Range.InsertAfter("Должность");
-                Word1.ActiveDocument.Tables[1].Cell(1, 4).Range.InsertAfter("Дата рождения (чч.мм.гггг)");
+                Word1.ActiveDocument.Tables[1].Cell(1, 4).Range.InsertAfter("Дата рождения (дд.мм.гггг)");
                 Word1.ActiveDocument.Tables[1].Cell(1, 5).Range.InsertAfter("Вид награды");
                 Word1.ActiveDocument.Tables[1].Cell(1, 6).Range.InsertAfter("Документ о награждении");            
 

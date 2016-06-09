@@ -34,6 +34,8 @@
             this.открытьСписокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокЛюдейПредставленныхКНаградамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокНаградToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокОрганизацийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокДолжностейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составитьОтчётToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.проверитьПодключениеСбазойДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.авторыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,8 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.списокОрганизацийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.списокДолжностейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -55,9 +55,9 @@
             this.dataGridView1.AllowDrop = true;
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(14, 121);
+            this.dataGridView1.Location = new System.Drawing.Point(14, 88);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(965, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(1129, 342);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
@@ -65,9 +65,9 @@
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(14, 418);
+            this.button1.Location = new System.Drawing.Point(304, 502);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(471, 64);
+            this.button1.Size = new System.Drawing.Size(426, 64);
             this.button1.TabIndex = 1;
             this.button1.Text = "Добавить человека представленного к награде в список";
             this.button1.UseVisualStyleBackColor = true;
@@ -84,7 +84,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(993, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(1155, 36);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -113,6 +113,20 @@
             this.списокНаградToolStripMenuItem.Text = "Список наград";
             this.списокНаградToolStripMenuItem.Click += new System.EventHandler(this.списокНаградToolStripMenuItem_Click);
             // 
+            // списокОрганизацийToolStripMenuItem
+            // 
+            this.списокОрганизацийToolStripMenuItem.Name = "списокОрганизацийToolStripMenuItem";
+            this.списокОрганизацийToolStripMenuItem.Size = new System.Drawing.Size(479, 32);
+            this.списокОрганизацийToolStripMenuItem.Text = "Список организаций";
+            this.списокОрганизацийToolStripMenuItem.Click += new System.EventHandler(this.списокОрганизацийToolStripMenuItem_Click);
+            // 
+            // списокДолжностейToolStripMenuItem
+            // 
+            this.списокДолжностейToolStripMenuItem.Name = "списокДолжностейToolStripMenuItem";
+            this.списокДолжностейToolStripMenuItem.Size = new System.Drawing.Size(479, 32);
+            this.списокДолжностейToolStripMenuItem.Text = "Список должностей";
+            this.списокДолжностейToolStripMenuItem.Click += new System.EventHandler(this.списокДолжностейToolStripMenuItem_Click);
+            // 
             // составитьОтчётToolStripMenuItem
             // 
             this.составитьОтчётToolStripMenuItem.Name = "составитьОтчётToolStripMenuItem";
@@ -137,15 +151,15 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(519, 68);
+            this.textBox2.Location = new System.Drawing.Point(496, 45);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(182, 30);
+            this.textBox2.Size = new System.Drawing.Size(293, 30);
             this.textBox2.TabIndex = 4;
             // 
             // search
             // 
             this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.search.Location = new System.Drawing.Point(707, 61);
+            this.search.Location = new System.Drawing.Point(818, 38);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(176, 44);
             this.search.TabIndex = 5;
@@ -157,9 +171,9 @@
             // 
             this.addRewardToEmpbtn.Enabled = false;
             this.addRewardToEmpbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addRewardToEmpbtn.Location = new System.Drawing.Point(508, 352);
+            this.addRewardToEmpbtn.Location = new System.Drawing.Point(736, 436);
             this.addRewardToEmpbtn.Name = "addRewardToEmpbtn";
-            this.addRewardToEmpbtn.Size = new System.Drawing.Size(471, 60);
+            this.addRewardToEmpbtn.Size = new System.Drawing.Size(407, 60);
             this.addRewardToEmpbtn.TabIndex = 6;
             this.addRewardToEmpbtn.Text = "Добавить награду выбранному человеку из списка ";
             this.addRewardToEmpbtn.UseVisualStyleBackColor = true;
@@ -169,9 +183,9 @@
             // 
             this.editbtn.Enabled = false;
             this.editbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.editbtn.Location = new System.Drawing.Point(14, 352);
+            this.editbtn.Location = new System.Drawing.Point(304, 436);
             this.editbtn.Name = "editbtn";
-            this.editbtn.Size = new System.Drawing.Size(471, 60);
+            this.editbtn.Size = new System.Drawing.Size(426, 60);
             this.editbtn.TabIndex = 7;
             this.editbtn.Text = "Редактировать личные данные выбранного человека из списка ";
             this.editbtn.UseVisualStyleBackColor = true;
@@ -181,7 +195,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(115, 71);
+            this.label1.Location = new System.Drawing.Point(92, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(398, 25);
             this.label1.TabIndex = 8;
@@ -191,7 +205,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.Location = new System.Drawing.Point(57, 488);
+            this.checkBox1.Location = new System.Drawing.Point(42, 453);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(256, 29);
             this.checkBox1.TabIndex = 9;
@@ -203,33 +217,19 @@
             // 
             this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(508, 418);
+            this.button2.Location = new System.Drawing.Point(736, 502);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(471, 64);
+            this.button2.Size = new System.Drawing.Size(407, 64);
             this.button2.TabIndex = 10;
             this.button2.Text = "Удалить выбранного человека из списка";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // списокОрганизацийToolStripMenuItem
-            // 
-            this.списокОрганизацийToolStripMenuItem.Name = "списокОрганизацийToolStripMenuItem";
-            this.списокОрганизацийToolStripMenuItem.Size = new System.Drawing.Size(479, 32);
-            this.списокОрганизацийToolStripMenuItem.Text = "Список организаций";
-            this.списокОрганизацийToolStripMenuItem.Click += new System.EventHandler(this.списокОрганизацийToolStripMenuItem_Click);
-            // 
-            // списокДолжностейToolStripMenuItem
-            // 
-            this.списокДолжностейToolStripMenuItem.Name = "списокДолжностейToolStripMenuItem";
-            this.списокДолжностейToolStripMenuItem.Size = new System.Drawing.Size(479, 32);
-            this.списокДолжностейToolStripMenuItem.Text = "Список должностей";
-            this.списокДолжностейToolStripMenuItem.Click += new System.EventHandler(this.списокДолжностейToolStripMenuItem_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 529);
+            this.ClientSize = new System.Drawing.Size(1155, 578);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);

@@ -58,7 +58,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(167, 42);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(590, 33);
+            this.comboBox1.Size = new System.Drawing.Size(857, 33);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -68,7 +68,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(167, 108);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(590, 33);
+            this.comboBox2.Size = new System.Drawing.Size(857, 33);
             this.comboBox2.TabIndex = 1;
             // 
             // label1
@@ -153,27 +153,27 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(548, 163);
+            this.label9.Location = new System.Drawing.Point(685, 161);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(130, 25);
+            this.label9.Size = new System.Drawing.Size(136, 25);
             this.label9.TabIndex = 16;
-            this.label9.Text = "Примечания";
+            this.label9.Text = "Примечание:";
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(475, 191);
+            this.textBox3.Location = new System.Drawing.Point(468, 189);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(282, 345);
+            this.textBox3.Size = new System.Drawing.Size(556, 236);
             this.textBox3.TabIndex = 17;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(18, 566);
+            this.button1.Location = new System.Drawing.Point(468, 443);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(739, 93);
+            this.button1.Size = new System.Drawing.Size(556, 93);
             this.button1.TabIndex = 18;
             this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
@@ -271,7 +271,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 671);
+            this.ClientSize = new System.Drawing.Size(1036, 551);
             this.Controls.Add(this.comboBox6);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dateTimePicker3);

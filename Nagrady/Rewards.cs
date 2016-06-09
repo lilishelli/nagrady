@@ -31,10 +31,22 @@ namespace Nagrady
                     mytable.Rows.Add(new object[] { v.GetValue(0), v.GetValue(1) });
                 v.Close();
                 dataGridView1.DataSource = mytable;
-                dataGridView1.Columns[0].HeaderCell.Value = "Шифр";
-                dataGridView1.Columns[0].Width = 100;
+                dataGridView1.Columns[0].HeaderCell.Value = "ID";
+                dataGridView1.Columns[0].Width = 50;
                 dataGridView1.Columns[1].HeaderCell.Value = "Вид награды";
-                dataGridView1.Columns[1].Width = 700;
+                dataGridView1.Columns[1].Width = 917;
+                //----------->Внешний вид DataGridView
+                DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+                DataGridViewCellStyle columnHeaderStyle1 = new DataGridViewCellStyle();
+                columnHeaderStyle.Font = new Font("Verdana", 12);
+                columnHeaderStyle1.Font = new Font("Verdana", 12, FontStyle.Bold);
+                dataGridView1.ColumnHeadersDefaultCellStyle = columnHeaderStyle1;//изменения для головы
+                dataGridView1.RowsDefaultCellStyle = columnHeaderStyle;//изменения для остальных строк
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)//увеличить высоту ячеек
+                    dataGridView1.Rows[i].Height += 20;
+                this.dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;//перенос слов
+                dataGridView1.Refresh();//обновить
+                                        //----------------<
             }
             catch (Exception ex)
             {

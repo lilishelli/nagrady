@@ -44,27 +44,40 @@ namespace Nagrady
             выполнение.Close();
             dataGridView1.DataSource = mytable;
             dataGridView1.Columns[0].HeaderCell.Value = "ID";
-            dataGridView1.Columns[0].Width = 25;
+            dataGridView1.Columns[0].Width = 50;
             dataGridView1.Columns[1].HeaderCell.Value = "Фамилия";
-            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[1].Width = 250;
             dataGridView1.Columns[2].HeaderCell.Value = "Имя";
-            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[2].Width = 200;
             dataGridView1.Columns[3].HeaderCell.Value = "Отчество";
-            dataGridView1.Columns[3].Width = 100;
+            dataGridView1.Columns[3].Width = 250;
             dataGridView1.Columns[4].HeaderCell.Value = "Место работы";
-            dataGridView1.Columns[4].Width = 200;
+            dataGridView1.Columns[4].Width = 250;
             dataGridView1.Columns[5].HeaderCell.Value = "Должность";
-            dataGridView1.Columns[5].Width = 200;
+            dataGridView1.Columns[5].Width = 220;
             dataGridView1.Columns[6].HeaderCell.Value = "Пол";
-            dataGridView1.Columns[6].Width = 100;
+            dataGridView1.Columns[6].Width = 105;
             dataGridView1.Columns[7].HeaderCell.Value = "Дата рождения";
-            dataGridView1.Columns[7].Width = 100;
+            dataGridView1.Columns[7].Width = 170;
             dataGridView1.Columns[8].HeaderCell.Value = "Стаж работы в организации";
-            dataGridView1.Columns[8].Width = 100;
+            dataGridView1.Columns[8].Width = 150;
             dataGridView1.Columns[9].HeaderCell.Value = "Стаж работы в отрасли";
-            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[9].Width = 150;
             dataGridView1.Columns[10].HeaderCell.Value = "Общий стаж";
             dataGridView1.Columns[10].Width = 100;
+
+            //----------->Внешний вид DataGridView
+            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+            DataGridViewCellStyle columnHeaderStyle1 = new DataGridViewCellStyle();
+            columnHeaderStyle.Font = new Font("Verdana", 14);
+            columnHeaderStyle1.Font = new Font("Verdana", 12, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle = columnHeaderStyle1;//изменения для головы
+            dataGridView1.RowsDefaultCellStyle = columnHeaderStyle;//изменения для остальных строк
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)//увеличить высоту ячеек
+                dataGridView1.Rows[i].Height +=10;
+            this.dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;//перенос слов
+            dataGridView1.Refresh();//обновить
+            //----------------<
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -183,27 +196,39 @@ namespace Nagrady
                     выполнение.Close();
                     dataGridView1.DataSource = mytable;
                     dataGridView1.Columns[0].HeaderCell.Value = "ID";
-                    dataGridView1.Columns[0].Width = 25;
+                    dataGridView1.Columns[0].Width = 50;
                     dataGridView1.Columns[1].HeaderCell.Value = "Фамилия";
-                    dataGridView1.Columns[1].Width = 100;
+                    dataGridView1.Columns[1].Width = 250;
                     dataGridView1.Columns[2].HeaderCell.Value = "Имя";
-                    dataGridView1.Columns[2].Width = 100;
+                    dataGridView1.Columns[2].Width = 200;
                     dataGridView1.Columns[3].HeaderCell.Value = "Отчество";
-                    dataGridView1.Columns[3].Width = 100;
+                    dataGridView1.Columns[3].Width = 250;
                     dataGridView1.Columns[4].HeaderCell.Value = "Место работы";
-                    dataGridView1.Columns[4].Width = 200;
+                    dataGridView1.Columns[4].Width = 250;
                     dataGridView1.Columns[5].HeaderCell.Value = "Должность";
-                    dataGridView1.Columns[5].Width = 200;
+                    dataGridView1.Columns[5].Width = 220;
                     dataGridView1.Columns[6].HeaderCell.Value = "Пол";
-                    dataGridView1.Columns[6].Width = 100;
+                    dataGridView1.Columns[6].Width = 105;
                     dataGridView1.Columns[7].HeaderCell.Value = "Дата рождения";
-                    dataGridView1.Columns[7].Width = 100;
+                    dataGridView1.Columns[7].Width = 170;
                     dataGridView1.Columns[8].HeaderCell.Value = "Стаж работы в организации";
-                    dataGridView1.Columns[8].Width = 100;
+                    dataGridView1.Columns[8].Width = 150;
                     dataGridView1.Columns[9].HeaderCell.Value = "Стаж работы в отрасли";
-                    dataGridView1.Columns[9].Width = 100;
+                    dataGridView1.Columns[9].Width = 150;
                     dataGridView1.Columns[10].HeaderCell.Value = "Общий стаж";
                     dataGridView1.Columns[10].Width = 100;
+                    //----------->Внешний вид DataGridView
+                    DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+                    DataGridViewCellStyle columnHeaderStyle1 = new DataGridViewCellStyle();
+                    columnHeaderStyle.Font = new Font("Verdana", 14);
+                    columnHeaderStyle1.Font = new Font("Verdana", 12, FontStyle.Bold);
+                    dataGridView1.ColumnHeadersDefaultCellStyle = columnHeaderStyle1;//изменения для головы
+                    dataGridView1.RowsDefaultCellStyle = columnHeaderStyle;//изменения для остальных строк
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)//увеличить высоту ячеек
+                        dataGridView1.Rows[i].Height += 10;
+                    this.dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;//перенос слов
+                    dataGridView1.Refresh();//обновить
+                                            //----------------<
                 }
                 catch (Exception ex)
                 {

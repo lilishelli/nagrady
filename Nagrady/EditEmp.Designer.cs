@@ -53,6 +53,7 @@
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.addorg = new System.Windows.Forms.Button();
             this.addpos = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -240,17 +241,15 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(361, 33);
             this.comboBox2.TabIndex = 21;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             this.comboBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox2_MouseClick);
             // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(19, 267);
+            this.comboBox3.Location = new System.Drawing.Point(172, 231);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 23);
             this.comboBox3.TabIndex = 22;
-            this.comboBox3.Visible = false;
             // 
             // comboBox4
             // 
@@ -265,11 +264,10 @@
             // comboBox5
             // 
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(19, 334);
+            this.comboBox5.Location = new System.Drawing.Point(149, 293);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(121, 23);
             this.comboBox5.TabIndex = 24;
-            this.comboBox5.Visible = false;
             // 
             // addorg
             // 
@@ -293,11 +291,22 @@
             this.addpos.UseVisualStyleBackColor = true;
             this.addpos.Click += new System.EventHandler(this.addpos_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(416, 221);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 27;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // EditEmp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 581);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.addpos);
             this.Controls.Add(this.addorg);
             this.Controls.Add(this.comboBox5);
@@ -359,5 +368,6 @@
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Button addorg;
         private System.Windows.Forms.Button addpos;
+        private System.Windows.Forms.Button button2;
     }
 }
