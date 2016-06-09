@@ -331,8 +331,7 @@ namespace Nagrady
                     Word1.ActiveDocument.PageSetup.Orientation = Ворд.Word.WdOrientation.wdOrientLandscape;
                 reader.Close();
                 con.Close();
-                dataGridView1.DataSource = mytable;
-            }
+               }
 
             catch (Exception exc)
             {
