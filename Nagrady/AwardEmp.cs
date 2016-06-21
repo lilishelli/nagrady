@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -122,7 +123,6 @@ namespace Nagrady
         {
             string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
 
-            //con.Open();
             const string message = "Удалить запись из базы?";
             const string caption = "Удаление";
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -140,7 +140,6 @@ namespace Nagrady
                 }
             }
 
-            // con.Close();
             loadawardemp();
         }
 
@@ -148,15 +147,16 @@ namespace Nagrady
         {
             if (checkBox1.Checked == true)
             {
-
                 button1.Enabled = true;
                 button2.Enabled = true;
+                button5.Enabled = true;
                 button3.Enabled = true;
             }
             else
             {
                 button1.Enabled = false;
                 button2.Enabled = false;
+                button5.Enabled = false;
                 button3.Enabled = false;
             }
         }
@@ -174,10 +174,10 @@ namespace Nagrady
             try
             {
                 var v = Database.getReader("SELECT [awardemps].[id], [reward_types].[type_name], [Rewards].[reward_name], [employees].[lname] & ' ' & [employees].[fname] & ' ' & [employees].[patre]," +
-       " [awardemps].[date_get] , [awardemps].[date_award], [localact].[act_name], [awardemps].[act_num], " +
-       " [awardemps].[act_date], [awardemps].[comment]" +
-       " FROM Reward_types INNER JOIN (Rewards INNER JOIN (Employees INNER JOIN (awardemps LEFT JOIN localact ON [awardemps].[act_id] = [localact].[id]) ON [Employees].[id] = [awardemps].[emp_id])" +
-       " ON [Rewards].[id] = [awardemps].[reward_id]) ON [Reward_types].[id] = [Rewards].[id_type] where [Employees].[lname] = '" + textBox1.Text + "'");
+                   " [awardemps].[date_get] , [awardemps].[date_award], [localact].[act_name], [awardemps].[act_num], " +
+                   " [awardemps].[act_date], [awardemps].[comment]" +
+                   " FROM Reward_types INNER JOIN (Rewards INNER JOIN (Employees INNER JOIN (awardemps LEFT JOIN localact ON [awardemps].[act_id] = [localact].[id]) ON [Employees].[id] = [awardemps].[emp_id])" +
+                   " ON [Rewards].[id] = [awardemps].[reward_id]) ON [Reward_types].[id] = [Rewards].[id_type] where [Employees].[lname] = '" + textBox1.Text + "'");
                 DataTable mytable = new DataTable();
                 mytable.Columns.Add(v.GetName(0));
                 mytable.Columns.Add(v.GetName(1));
@@ -263,5 +263,34 @@ namespace Nagrady
             }
         }
         }
+
+       private void button5_Click(object sender, EventArgs e)
+       {
+           try
+           {
+               string doc = (string)Database.getScalar("select doc from awardemps where id = " + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "");
+               if (doc!="")
+                       Process.Start(AppDomain.CurrentDomain.BaseDirectory + "docs\\" + doc);
+                   else
+                       MessageBox.Show("Не удаётся найти указанный файл");   
+           }
+           catch
+           {
+               MessageBox.Show("Не удаётся найти указанный файл");  
+           }
+       }
+
+       private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+       {
+           try
+           {
+               string doc = (string)Database.getScalar("select doc from awardemps where id = " + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "");
+               if (doc != "" && checkBox1.Checked == true)
+                   button5.Enabled = true;
+               else button5.Enabled = false;
+           }
+           catch { }
+       }
+
     }
 }

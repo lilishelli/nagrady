@@ -76,7 +76,7 @@ namespace Nagrady
                 }
                 if(newdoc!="" && sourcedoc!="")
                 {
-                    File.Copy(sourcedoc, AppDomain.CurrentDomain.BaseDirectory + "docs\\" + Data.empId+"."+formatdoc, true); 
+                    File.Copy(sourcedoc, AppDomain.CurrentDomain.BaseDirectory + "docs\\" + newdoc, true); 
                 }
             }
             catch (Exception ex)
@@ -246,7 +246,7 @@ namespace Nagrady
             {
                 //newdoc = ofd.FileName.Split(new[] { '\\' }).Last();                
                 formatdoc = ofd.FileName.Split(new[] { '.' }).Last();
-                newdoc = Data.empId + "." + formatdoc;
+                newdoc = Data.empId +"_"+DateTime.Now.ToString("ddMMyyyyhhmmss")+ "." + formatdoc;
                 sourcedoc = ofd.FileName;               
             }
         }
