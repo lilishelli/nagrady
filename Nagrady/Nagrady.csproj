@@ -99,7 +99,6 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="MyCon.cs" />
-    <Compile Include="Operations.cs" />
     <Compile Include="Organisations.cs">
       <SubType>Form</SubType>
     </Compile>

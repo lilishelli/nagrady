@@ -139,7 +139,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "AwardEmp";
-            this.Text = "Список сотрудников, представленных к наградам";
+            this.Text = "Список людей, представленных к наградам";
             this.Load += new System.EventHandler(this.AwardEmp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
