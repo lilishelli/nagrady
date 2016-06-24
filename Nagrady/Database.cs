@@ -68,5 +68,14 @@ namespace Nagrady
             return result;
            
         }
+        public static object getScalar(String query)
+        {
+            object result;
+            Database.connect();
+            var comanda = new OleDbCommand(query, Database.connection);
+            comanda.CommandType = CommandType.Text;
+            result = comanda.ExecuteScalar();
+            return result;
+        }
     }
 }
