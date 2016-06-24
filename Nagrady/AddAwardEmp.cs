@@ -26,17 +26,21 @@ namespace Nagrady
         {
             try
             {
+                string doc;
+                if (newdoc != "")
+                    doc = newdoc;
+                else doc = olddoc;
                 if (comboBox5.SelectedIndex >= 0)
                 {
                     Database.execute("Update Awardemps SET reward_id = " + comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", emp_id = " + Data.empId + ", date_get = '" + dateTimePicker1.Value.Date
                         + "',  date_award = '" + dateTimePicker2.Value.Date + "',act_id = " + comboBox6.Items[comboBox5.SelectedIndex].ToString()
-                        + ", act_num = '" + textBox1.Text + "', act_date = '" + dateTimePicker3.Value.Date + "', comment = '" + textBox3.Text + "', doc = '"+newdoc+"' WHERE (id = " + Data.awardEmpId + ")");
+                        + ", act_num = '" + textBox1.Text + "', act_date = '" + dateTimePicker3.Value.Date + "', comment = '" + textBox3.Text + "', doc = '"+doc+"' WHERE (id = " + Data.awardEmpId + ")");
                     
                 }
                 else
-                {
+                {                   
                     Database.execute("Update Awardemps SET reward_id = " + comboBox4.Items[comboBox2.SelectedIndex].ToString() + ", emp_id = " + Data.empId + ", date_get = '" + dateTimePicker1.Value.Date
-                        + "', date_award=null, act_id=null, act_num=null, act_date=null, comment = '" + textBox3.Text + "',doc = '"+newdoc+"' WHERE (id = " + Data.awardEmpId + ")");
+                        + "', date_award=null, act_id=null, act_num=null, act_date=null, comment = '" + textBox3.Text + "',doc = '"+doc+"' WHERE (id = " + Data.awardEmpId + ")");
                 }
                 MessageBox.Show("Запись обновлена");
             }

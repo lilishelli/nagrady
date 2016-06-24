@@ -87,6 +87,17 @@ namespace Nagrady
             }
             local.Close();
         }
+        void openButtonStateChange()
+        {
+            try
+            {
+                string doc = (string)Database.getScalar("select doc from awardemps where id = " + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "");
+                if (doc != "" && checkBox1.Checked == true)
+                    button5.Enabled = true;
+                else button5.Enabled = false;
+            }
+            catch { }
+        }
         private void AwardEmp_Load(object sender, EventArgs e)
         {
             loadawardemp();
@@ -131,7 +142,7 @@ namespace Nagrady
             {
                 button1.Enabled = true;
                 button2.Enabled = true;
-                button5.Enabled = true;
+                //button5.Enabled = true;
                 button3.Enabled = true;
             }
             else
@@ -141,6 +152,7 @@ namespace Nagrady
                 button5.Enabled = false;
                 button3.Enabled = false;
             }
+            openButtonStateChange();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -264,14 +276,7 @@ namespace Nagrady
 
        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
        {
-           try
-           {
-               string doc = (string)Database.getScalar("select doc from awardemps where id = " + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "");
-                if (doc != "" && checkBox1.Checked == true)
-                    button5.Enabled = true;
-                else button5.Enabled = false;
-           }
-           catch { }
+           openButtonStateChange();
        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
